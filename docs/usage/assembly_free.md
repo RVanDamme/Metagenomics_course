@@ -1,4 +1,10 @@
-# Whole Metagenome Sequencin
+# Whole Metagenome Sequencing
+
+Before anything RUN THIS:
+
+```bash
+conda create -n Meta_free -c bioconda fastqc kraken2
+```
 
 ### Table of Contents
 
