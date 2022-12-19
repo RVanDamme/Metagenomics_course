@@ -1,9 +1,9 @@
-site_name: Prokaryotic_annotation
+site_name: Metagenomics
 nav:
     - Home: index.md
-    - Prokaryotic annotation: usage/proka_annot.md
-    - Eukaryotic annotation: usage/euka_annot.md
-    - Project: usage/project.md
+    - Assembly based: usage/assembly_binning_based.md 
+    - Assembly free: usage/assembly_free.md
+    - Metabarcoding: usage/metabarcoding.md
 
     
 theme: 
