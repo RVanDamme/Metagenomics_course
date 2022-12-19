@@ -1,38 +1,69 @@
-# Genome Annotation
+# Metagenomics
 
-## Schedule:
+## Program:
 
-### **Day 1**
-* Morning: 
-    1. Introduction to Galaxy [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html)
-    2. Presentation Prokaryotic annotation [here](usage/proka_annot.md)
-    3. Prokaryotic annotation practice [here](usage/proka_annot.md)
-* Afternoon: 
-    1. Prokaryotic annotation practice [here](usage/proka_annot.md)
+### Introduction(s)
 
-### **Day 2**
-* Morning: 
-    1. Presentation Eukaryotic annotation [here](usage/euka_annot.md)
-    2. Eukaryotic annotation practice [here](usage/euka_annot.md)
-* Afternoon: 
-    1. Eukaryotic annotation practice [here](usage/euka_annot.md)
+1. Introduction to Galaxy [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html) / Link to [Galaxy Metagenomics course](https://training.galaxyproject.org/training-material/topics/metagenomics/)
+    
+2. Introduction to Metagenomics and environmental studies [Slides](Presentation/intro_to_metagenomics.pdf)
+2. bis [Theory](https://training.galaxyproject.org/training-material/topics/metagenomics/slides/introduction.html#1) & [Analyses of metagenomics data - The global picture 2,5-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/general-tutorial/tutorial.html#shotgun-metagenomics-data)
 
-### **Day 3** 
+3. Bonus: Ancient DNA and metagenomics [Slides](Presentation/Ancient_metagenomics.pdf)
 
-[here](usage/project.md)
-* Morning: 
-    1. All-round genome annotation presentation
-    2. Beginning Project
-* Afternoon: 
-    1. Project work
 
-### **Day 4**
+### Shotgun metagenomics (assembly free)
 
-[here](usage/project.md)
-* Morning: 
-    1. Project work
-* Afternoon: 
-    1. Presentation of project
+[Slides](Presentation/shotgun_metagenomics.pdf)
+
+Assembly free method, [Practical 4h](usage/assembly_free.md)
+
+[Identification of the micro-organisms in a beer using Nanopore sequencing 1-1,5h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/beer-data-analysis/tutorial.html#assign-taxonomic-classification)
+
+### Shotgun metagenomics (with assembly)
+
+Assembly and binning method, [Practical 4h](usage/assembly_binning_based.md)
+
+[Assembly of metagenomic sequencing data 2-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/metagenomics-assembly/tutorial.html#visualization-of-the-de-novo-assembly-graph)
+
+### Metatranscriptomics
+
+[Metatranscriptomics analysis using microbiome RNA-seq data (short) 3-4h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/metatranscriptomics-short/tutorial.html)
+
+### Amplicon sequencing 
+
+[Slides](Presentation/Metabarcoding.pdf)
+
+[16S Microbial Analysis with mothur (short) 2-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/mothur-miseq-sop-short/tutorial.html#optional-calculate-error-rates-based-on-our-mock-community)
+
+[16S Microbial analysis with Nanopore data 2-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/nanopore-16S-metagenomics/tutorial.html)
+
+Additional Tutorial: [DADA2](usage/metabarcoding.md)
+
+## Grade breakdown
+
+* 20% Active participation
+* 50% Project report
+* 30% Pre-Project presentation and discussion
+
+## Project 
+
+### instruction:
+
+Find a tool or pipeline or analysis method of metagenomics that has not been seen in during the course and test and evaluate it.
+You will need to explain how it works, how you found it and it's use in metagenomics studies.
+You can compare it to a similar tool/method seen during the course.
+
+You are tasked to have a report of at least 2 pages (not counting graphics, pics and table).
+Additional point will be provided if the work you have done is easily reproducible (scripts, command list, workflows provided in addition to the report).
+
+### Grade breakdown
+
+* 10% originality
+* 20% Reasoning and Explanation of what it should do
+* 30% exectution and testing
+* 20% analysis of the results
+* 20% comparison to existing methods
 
 ## Galaxy
 
@@ -125,8 +156,3 @@ Here is a collection of materials to train and improve your conda use. All have 
 * [Guide by Whitebox](https://whiteboxml.com/blog/the-definitive-guide-to-python-virtual-environments-with-conda)
 * [CheatSheet](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf)
 
-## Grade breakdown
-
-* 20% Active participation
-* 40% Project report
-* 40% Project presentation and discussion
