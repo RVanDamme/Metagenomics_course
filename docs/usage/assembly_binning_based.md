@@ -93,7 +93,12 @@ mv final.contigs.fa.metabat-bins1500 metabat
 The first time you run `checkm` you have to create the database
 
 ```bash
-sudo checkm data setRoot ~/.local/data/checkm
+mkdir   db/
+mv  checkm_data_2015_01_16.tar.gz db/
+cd db/
+tar -xzvf checkm_data_2015_01_16.tar.gz
+cd ..
+checkm data setRoot db/
 ```
 
 ```bash
