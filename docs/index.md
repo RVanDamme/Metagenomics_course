@@ -4,6 +4,8 @@
 
 ### Introduction(s)
 
+https://usegalaxy.eu/join-training/heh-omique/status/
+
 1. Introduction to Galaxy [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html) / Link to [Galaxy Metagenomics course](https://training.galaxyproject.org/training-material/topics/metagenomics/)
     
 2. Introduction to Metagenomics and environmental studies [Slides](Presentation/intro_to_metagenomics.pdf)
