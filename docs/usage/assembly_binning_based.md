@@ -3,7 +3,8 @@
 Before anything RUN THIS:
 
 ```bash
-conda create -n Meta_assembly -c bioconda fastqc sickle-trim megahit bowtie2 samtools metabat2=2.15 checkm-genome prokka sourmash
+conda create -n Meta_assembly -c bioconda fastqc sickle-trim megahit bowtie2 samtools metabat2=2.15 checkm-genome prokka
+conda create -n sour -c bioconda sourmash=4.5.0
 ```
 
 In this tutorial you'll learn how to inspect assemble metagenomic data and retrieve draft genomes from assembled metagenomes
@@ -131,6 +132,8 @@ Taxonomic classification for full genomes is not always easy for MAGs, often the
     Install sourmash in your computer! 
     
     ```bash
+    conda deactivate
+    conda activate sour
     sourmash compute -k 31 --scaled 10000 metabat/bin.* 
     ```
     
@@ -138,6 +141,8 @@ Taxonomic classification for full genomes is not always easy for MAGs, often the
     
     ```bash
     wget https://osf.io/download/p9ezm -O gtdb-rs207.genomic-reps.dna.k31.lca.json.gz
+    
+    sourmash lca classify --query bin.1.fa.sig --db gtdb-rs207.genomic-reps.dna.k31.lca.json.gz
     ```
 
 This database was made by the representative genomes of the gtdb database
