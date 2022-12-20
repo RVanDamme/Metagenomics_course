@@ -3,7 +3,7 @@
 Before anything RUN THIS:
 
 ```bash
-conda create -n Meta_assembly -c bioconda fastqc sickle megahit bowtie2 samtools metabat2 checkm-genome prokka sourmash
+conda create -n Meta_assembly -c bioconda fastqc sickle-trim megahit bowtie2 samtools metabat2 checkm-genome prokka sourmash
 ```
 
 In this tutorial you'll learn how to inspect assemble metagenomic data and retrieve draft genomes from assembled metagenomes
