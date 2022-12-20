@@ -4,7 +4,7 @@
 
 ### Introduction(s)
 
-https://usegalaxy.eu/join-training/heh-omique/status/
+https://usegalaxy.eu/join-training/heh-omique
 
 1. Introduction to Galaxy [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html) / Link to [Galaxy Metagenomics course](https://training.galaxyproject.org/training-material/topics/metagenomics/)
     
