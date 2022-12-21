@@ -149,7 +149,7 @@ conda create -n aligners bwa bowtie hisat star
 
 !!!! if you are on ubuntu in WSL you might get an HTTP error, to solve it a simple reboot of your computer is enough.!!!!
 
-# Ressources bibliographiques de l'AA Projet omique
+# Bibliography and ressources
 
 Core Papers: 
 
