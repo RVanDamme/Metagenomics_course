@@ -149,6 +149,28 @@ conda create -n aligners bwa bowtie hisat star
 
 !!!! if you are on ubuntu in WSL you might get an HTTP error, to solve it a simple reboot of your computer is enough.!!!!
 
+# Ressources bibliographiques de l'AA Projet omique
+
+Core Papers: 
+* https://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.000409
+* https://www.nature.com/articles/nbt.3935/figures/1
+* https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/metagenomics
+
+Additional read: 
+* https://www.nature.com/articles/nbt.3935
+* https://www.nature.com/articles/srep01968
+* https://www.frontiersin.org/articles/10.3389/fmicb.2021.613791/full
+* https://academic.oup.com/bib/article/22/6/bbab330/6358409
+* https://academic.oup.com/bib/article/21/2/584/5363831
+* https://www.nature.com/articles/s42003-021-02510-6
+* https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03667-3
+
+Tools:
+* MUFFIN: https://github.com/RVanDamme/MUFFIN & https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008716
+* metaWRAP: https://github.com/bxlab/metaWRAP & https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0541-1
+* Flye: https://github.com/fenderglass/Flye & https://www.nature.com/articles/s41592-020-00971-x
+* Kraken2: https://github.com/DerrickWood/kraken2 & https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0
+
 ### Tutorial, guides, and CheatSheet
 
 Here is a collection of materials to train and improve your conda use. All have their strength and weaknesses, the cheatsheet is your best friend when working.
