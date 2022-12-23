@@ -44,9 +44,9 @@ Additional Tutorial: [DADA2](usage/metabarcoding.md)
 
 ## Grade breakdown
 
-* 20% Active participation
-* 50% Project report
-* 30% Pre-Project presentation and discussion
+* 40% Active participation
+* 20% Project report
+* 40% Pre-Project presentation and discussion
 
 ## Project 
 
