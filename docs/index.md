@@ -12,6 +12,7 @@
 2. bis [Theory](https://training.galaxyproject.org/training-material/topics/metagenomics/slides/introduction.html#1) & [Analyses of metagenomics data - The global picture 2,5-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/general-tutorial/tutorial.html#shotgun-metagenomics-data)
 
 3. Bonus: Ancient DNA and metagenomics [Slides](Presentation/Ancient_metagenomics.pdf)
+4. Bonus: Muffin A nextflow Genomic Workflow [Slides](Presentation/MUFFIN_genomic_workflow.pdf)
 
 
 ### Shotgun metagenomics (assembly free)
