@@ -95,6 +95,7 @@ The first time you run `checkm` you have to create the database
 
 ```bash
 mkdir   db/
+wget --no-check-certificate https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz
 mv  checkm_data_2015_01_16.tar.gz db/
 cd db/
 tar -xzvf checkm_data_2015_01_16.tar.gz
