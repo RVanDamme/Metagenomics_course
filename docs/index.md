@@ -1,154 +1,76 @@
 # Metagenomics
 
-## Program:
-
-### Introduction(s)
+## Introduction(s)
 
 [https://usegalaxy.eu/join-training/heh-meta-omic](https://usegalaxy.eu/join-training/heh-meta-omic)
 
-1. Introduction to Galaxy [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html) / Link to [Galaxy Metagenomics course](https://training.galaxyproject.org/training-material/topics/metagenomics/)
-    
-2. Introduction to Metagenomics and environmental studies [Slides](Presentation/intro_to_metagenomics.pdf)
-2. bis [Theory](https://training.galaxyproject.org/training-material/topics/metagenomics/slides/introduction.html#1) & [Analyses of metagenomics data - The global picture 2,5-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/general-tutorial/tutorial.html#shotgun-metagenomics-data)
+1. Introduction to Galaxy [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html) 
+2. Introduction to Metagenomics and environmental studies [Slides 1](Presentation/intro_to_metagenomics.pdf) [Slides 2](https://training.galaxyproject.org/training-material/topics/metagenomics/slides/introduction.html#1)
+3. Muffin A nextflow Genomic Workflow [Slides](Presentation/MUFFIN_genomic_workflow.pdf)
 
-3. Bonus: Ancient DNA and metagenomics [Slides](Presentation/Ancient_metagenomics.pdf)
-4. Bonus: Muffin A nextflow Genomic Workflow [Slides](Presentation/MUFFIN_genomic_workflow.pdf)
+### Additional Introductions:
 
+* Link to all [Galaxy Metagenomics courses](https://training.galaxyproject.org/training-material/topics/metagenomics/)
+* [Analyses of metagenomics data - The global picture 2,5-3h by Galaxy](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/general-tutorial/tutorial.html#shotgun-metagenomics-data)
+* Ancient DNA and metagenomics [Slides](Presentation/Ancient_metagenomics.pdf)
 
-### Shotgun metagenomics (assembly free)
+## Shotgun metagenomics (assembly free)
 
 [Slides](Presentation/shotgun_metagenomics.pdf)
 
-Assembly free method, [Practical 4h](usage/assembly_free.md)
+Assembly-free method, [Practical 4h](usage/assembly_free.md)
 
+### Galaxy alternative
 [Identification of the micro-organisms in a beer using Nanopore sequencing 1-1,5h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/beer-data-analysis/tutorial.html#assign-taxonomic-classification)
 
-### Shotgun metagenomics (with assembly)
+## Shotgun metagenomics (with assembly)
 
 Assembly and binning method, [Practical 4h](usage/assembly_binning_based.md)
 
+### Galaxy alternative
 [Assembly of metagenomic sequencing data 2-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/metagenomics-assembly/tutorial.html#visualization-of-the-de-novo-assembly-graph)
 
-### Metatranscriptomics
-
-[Metatranscriptomics analysis using microbiome RNA-seq data (short) 3-4h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/metatranscriptomics-short/tutorial.html)
-
-### Amplicon sequencing 
+## Amplicon sequencing 
 
 [Slides](Presentation/Metabarcoding.pdf)
 
 [16S Microbial Analysis with mothur (short) 2-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/mothur-miseq-sop-short/tutorial.html#optional-calculate-error-rates-based-on-our-mock-community)
 
+### alternatives
+Galaxy:
 [16S Microbial analysis with Nanopore data 2-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/nanopore-16S-metagenomics/tutorial.html)
 
-Additional Tutorial: [DADA2](usage/metabarcoding.md)
+Local:
+[DADA2](usage/metabarcoding.md)
 
-## Grade breakdown
+## Metatranscriptomics
+
+[Metatranscriptomics analysis using microbiome RNA-seq data (short) 3-4h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/metatranscriptomics-short/tutorial.html)
+
+# Grade breakdown
 
 * 40% Active participation
 * 20% Project report
 * 40% Pre-Project presentation and discussion
 
-## Project 
+# Project 
 
-### instruction:
+## instructions:
 
-Find a tool or pipeline or analysis method of metagenomics that has not been seen in during the course and test and evaluate it.
-You will need to explain how it works, how you found it and it's use in metagenomics studies.
+Find a tool, pipeline, or analysis method of metagenomics that has not been seen during the course and test and evaluate it.
+You must explain how it works, how you found it, and its use in metagenomics studies.
 You can compare it to a similar tool/method seen during the course.
 
-You are tasked to have a report of at least 2 pages (not counting graphics, pics and table).
-Additional point will be provided if the work you have done is easily reproducible (scripts, command list, workflows provided in addition to the report).
+You are tasked to have a report of at least two pages (not counting graphics, pictures, and tables).
+Additional points will be provided if your work is easily reproducible (scripts, command list, and workflows provided in addition to the report).
 
-### Grade breakdown
+## Project Grade breakdown
 
 * 10% originality
 * 20% Reasoning and Explanation of what it should do
-* 30% exectution and testing
+* 30% execution and testing
 * 20% analysis of the results
 * 20% comparison to existing methods
-
-## Galaxy
-
-### Galaxy set up
-
-1. Register to [usegalaxy.eu](http://usegalaxy.eu/).
-
-![Galaxy1](figures/Galaxy1.png)
-
-![Galaxy2](figures/Galaxy2.png)
-
-![Galaxy3](figures/Galaxy3.png)
-
-2. Click the verification link you will receive by email.
-
-3. Go to this [link](https://usegalaxy.eu/join-training/hehannot/) to join our training session. 
-It should say you successfully registered in HEHANNOT
-
-![Galaxy4](figures/Galaxy4.png)
-
-### Galaxy introduction
-
-Slides [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/slides.html#1)
-
-We will follow this [tutorial](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html)
-
-## Bioconda and Conda installation
-
-We will follow the installation recommended by bioconda [directly](https://bioconda.github.io/user/install.html)
-
-### Installation of bioconda
-
-1. Install conda
-
-Bioconda requires the conda package manager to be installed. If you have an Anaconda Python installation, you already have it. Otherwise, the best way to install it is with the Miniconda package. The Python 3 version is recommended.
-
-On MacOS, run:
-
-```bash
-curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
-sh Miniconda3-latest-MacOSX-x86_64.sh
-```
-
-On Linux, run:
-
-```bash
-curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-sh Miniconda3-latest-Linux-x86_64.sh
-```
-
-Follow the instructions in the installer. If you encounter problems, refer to the Miniconda [documentation](https://conda.io/en/latest/miniconda.html).
-
-
-2. Set up channels
-
-After installing conda you will need to add the bioconda channel as well as the other channels bioconda depends on. It is important to add them in this order so that the priority is set correctly (that is, conda-forge is highest priority).
-
-The conda-forge channel contains many general-purpose packages not already found in the defaults channel.
-
-```bash
-conda config --add channels defaults
-conda config --add channels bioconda
-conda config --add channels conda-forge
-```
-
-3. Install packages
-
-Browse the packages to see what’s available.
-
-Bioconda is now enabled, so any packages on the bioconda channel can be installed into the current conda environment:
-
-```bash
-conda install bwa
-```
-
-Or a new environment can be created:
-
-```bash
-conda create -n aligners bwa bowtie hisat star
-```
-
-!!!! if you are on ubuntu in WSL you might get an HTTP error, to solve it a simple reboot of your computer is enough.!!!!
 
 # Bibliography and ressources
 
@@ -186,7 +108,90 @@ Tools:
 
 * Kraken2: https://github.com/DerrickWood/kraken2 & https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0
 
-### Tutorial, guides, and CheatSheet
+# Galaxy
+
+## Galaxy set up
+
+1. Register to [usegalaxy.eu](http://usegalaxy.eu/).
+
+![Galaxy1](figures/Galaxy1.png)
+
+![Galaxy2](figures/Galaxy2.png)
+
+![Galaxy3](figures/Galaxy3.png)
+
+2. Click the verification link you will receive by email.
+
+3. Go to this [link](https://usegalaxy.eu/join-training/heh-meta-omic) to join our training session. 
+It should say you successfully registered in heh-meta-omic
+
+![Galaxy4](figures/Galaxy4.png)
+
+## Galaxy introduction
+
+Slides [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/slides.html#1)
+
+We will follow this [tutorial](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html)
+
+# Bioconda and Conda installation
+
+We will follow the installation recommended by bioconda [directly](https://bioconda.github.io/user/install.html)
+
+## Installation of bioconda
+
+1. Install conda
+
+Bioconda requires the conda package manager to be installed. If you have an Anaconda Python installation, you already have it. Otherwise, the best way to install it is with the Miniconda package. The Python 3 version is recommended.
+
+On MacOS, run:
+
+```bash
+curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+sh Miniconda3-latest-MacOSX-x86_64.sh
+```
+
+On Linux, run:
+
+```bash
+curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+sh Miniconda3-latest-Linux-x86_64.sh
+```
+
+Follow the instructions in the installer. If you encounter problems, refer to the Miniconda [documentation](https://conda.io/en/latest/miniconda.html).
+
+
+2. Set up channels
+
+After installing conda, you will need to add the bioconda channel as well as the other channels bioconda depends on. It is important to add them in this order to set the priority correctly (that is, conda-forge is the highest priority).
+
+The conda-forge channel contains many general-purpose packages not already found in the default channel.
+
+```bash
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+```
+
+3. Install packages
+
+Browse the packages to see what’s available.
+
+Bioconda is now enabled, so any packages on the bioconda channel can be installed into the current conda environment:
+
+```bash
+conda install bwa
+```
+
+Or a new environment can be created:
+
+```bash
+conda create -n aligners bwa bowtie hisat star
+```
+
+!!!! if you are on Ubuntu in WSL, you might get an HTTP error. To solve it, a simple reboot of your computer is enough.!!!!
+
+
+## **Conda** Tutorial, guides, and CheatSheet
 
 Here is a collection of materials to train and improve your conda use. All have their strength and weaknesses, the cheatsheet is your best friend when working.
 
