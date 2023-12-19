@@ -72,6 +72,17 @@ Additional points will be provided if your work is easily reproducible (scripts,
 * 20% analysis of the results
 * 20% comparison to existing methods
 
+## Presentation Plan 
+You will present your individual project and a summary of the course.
+
+**15 minutes** of group presentation where you summarise the principles and methods of metagenomics.
+
+**15 minutes** of individual presentation where you expose your work:
+* Methods selected and Why
+* Results
+* Discussion (comparison with a method seen during the course)
+
+
 # Bibliography and ressources
 
 Core Papers: 
