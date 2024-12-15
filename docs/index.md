@@ -2,7 +2,7 @@
 
 ## Introduction(s)
 
-[https://usegalaxy.eu/join-training/heh-meta-omic](https://usegalaxy.eu/join-training/heh-meta-omic)
+[https://usegalaxy.eu/join-training/heh-meta-omic](https://usegalaxy.eu/join-training//heh-mag2024)
 
 1. Introduction to Galaxy [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html) 
 2. Introduction to Metagenomics and environmental studies [Slides 1](Presentation/intro_to_metagenomics.pdf) [Slides 2](https://training.galaxyproject.org/training-material/topics/metagenomics/slides/introduction.html#1)
@@ -136,7 +136,7 @@ Tools:
 
 2. Click the verification link you will receive by email.
 
-3. Go to this [link](https://usegalaxy.eu/join-training/heh-meta-omic) to join our training session. 
+3. Go to this [link](https://usegalaxy.eu/join-training//heh-mag2024) to join our training session. 
 It should say you successfully registered in heh-meta-omic
 
 ![Galaxy4](figures/Galaxy4.png)
