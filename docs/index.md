@@ -136,7 +136,7 @@ Tools:
 
 2. Click the verification link you will receive by email.
 
-3. Go to this [link](https://usegalaxy.eu/join-training//heh-mag2024) to join our training session. 
+3. Go to this [https://usegalaxy.eu/join-training//heh-mag2024](https://usegalaxy.eu/join-training/heh-mag2024) to join our training session. 
 It should say you successfully registered in heh-meta-omic
 
 ![Galaxy4](figures/Galaxy4.png)
