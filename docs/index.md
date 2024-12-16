@@ -2,7 +2,7 @@
 
 ## Introduction(s)
 
-[https://usegalaxy.eu/join-training//heh-mag2024](https://usegalaxy.eu/join-training//heh-mag2024)
+[https://usegalaxy.eu/join-training/heh-mag2024](https://usegalaxy.eu/join-training/heh-mag2024)
 
 1. Introduction to Galaxy [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html) 
 2. Introduction to Metagenomics and environmental studies [Slides 1](Presentation/intro_to_metagenomics.pdf) [Slides 2](https://training.galaxyproject.org/training-material/topics/metagenomics/slides/introduction.html#1)
