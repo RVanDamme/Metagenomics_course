@@ -1,6 +1,6 @@
 # Metagenomics
 
-## Introduction(s)
+## Introduction
 
 [https://usegalaxy.eu/join-training/heh-mag2024](https://usegalaxy.eu/join-training/heh-mag2024)
 
