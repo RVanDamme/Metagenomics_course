@@ -1,0 +1,787 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../assembly_free/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Metabarcoding - Metagenomics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#metabarcoding" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomics" class="md-header__button md-logo" aria-label="Metagenomics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Metabarcoding
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../assembly_binning_based/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Assembly based
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../assembly_free/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Assembly free
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Metabarcoding
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomics" class="md-nav__button md-logo" aria-label="Metagenomics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Metagenomics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly_binning_based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Assembly based
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly_free/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Assembly free
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Metabarcoding
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metabarcoding
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-starting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before Starting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-and-load-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install and Load Packages
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-starting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before Starting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-and-load-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install and Load Packages
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="metabarcoding">Metabarcoding</h1>
+<p>This tutorial is aimed at being a walkthrough of the DADA2 pipeline.
+It uses the data of the now famous <a href="http://www.mothur.org/wiki/MiSeq_SOP">MiSeq SOP</a> by the Mothur authors but analyses the data using DADA2.</p>
+<p>DADA2 is a relatively new method to analyse amplicon data which uses exact variants instead of OTUs.    </p>
+<p>The advantages of the DADA2 method is described in the <a href="http://dx.doi.org/10.1038/ismej.2017.119">paper</a></p>
+<h2 id="before-starting">Before Starting</h2>
+<p>There are two ways to follow this tutorial: you can copy and paste all the codes blocks below in R directly, or you can download this document in the Rmarkdown format and execute the cells.</p>
+<ul>
+<li><a href="../data/16S.Rmd">Link to the document in Rmarkdown</a></li>
+</ul>
+<h2 id="install-and-load-packages">Install and Load Packages</h2>
+<p>First install DADA2 and other necessary packages (line by line)</p>
+<p>```r {r install_pkg}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")</p>
+<h1 id="biocmanagerinstallcdada2phyloseqdecipher">BiocManager::install(c("dada2","phyloseq","DECIPHER"))</h1>
+<h1 id="installpackagesggplot2">install.packages('ggplot2')</h1>
+<h1 id="installpackagesphangorn">install.packages('phangorn')</h1>
+<h1 id="biocmanagerinstallcgenomicranges">BiocManager::install(c("GenomicRanges"))</h1>
+<h1 id="biocmanagerinstallcdelayedarray">BiocManager::install(c("DelayedArray"))</h1>
+<pre><code>
+Now load the packages and verify you have the correct DADA2 version
+
+```r
+library(dada2)
+library(ggplot2)
+library(phyloseq)
+library(phangorn)
+library(DECIPHER)
+packageVersion('dada2')
+</code></pre>
+<h2 id="download-the-data">Download the Data</h2>
+<p>You will also need to download the data, as well as the SILVA database</p>
+<p>!!! warning
+    If you are following the tutorial on the website, the following block of commands has to be executed outside of R.
+    If you run this tutorial with the R notebook, you can simply execute the cell block</p>
+<pre><code class="language-bash">wget http://www.mothur.org/w/images/d/d6/MiSeqSOPData.zip
+unzip MiSeqSOPData.zip
+rm -r __MACOSX/
+cd MiSeq_SOP
+wget https://zenodo.org/record/824551/files/silva_nr_v128_train_set.fa.gz
+wget https://zenodo.org/record/824551/files/silva_species_assignment_v128.fa.gz
+cd ..
+</code></pre>
+<p>Back in R, check that you have downloaded the data</p>
+<pre><code class="language-r">path &lt;- 'MiSeq_SOP'
+list.files(path)
+</code></pre>
+<h2 id="filtering-and-trimming">Filtering and Trimming</h2>
+<p>First we create two lists with the sorted name of the reads: one for the forward reads, one for the reverse reads</p>
+<pre><code class="language-r">raw_forward &lt;- sort(list.files(path, pattern=&quot;_R1_001.fastq&quot;,
+                               full.names=TRUE))
+
+raw_reverse &lt;- sort(list.files(path, pattern=&quot;_R2_001.fastq&quot;,
+                               full.names=TRUE))
+
+# we also need the sample names
+sample_names &lt;- sapply(strsplit(basename(raw_forward), &quot;_&quot;),
+                       `[`,  # extracts the first element of a subset
+                       1)
+</code></pre>
+<p>then we visualise the quality of our reads</p>
+<pre><code class="language-r">plotQualityProfile(raw_forward[1:2])
+plotQualityProfile(raw_reverse[1:2])
+</code></pre>
+<p>!!! question
+    What do you think of the read quality?</p>
+<p>The forward reads are good quality (although dropping a bit at the end as usual) while the reverse are way worse.</p>
+<p>Based on these profiles, we will truncate the forward reads at position 240 and the reverse reads at position 160 where the quality distribution crashes.</p>
+<p>!!! note
+    in this tutorial we perform the trimming using DADA2's own functions.
+    If you wish to do it outside of DADA2, you can refer to the <a href="qc.md">Quality Control tutorial</a></p>
+<hr />
+<p>Dada2 requires us to define the name of our output files</p>
+<pre><code class="language-r"># place filtered files in filtered/ subdirectory
+filtered_path &lt;- file.path(path, &quot;filtered&quot;)
+
+filtered_forward &lt;- file.path(filtered_path,
+                              paste0(sample_names, &quot;_R1_trimmed.fastq.gz&quot;))
+
+filtered_reverse &lt;- file.path(filtered_path,
+                              paste0(sample_names, &quot;_R2_trimmed.fastq.gz&quot;))
+</code></pre>
+<p>We’ll use standard filtering parameters: <code>maxN=0</code> (DADA22 requires no Ns), <code>truncQ=2</code>, <code>rm.phix=TRUE</code> and <code>maxEE=2</code>.
+The maxEE parameter sets the maximum number of “expected errors” allowed in a read, which <a href="http://www.drive5.com/usearch/manual/expected_errors.html">according to the USEARCH authors</a> is a better filter than simply averaging quality scores.</p>
+<pre><code class="language-r">out &lt;- filterAndTrim(raw_forward, filtered_forward, raw_reverse,
+                     filtered_reverse, truncLen=c(240,160), maxN=0,
+                     maxEE=c(2,2), truncQ=2, rm.phix=TRUE, compress=TRUE,
+                     multithread=TRUE)
+head(out)
+</code></pre>
+<h2 id="learn-the-error-rates">Learn the Error Rates</h2>
+<p>The DADA2 algorithm depends on a parametric error model and every amplicon dataset has a slightly different error rate.
+The <code>learnErrors</code> of Dada2 learns the error model from the data and will help DADA2 to fits its method to your data</p>
+<pre><code class="language-r">errors_forward &lt;- learnErrors(filtered_forward, multithread=TRUE)
+errors_reverse &lt;- learnErrors(filtered_reverse, multithread=TRUE)
+</code></pre>
+<p>then we visualise the estimated error rates</p>
+<pre><code class="language-r">plotErrors(errors_forward, nominalQ=TRUE) +
+    theme_minimal()
+</code></pre>
+<p>!!! question
+    Do you think the error model fits your data correctly?</p>
+<h2 id="dereplication">Dereplication</h2>
+<p>From the Dada2 documentation:</p>
+<blockquote>
+<p><strong>Dereplication</strong> combines all identical sequencing reads into into “unique sequences” with a corresponding “abundance”: the number of reads with that unique sequence.
+<strong>Dereplication</strong> substantially reduces computation time by eliminating redundant comparisons.</p>
+</blockquote>
+<pre><code class="language-r">derep_forward &lt;- derepFastq(filtered_forward, verbose=TRUE)
+derep_reverse &lt;- derepFastq(filtered_reverse, verbose=TRUE)
+# name the derep-class objects by the sample names
+names(derep_forward) &lt;- sample_names
+names(derep_reverse) &lt;- sample_names
+</code></pre>
+<h2 id="sample-inference">Sample inference</h2>
+<p>We are now ready to apply the core sequence-variant inference algorithm to the dereplicated data.</p>
+<pre><code class="language-r">dada_forward &lt;- dada(derep_forward, err=errors_forward, multithread=TRUE)
+dada_reverse &lt;- dada(derep_reverse, err=errors_reverse, multithread=TRUE)
+
+# inspect the dada-class object
+dada_forward[[1]]
+</code></pre>
+<p>The DADA2 algorithm inferred 128 real sequence variants from the 1979 unique sequences in the first sample.</p>
+<h2 id="merge-paired-end-reads">Merge Paired-end Reads</h2>
+<p>Now that the reads are trimmed, dereplicated and error-corrected we can merge them together</p>
+<pre><code class="language-r">merged_reads &lt;- mergePairs(dada_forward, derep_forward, dada_reverse,
+                           derep_reverse, verbose=TRUE)
+
+# inspect the merger data.frame from the first sample
+head(merged_reads[[1]])
+</code></pre>
+<h2 id="construct-sequence-table">Construct Sequence Table</h2>
+<p>We can now construct a sequence table of our mouse samples, a higher-resolution version of the OTU table produced by traditional methods.</p>
+<pre><code class="language-r">seq_table &lt;- makeSequenceTable(merged_reads)
+dim(seq_table)
+
+# inspect distribution of sequence lengths
+table(nchar(getSequences(seq_table)))
+</code></pre>
+<h2 id="remove-chimeras">Remove Chimeras</h2>
+<p>The <code>dada</code> method used earlier removes substitutions and indel errors but chimeras remain.
+We remove the chimeras with</p>
+<pre><code class="language-r">seq_table_nochim &lt;- removeBimeraDenovo(seq_table, method='consensus',
+                                       multithread=TRUE, verbose=TRUE)
+dim(seq_table_nochim)
+
+# which percentage of our reads did we keep?
+sum(seq_table_nochim) / sum(seq_table)
+</code></pre>
+<p>As a final check of our progress, we’ll look at the number of reads that made it through each step in the pipeline</p>
+<pre><code class="language-r">get_n &lt;- function(x) sum(getUniques(x))
+
+track &lt;- cbind(out, sapply(dada_forward, get_n), sapply(merged_reads, get_n),
+               rowSums(seq_table), rowSums(seq_table_nochim))
+
+colnames(track) &lt;- c('input', 'filtered', 'denoised', 'merged', 'tabled',
+                     'nonchim')
+rownames(track) &lt;- sample_names
+head(track)
+</code></pre>
+<p>We kept the majority of our reads!</p>
+<h2 id="assign-taxonomy">Assign Taxonomy</h2>
+<p>Now we assign taxonomy to our sequences using the SILVA database</p>
+<pre><code class="language-r">taxa &lt;- assignTaxonomy(seq_table_nochim,
+                       'MiSeq_SOP/silva_nr_v128_train_set.fa.gz',
+                       multithread=TRUE)
+taxa &lt;- addSpecies(taxa, 'MiSeq_SOP/silva_species_assignment_v128.fa.gz')
+</code></pre>
+<p>for inspecting the classification</p>
+<pre><code class="language-r">taxa_print &lt;- taxa  # removing sequence rownames for display only
+rownames(taxa_print) &lt;- NULL
+head(taxa_print)
+</code></pre>
+<h2 id="phylogenetic-tree">Phylogenetic Tree</h2>
+<p>DADA2 is reference-free so we have to build the tree ourselves</p>
+<p>We first align our sequences</p>
+<pre><code class="language-r">sequences &lt;- getSequences(seq_table)
+names(sequences) &lt;- sequences  # this propagates to the tip labels of the tree
+alignment &lt;- AlignSeqs(DNAStringSet(sequences), anchor=NA)
+</code></pre>
+<p>Then we build a neighbour-joining tree then fit a maximum likelihood tree using the neighbour-joining tree as a starting point</p>
+<pre><code class="language-r">phang_align &lt;- phyDat(as(alignment, 'matrix'), type='DNA')
+dm &lt;- dist.ml(phang_align)
+treeNJ &lt;- NJ(dm)  # note, tip order != sequence order
+fit = pml(treeNJ, data=phang_align)
+
+## negative edges length changed to 0!
+
+fitGTR &lt;- update(fit, k=4, inv=0.2)
+fitGTR &lt;- optim.pml(fitGTR, model='GTR', optInv=TRUE, optGamma=TRUE,
+                    rearrangement = 'stochastic',
+                    control = pml.control(trace = 0))
+detach('package:phangorn', unload=TRUE)
+</code></pre>
+<h2 id="phyloseq">Phyloseq</h2>
+<p>First load the metadata</p>
+<pre><code class="language-r">sample_data &lt;- read.table(
+    'https://hadrieng.github.io/tutorials/data/16S_metadata.txt',
+    header=TRUE, row.names=&quot;sample_name&quot;)
+</code></pre>
+<p>We can now construct a phyloseq object from our output and newly created metadata</p>
+<pre><code class="language-r">physeq &lt;- phyloseq(otu_table(seq_table_nochim, taxa_are_rows=FALSE),
+                   sample_data(sample_data),
+                   tax_table(taxa),
+                   phy_tree(fitGTR$tree))
+# remove mock sample
+physeq &lt;- prune_samples(sample_names(physeq) != 'Mock', physeq)
+physeq
+</code></pre>
+<p>Let's look at the alpha diversity of our samples</p>
+<pre><code class="language-r">plot_richness(physeq, x='day', measures=c('Shannon', 'Fisher'), color='when') +
+    theme_minimal()
+</code></pre>
+<p>No obvious differences. Let's look at ordination methods (beta diversity)</p>
+<p>We can perform an MDS with euclidean distance (mathematically equivalent to a PCA)</p>
+<pre><code class="language-r">ord &lt;- ordinate(physeq, 'MDS', 'euclidean')
+plot_ordination(physeq, ord, type='samples', color='when',
+                title='PCA of the samples from the MiSeq SOP') +
+    theme_minimal()
+</code></pre>
+<p>now with the Bray-Curtis distance</p>
+<pre><code class="language-r">ord &lt;- ordinate(physeq, 'NMDS', 'bray')
+plot_ordination(physeq, ord, type='samples', color='when',
+                title='PCA of the samples from the MiSeq SOP') +
+    theme_minimal()
+</code></pre>
+<p>There we can see a clear difference between our samples.</p>
+<p>Let us take a look a the distribution of the most abundant families</p>
+<pre><code class="language-r">top20 &lt;- names(sort(taxa_sums(physeq), decreasing=TRUE))[1:20]
+physeq_top20 &lt;- transform_sample_counts(physeq, function(OTU) OTU/sum(OTU))
+physeq_top20 &lt;- prune_taxa(top20, physeq_top20)
+plot_bar(physeq_top20, x='day', fill='Family') +
+    facet_wrap(~when, scales='free_x') +
+    theme_minimal()
+</code></pre>
+<p>We can place them in a tree</p>
+<pre><code class="language-r">bacteroidetes &lt;- subset_taxa(physeq, Phylum %in% c('Bacteroidetes'))
+plot_tree(bacteroidetes, ladderize='left', size='abundance',
+          color='when', label.tips='Family')
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
