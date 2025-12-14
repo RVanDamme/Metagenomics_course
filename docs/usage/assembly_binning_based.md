@@ -141,7 +141,7 @@ Taxonomic classification for full genomes is not always easy for MAGs, often the
     to compute signatures Use the lca clasify function of sourmash with the database you can find here 
     
     ```bash
-    wget https://osf.io/download/p9ezm -O gtdb-rs207.genomic-reps.dna.k31.lca.json.gz
+    wget https://farm.cse.ucdavis.edu/~ctbrown/sourmash-db/gtdb-rs207/gtdb-rs207.genomic-reps.dna.k31.lca.json.gz -O gtdb-rs207.genomic-reps.dna.k31.lca.json.gz
     
     sourmash lca classify --query bin.1.fa.sig --db gtdb-rs207.genomic-reps.dna.k31.lca.json.gz
     ```
