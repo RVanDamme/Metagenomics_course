@@ -17,7 +17,7 @@ There are two ways to follow this tutorial: you can copy and paste all the codes
 
 First install DADA2 and other necessary packages (line by line)
 
-```r {r install_pkg}
+```r
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 # BiocManager::install(c("dada2","phyloseq","DECIPHER"))
