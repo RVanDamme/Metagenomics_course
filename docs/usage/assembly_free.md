@@ -3,7 +3,7 @@
 Before anything RUN THIS:
 
 ```bash
-conda create -n Meta_free -c bioconda fastqc kraken2
+conda create -n Meta_free -c bioconda fastqc kraken
 ```
 
 ### Table of Contents
