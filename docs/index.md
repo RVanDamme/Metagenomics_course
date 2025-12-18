@@ -91,37 +91,39 @@ You will present your individual project and a summary of the course.
 
 Core Papers: 
 
-* https://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.000409
+* (https://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.000409)[https://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.000409]
 
-* https://www.nature.com/articles/nbt.3935/figures/1
+* (https://www.nature.com/articles/nbt.3935/figures/1)[https://www.nature.com/articles/nbt.3935/figures/1]
 
-* https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/metagenomics
+* (https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/metagenomics)[https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/metagenomics]
+
+* (https://doi.org/10.1371/journal.pone.0057923)[https://doi.org/10.1371/journal.pone.0057923]
 
 Additional read: 
 
-* https://www.nature.com/articles/nbt.3935
+* (https://www.nature.com/articles/nbt.3935)[https://www.nature.com/articles/nbt.3935]
 
-* https://www.nature.com/articles/srep01968
+* (https://www.nature.com/articles/srep01968)[https://www.nature.com/articles/srep01968]
 
-* https://www.frontiersin.org/articles/10.3389/fmicb.2021.613791/full
+* (https://www.frontiersin.org/articles/10.3389/fmicb.2021.613791/full)[https://www.frontiersin.org/articles/10.3389/fmicb.2021.613791/full]
 
-* https://academic.oup.com/bib/article/22/6/bbab330/6358409
+* (https://academic.oup.com/bib/article/22/6/bbab330/6358409)[https://academic.oup.com/bib/article/22/6/bbab330/6358409]
 
-* https://academic.oup.com/bib/article/21/2/584/5363831
+* (https://academic.oup.com/bib/article/21/2/584/5363831)[https://academic.oup.com/bib/article/21/2/584/5363831]
 
-* https://www.nature.com/articles/s42003-021-02510-6
+* (https://www.nature.com/articles/s42003-021-02510-6)[https://www.nature.com/articles/s42003-021-02510-6]
 
-* https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03667-3
+* (https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03667-3)[https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03667-3]
 
 Tools:
 
-* MUFFIN: https://github.com/RVanDamme/MUFFIN & https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008716
+* MUFFIN: (https://github.com/RVanDamme/MUFFIN)[https://github.com/RVanDamme/MUFFIN] & (https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008716)[https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008716]
 
-* metaWRAP: https://github.com/bxlab/metaWRAP & https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0541-1
+* metaWRAP: (https://github.com/bxlab/metaWRAP)[https://github.com/bxlab/metaWRAP] & (https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0541-1)[https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0541-1]
 
-* Flye: https://github.com/fenderglass/Flye & https://www.nature.com/articles/s41592-020-00971-x
+* Flye: (https://github.com/fenderglass/Flye)[https://github.com/fenderglass/Flye] & (https://www.nature.com/articles/s41592-020-00971-x)[https://www.nature.com/articles/s41592-020-00971-x]
 
-* Kraken2: https://github.com/DerrickWood/kraken2 & https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0
+* Kraken2: (https://github.com/DerrickWood/kraken2)[https://github.com/DerrickWood/kraken2] & (https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0)[https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0]
 
 # Galaxy
 
