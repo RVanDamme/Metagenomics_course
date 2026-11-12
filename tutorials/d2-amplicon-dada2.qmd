@@ -63,11 +63,16 @@ download.file('https://mothur.s3.us-east-2.amazonaws.com/wiki/miseqsopdata.zip',
 tools::md5sum('miseqsopdata.zip')
 unzip('miseqsopdata.zip')
 
-# the SILVA reference files, placed in the data folder
-download.file('https://zenodo.org/record/824551/files/silva_nr_v128_train_set.fa.gz',
-              'MiSeq_SOP/silva_nr_v128_train_set.fa.gz', mode = 'wb')
-download.file('https://zenodo.org/record/824551/files/silva_species_assignment_v128.fa.gz',
-              'MiSeq_SOP/silva_species_assignment_v128.fa.gz', mode = 'wb')
+# the SILVA reference files (release 138.2), placed in the data folder
+# 140 MB and 70 MB: this can take a few minutes
+download.file('https://zenodo.org/records/14169026/files/silva_nr99_v138.2_toGenus_trainset.fa.gz',
+              'MiSeq_SOP/silva_nr99_v138.2_toGenus_trainset.fa.gz', mode = 'wb')
+download.file('https://zenodo.org/records/14169026/files/silva_v138.2_assignSpecies.fa.gz',
+              'MiSeq_SOP/silva_v138.2_assignSpecies.fa.gz', mode = 'wb')
+# check the downloads: the results must be
+# 1764e2a36b4500ccb1c7d5261948a414 and 62fd939bd1aa9832d2089847f9f0b87d
+tools::md5sum(c('MiSeq_SOP/silva_nr99_v138.2_toGenus_trainset.fa.gz',
+                'MiSeq_SOP/silva_v138.2_assignSpecies.fa.gz'))
 ```
 
 Then check that you have downloaded the data
@@ -231,14 +236,19 @@ We kept the majority of our reads!
 
 ## Assign Taxonomy
 
-Now we assign taxonomy to our sequences using the SILVA database
+Now we assign taxonomy to our sequences using the [SILVA](https://www.arb-silva.de) database, release 138.2.
+The first step compares each sequence with the reference and gives a name down to the genus. The second step adds a species name only when the sequence is exactly identical to a reference sequence.
 
 ```{r assign_taxonomy}
 taxa <- assignTaxonomy(seq_table_nochim,
-                       'MiSeq_SOP/silva_nr_v128_train_set.fa.gz',
+                       'MiSeq_SOP/silva_nr99_v138.2_toGenus_trainset.fa.gz',
                        multithread=TRUE)
-taxa <- addSpecies(taxa, 'MiSeq_SOP/silva_species_assignment_v128.fa.gz')
+taxa <- addSpecies(taxa, 'MiSeq_SOP/silva_v138.2_assignSpecies.fa.gz')
 ```
+
+::: {.callout-note}
+The names depend on the release of the database. SILVA 138.2 uses the current names of the phyla, the same as the Kraken 2 database of Day 1: *Bacillota* (before: Firmicutes), *Bacteroidota* (Bacteroidetes), *Pseudomonadota* (Proteobacteria), *Actinomycetota* (Actinobacteria). Older tutorials and papers, and the Galaxy version of this tutorial (SILVA 132), show the old names for the same organisms.
+:::
 
 for inspecting the classification
 
@@ -339,11 +349,11 @@ plot_bar(physeq_top20, x='day', fill='Family') +
     theme_minimal()
 ```
 
-We can place them in a tree
+We can place the sequences of one phylum, here the Bacteroidota, in a tree
 
 ```{r plot_tree}
-bacteroidetes <- subset_taxa(physeq, Phylum %in% c('Bacteroidetes'))
-plot_tree(bacteroidetes, ladderize='left', size='abundance',
+bacteroidota <- subset_taxa(physeq, Phylum %in% c('Bacteroidota'))
+plot_tree(bacteroidota, ladderize='left', size='abundance',
           color='when', label.tips='Family')
 ```
 

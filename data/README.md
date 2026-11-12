@@ -87,8 +87,8 @@ contigs or for reads.
 | File | Size | Download | md5 |
 |---|---|---|---|
 | `miseqsopdata.zip` (MiSeq SOP, 20 samples) | 37 MB | <https://mothur.s3.us-east-2.amazonaws.com/wiki/miseqsopdata.zip> | `98144f5057628139271d94612bb27d96` |
-| `silva_nr_v128_train_set.fa.gz` | 54 MB | [Zenodo 824551](https://zenodo.org/record/824551) | `26b23e13ed310174ae5563e8f7258ecc` |
-| `silva_species_assignment_v128.fa.gz` | 34 MB | [Zenodo 824551](https://zenodo.org/record/824551) | `f67d7d9443312ca38a9fbf61fc744ae4` |
+| `silva_nr99_v138.2_toGenus_trainset.fa.gz` (SILVA 138.2 for DADA2) | 140 MB | [Zenodo 14169026](https://zenodo.org/records/14169026) | `1764e2a36b4500ccb1c7d5261948a414` |
+| `silva_v138.2_assignSpecies.fa.gz` | 70 MB | [Zenodo 14169026](https://zenodo.org/records/14169026) | `62fd939bd1aa9832d2089847f9f0b87d` |
 
 ## Disk space
 

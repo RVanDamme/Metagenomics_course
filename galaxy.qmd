@@ -59,7 +59,7 @@ If Galaxy says that a tool or a version is missing, search the tool by its name 
   Standard-8 database on usegalaxy.eu dates from June 2022. Expect different numbers, and always write down the
   database and its version.
 - **Tools.** The Galaxy binning tutorial uses several binners and refines their bins; the local tutorial uses one
-  binner (MetaBAT 2). The Galaxy DADA2 tutorial uses the SILVA version installed on Galaxy (132).
+  binner (MetaBAT 2). The local DADA2 tutorial uses SILVA 138.2; the Galaxy DADA2 tutorial uses the SILVA release installed on Galaxy (132), which still has the old names of the phyla (Firmicutes, Bacteroidetes).
 - **Waiting time.** On Galaxy your jobs wait in a queue with the jobs of other users. Start the long jobs before a
   break.
 
