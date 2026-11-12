@@ -7,6 +7,7 @@ project:
     - slides.qmd
     - tutorials/*.qmd
     - ATTRIBUTION.md
+    - data/README.md
   resources:
     - slides/*.pdf
 
@@ -28,6 +29,8 @@ website:
             href: tutorials/d2-assembly-binning.qmd
           - text: "Day 2: amplicon sequencing (DADA2)"
             href: tutorials/d2-amplicon-dada2.qmd
+      - text: Data
+        href: data/README.md
       - text: Slides
         href: slides.qmd
     tools:

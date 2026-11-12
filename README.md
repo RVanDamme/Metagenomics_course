@@ -17,6 +17,7 @@ The site is a [Quarto](https://quarto.org) website.
 | `setup.qmd` | how students install the tools |
 | `pixi.toml`, `pixi.lock` | the tools of the local tutorials, with fixed versions for Linux and macOS |
 | `scripts/check_setup.sh` | setup check, run with `pixi run check` |
+| `data/README.md` | every download of the tutorials, with size and md5 checksum |
 | `figures/` | images used by the pages |
 | `_quarto.yml` | site configuration (menu, theme) |
 | `.github/workflows/publish.yml` | publishes the site on every push to `main` |
