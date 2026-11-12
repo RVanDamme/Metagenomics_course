@@ -317,7 +317,9 @@ The installation of Pavian downloads several packages from GitHub and can fail w
 
 ## Functional Classification
 
-You can use the humann2 pipeline for functional classification
+So far we asked "who is there?". Shotgun reads can also answer "what can they do?": the reads are compared with databases of genes and pathways.
+A widely used tool is [HUMAnN](https://huttenhower.sph.harvard.edu/humann) (version 3; the older HUMAnN2 is no longer maintained). Its databases are too large for this tutorial.
+You will meet HUMAnN on Galaxy, in the [metatranscriptomics tutorial](../galaxy.qmd) of Day 3.
 
 ::: {.callout-note title="Credits"}
 This tutorial is shared teaching material, co-developed with Hadrien Gourlé. It started from his tutorial [Whole Metagenome Sequencing](https://github.com/HadrienG/tutorials/blob/master/docs/wms.md). See [Licence and credits](../ATTRIBUTION.md).
