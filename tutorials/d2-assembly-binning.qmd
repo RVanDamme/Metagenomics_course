@@ -234,9 +234,31 @@ This tool does gene prediction as well as some decent and useful annotations, an
 
 Prokka produces a number of output files that all kinds of represent similar things. Mostly variants of FASTA-files, one with the genome again, one with the predicted proteins, one with the genes of the predicted proteins. Also, it renames all the sequences with nicer IDs! Additionally, a very useful file generated is a GFF-file, which gives more information about the annotations than just the names you can see in the FASTA-files.
 
-The annotations of prokka are good but not very complete for environmental bacteria. A second tool, eggNOG-mapper, gives a more complete functional annotation. This is a bit heavier in computation.
+### eggNOG-mapper (on Galaxy)
 
-    Install eggNOG-mapper run it on at least one MAG (don’t be greedy, it is not fast!) OPTIONAL : undestand the output of it …
+The annotations of Prokka are good but not very complete for environmental bacteria.
+[eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper) compares each protein with the eggNOG database of
+groups of related genes (orthologous groups), and transfers their annotation: gene names, functional categories
+(COG), pathways (KEGG) and more. This is a bit heavier in computation.
+
+The eggNOG database takes more than 40 GB, too much for a laptop. So this step runs on **Galaxy**, not on your computer.
+
+1. Choose **one** MAG (don't be greedy, it is not fast!). You need its protein file: the `.faa` file that Prokka made for this MAG.
+2. Log in to [usegalaxy.eu](https://usegalaxy.eu) and upload the `.faa` file with the "Upload" button.
+3. Search the tool panel for "eggNOG Mapper" and run the tool on your file. Keep the default settings.
+4. Wait until the job is green, then open the annotation table.
+
+usegalaxy.eu runs eggNOG-mapper 2.1.13 with version 5.0.2 of the eggNOG database. Write these two versions down: they are part of your result.
+
+::: {.callout-tip title="Question" icon=false}
+OPTIONAL: understand the output. Find three proteins that Prokka named "hypothetical protein". What does eggNOG-mapper say about them?
+:::
+
+::: {.callout-note title="If Galaxy is slow or not available"}
+The authors of eggNOG-mapper offer a web service: <https://eggnog-mapper.cgmlab.org> (the old address, eggnog-mapper.embl.de, sends you there).
+Upload the same `.faa` file and follow the instructions of the page. Submit your job early: jobs wait in a queue, and a job can take an hour or more.
+The web service uses a newer database (eggNOG 7), so some annotations differ from the Galaxy result.
+:::
 
 ## Taxonomic annotation
 
