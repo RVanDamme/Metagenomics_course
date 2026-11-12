@@ -11,9 +11,6 @@ title: "Licence and credits"
 You may reuse and adapt the material if you give credit:
 "Introduction to Metagenomics, Renaud Van Damme and contributors, <https://github.com/RVanDamme/Metagenomics_course>, CC BY 4.0".
 
-**Exception:** the PDF slides made before 2026 (in `slides/`) contain images from other sources. They are not
-covered by the CC BY 4.0 licence. They will be replaced by rebuilt slides.
-
 ## Credits
 
 This course is taught and maintained by Renaud Van Damme.
