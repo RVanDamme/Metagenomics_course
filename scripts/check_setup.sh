@@ -54,7 +54,7 @@ memory_gb=$(awk -v m="$memory_mb" 'BEGIN {printf "%.1f", m / 1024}')
 if [ "$memory_mb" -ge 5500 ]; then
     ok "$memory_gb GB of memory"
 elif grep -qi microsoft /proc/version 2>/dev/null; then
-    problem "WSL has only $memory_gb GB of memory. Give WSL 6 GB: see 'Give WSL 6 GB of memory' on $SETUP_PAGE"
+    problem "WSL has only $memory_gb GB of memory. Give WSL 6 GB: see $SETUP_PAGE#wsl-memory"
 else
     problem "This computer has only $memory_gb GB of memory. Some steps will stop. Tell your teacher."
 fi

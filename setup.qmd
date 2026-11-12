@@ -12,6 +12,61 @@ We do the setup together in class on Day 1. This page is the reference.
 
 The local tutorials run in a Linux terminal: the Ubuntu terminal of WSL on Windows, or the Terminal on Linux and macOS.
 
+## Windows: WSL
+
+The local tutorials run in **WSL 2** (Windows Subsystem for Linux) with Ubuntu.
+If WSL is not installed yet: open **PowerShell as administrator**, run the command below, and restart the computer.
+
+```powershell
+wsl --install
+```
+
+Then open "Ubuntu" from the Start menu and choose a user name and a password.
+
+### Give WSL 6 GB of memory {#wsl-memory}
+
+The tutorials need **6 GB of memory inside Linux**. By default, WSL gets half of the memory of the computer:
+
+| Memory of the laptop | WSL gets by default | What to do |
+|---|---|---|
+| 16 GB or more | 8 GB | nothing |
+| 12 GB | 6 GB | nothing |
+| 8 GB | 4 GB | **set it to 6 GB (below)** |
+
+First check what you have. In the Ubuntu terminal:
+
+```bash
+free -h
+```
+
+Look at the `total` column of the `Mem:` line. If it shows less than about `5.7Gi`, change the setting:
+
+1. Open **PowerShell** (not Ubuntu) and open the WSL settings file in Notepad. Answer "Yes" if Notepad asks to create the file.
+
+    ```powershell
+    notepad "$env:USERPROFILE\.wslconfig"
+    ```
+
+2. Write these two lines in the file, save it and close Notepad.
+
+    ```ini
+    [wsl2]
+    memory=6GB
+    ```
+
+3. Stop WSL, still in PowerShell. This closes all your Ubuntu terminals.
+
+    ```powershell
+    wsl --shutdown
+    ```
+
+4. Open Ubuntu again and run `free -h`. The total is now about `5.8Gi`.
+
+::: {.callout-warning}
+On a laptop with 8 GB, this leaves only 2 GB for Windows. During the long steps (Kraken 2, assembly, CheckM), close
+the other Windows programs, the web browser first.
+:::
+
 ## 1. Install Pixi
 
 [Pixi](https://pixi.sh) installs the tools of the course, in the same versions for everybody.
@@ -129,6 +184,52 @@ The tutorial page lists the R packages to install.
 
 ## Troubleshooting
 
-::: {.callout-warning title="HTTP error in WSL"}
-If you are on Ubuntu in WSL, you might get an HTTP error during the installation. Restart your computer and try again.
-:::
+### "HTTP error" or "could not resolve host" in WSL {#wsl-network}
+
+Sometimes WSL loses its connection to the internet, and `pixi install`, `curl` or `git clone` stop with an HTTP or
+"could not resolve host" error. The usual cause is the network or DNS setting of WSL, not the tool.
+Try these steps in order, and test after each one.
+
+**Test.** In the Ubuntu terminal, this command must print an address:
+
+```bash
+getent hosts conda.anaconda.org
+```
+
+**Step 1: restart WSL.** In PowerShell, run `wsl --shutdown`, then open Ubuntu again.
+If that is not enough, restart the computer.
+
+**Step 2 (Windows 11): use the network of Windows.** Open the WSL settings file from PowerShell with
+`notepad "$env:USERPROFILE\.wslconfig"` and add the two network lines under `[wsl2]`.
+Keep the `memory` line if you have one.
+
+```ini
+[wsl2]
+networkingMode=mirrored
+dnsTunneling=true
+```
+
+Save, run `wsl --shutdown` in PowerShell, open Ubuntu again and repeat the test.
+This setting needs Windows 11 version 22H2 or later. It also helps when a VPN is active.
+
+**Step 3 (last resort): set the DNS server by hand.** Ask your teacher before you do this.
+
+1. In Ubuntu, open the WSL configuration with `sudo nano /etc/wsl.conf` and add:
+
+    ```ini
+    [network]
+    generateResolvConf = false
+    ```
+
+2. In PowerShell, run `wsl --shutdown`, then open Ubuntu again.
+3. In Ubuntu, write a public DNS server in the DNS file:
+
+    ```bash
+    sudo rm -f /etc/resolv.conf
+    echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf
+    ```
+
+### A step is "Killed" or stops without a message
+
+The step probably needed more memory than Linux has. Check the memory with `free -h` and see
+[Give WSL 6 GB of memory](#wsl-memory). Close other programs and run the step again.
