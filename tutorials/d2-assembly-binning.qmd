@@ -90,8 +90,10 @@ then we run metabat
 
 ```bash
 runMetaBat.sh -m 1500 final.contigs.fa tara.bam
-mv final.contigs.fa.metabat-bins1500 metabat
+mv final.contigs.fa.metabat-bins* metabat
 ```
+
+MetaBAT 2 writes the bins in a folder whose name ends with the date and time of the run. The `mv` command renames it to `metabat`. Each bin is one FASTA file, `bin.1.fa`, `bin.2.fa`, and so on.
 
 ::: {.callout-tip title="Question" icon=false}
 How many bins did we obtain?
