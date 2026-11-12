@@ -264,28 +264,69 @@ The web service uses a newer database (eggNOG 7), so some annotations differ fro
 
 We now know more about the genes your MAG contains, however we do not really know who we have?! checkm might have given us an indication but it is only approximative.
 
-Taxonomic classification for full genomes is not always easy for MAGs, often the 16S gene is missing as it assembles badly, and which other genes to use to for taxonomy is not always evident. Typically marker genes, min-hashes or k-mer databases are used as reference. It is often problematic for environmental data as the databases are not biased into our direction! We will use a min-hash database of the GTDB representative genomes with a tool called [sourmash](https://sourmash.readthedocs.io/en/latest/)
+Taxonomic classification for full genomes is not always easy for MAGs, often the 16S gene is missing as it assembles badly, and which other genes to use to for taxonomy is not always evident. Typically marker genes, min-hashes or k-mer databases are used as reference. It is often problematic for environmental data as the databases are not biased into our direction! We will use a min-hash database of the GTDB representative genomes with a tool called [sourmash](https://sourmash.readthedocs.io/en/latest/).
 
-    Install sourmash in your computer! 
-    
-    ```bash
-    sourmash compute -k 31 --scaled 10000 metabat/bin.* 
-    ```
-    
-    to compute signatures Use the lca clasify function of sourmash with the database you can find here 
-    
-    ```bash
-    wget https://farm.cse.ucdavis.edu/~ctbrown/sourmash-db/gtdb-rs207/gtdb-rs207.genomic-reps.dna.k31.lca.json.gz -O gtdb-rs207.genomic-reps.dna.k31.lca.json.gz
-    
-    sourmash lca classify --query bin.1.fa.sig --db gtdb-rs207.genomic-reps.dna.k31.lca.json.gz
-    ```
+[GTDB](https://gtdb.ecogenomic.org) is a taxonomy built from genomes. It contains one representative genome per species, including many species known only from MAGs.
+sourmash keeps a small "sketch" of each genome: a sample of its k-mers. Comparing two sketches is very fast.
 
-This database was made by the representative genomes of the gtdb database
+### Get the database
 
-Links to an external site.. The GTDB database is also used by the tool gtdbtk, it uses marker genes and loads of data. It is a bit heavy, and tricky to run/install but much more sensitive.
+The database of this tutorial is a reduced copy of the sourmash database "GTDB R226, species representatives, k=31", made for this course so that it fits in the memory of a laptop. Your teacher gives you the two files on a drive:
 
-    Optional: install and run gtdbtk
+* `gtdb-reps-rs226-k31.s10k.zip` (447 MB): the sketches of the 143,384 GTDB representative genomes;
+* `gtdb-rs226.lineages.csv` (103 MB): the taxonomy of each genome.
 
+Copy them into `~/mag2026/databases/sourmash/`. The [Data page](../data/README.md) explains how the reduced file was made and how to rebuild it.
+
+```bash
+SOURMASH_DB=~/mag2026/databases/sourmash
+ls $SOURMASH_DB
+```
+
+### Sketch the bins and search the database
+
+sourmash is in the main environment (the first terminal). For each bin we make a sketch (`sourmash sketch`), then search the genomes of the database that best explain it (`sourmash gather`). This takes about 1 minute per bin.
+
+```bash
+cd ~/results
+mkdir -p sourmash
+for i in metabat/bin.*.fa
+do
+    name=$(basename $i .fa)
+    echo $name
+    sourmash sketch dna -p k=31,scaled=10000 --name $name $i -o sourmash/${name}.sig
+    sourmash gather sourmash/${name}.sig $SOURMASH_DB/gtdb-reps-rs226-k31.s10k.zip \
+        -o sourmash/${name}.gather.csv
+done
+```
+
+For each bin, `gather` prints the genomes it found and which part of the bin they explain. If nothing in the database is similar enough, it prints "No matches" and writes no file.
+
+### From genomes to a taxonomy
+
+`sourmash tax genome` reads the matches and the taxonomy file, and gives one classification per bin:
+
+```bash
+sourmash tax genome -g sourmash/*.gather.csv -t $SOURMASH_DB/gtdb-rs226.lineages.csv \
+    -o sourmash/bins --output-format csv_summary human
+cat sourmash/bins.human.txt
+```
+
+The lineage is written with the GTDB prefixes: `d__` domain, `p__` phylum, `c__` class, `o__` order, `f__` family, `g__` genus, `s__` species.
+
+::: {.callout-tip title="Question" icon=false}
+How many bins received a classification? At which rank? Look at the species names: what do names such as `sp002699365` tell you about these organisms?
+:::
+
+::: {.callout-tip title="Question" icon=false}
+One bin has no match. Does that mean the bin is bad? Compare with its CheckM results before you answer.
+:::
+
+The GTDB database is also used by the tool [GTDB-Tk](https://github.com/Ecogenomics/GTDBTk). It uses marker genes and places each genome in a reference tree. It is more sensitive, but its database is far too large for a laptop.
+
+::: {.callout-note title="Optional"}
+Run GTDB-Tk on Galaxy: upload your bins to [usegalaxy.eu](https://usegalaxy.eu) and search the tool panel for "GTDB-Tk Classify genomes". Compare its answer with the one of sourmash.
+:::
 
 ## Further reading
 

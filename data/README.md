@@ -52,6 +52,36 @@ md5sum hash.k2d      # must be 68e052782ee8f31df0699747402e5c82
 | `checkm_data_2015_01_16.tar.gz` (CheckM 1 reference data) | 289 MB (1.4 GB unpacked) | <https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz> (mirror: [Zenodo 7401545](https://zenodo.org/records/7401545)) | `631012fa598c43fdeb88c619ad282c4d` |
 | `checkm2_database.tar.gz` (CheckM2 database) | 1.7 GB (2.9 GB unpacked) | [Zenodo 14897628](https://zenodo.org/records/14897628) | `07c10655620843b517d0df0c160d911f` |
 
+### The sourmash database for the taxonomy of the bins {#sourmash-db}
+
+| File | Size | Source | md5 |
+|---|---|---|---|
+| `gtdb-reps-rs226-k31.s10k.zip` | 447 MB | made for this course (see below); from the teacher | `89f132ff5af712356e4cefdcc1a6cf68` |
+| `gtdb-rs226.lineages.csv` | 103 MB | <https://farm.cse.ucdavis.edu/~ctbrown/sourmash-db.new/gtdb-rs226/gtdb-rs226.lineages.csv> | `519293f254dfa763c6f30473d1e3e952` |
+
+**What the file is.** `gtdb-reps-rs226-k31.s10k.zip` contains one sourmash sketch (k = 31) for each of the 143,384
+species-representative genomes of [GTDB](https://gtdb.ecogenomic.org) release 226. It is a reduced copy of the
+official sourmash database `gtdb-reps-rs226-k31.dna.zip` (3.9 GB), listed on the
+[sourmash databases page](https://sourmash.readthedocs.io/en/latest/databases.html).
+
+**Why it is reduced.** The official file keeps 1 k-mer in 1,000 of each genome (`scaled=1000`). Searching it takes
+6 minutes per bin, or 6 GB of memory with the fast search. The course file keeps 1 k-mer in 10,000
+(`scaled=10000`): the search takes 1 minute per bin and less than 1 GB of memory. On the course data it gives the
+same species for every bin as the official file.
+
+**How to use it.** Sketch your genomes with the same settings, `-p k=31,scaled=10000`, then run `sourmash gather`
+and `sourmash tax genome` as in the [assembly and binning tutorial](../tutorials/d2-assembly-binning.qmd).
+
+**How it was made.** Anyone can rebuild it from the official file (8 minutes, 4.5 GB of memory):
+
+```bash
+curl -O https://farm.cse.ucdavis.edu/~ctbrown/sourmash-db.new/gtdb-rs226/gtdb-reps-rs226-k31.dna.zip
+sourmash sig downsample --scaled 10000 gtdb-reps-rs226-k31.dna.zip -o gtdb-reps-rs226-k31.s10k.zip
+```
+
+**Limits.** A sketch this small is made for whole genomes and bins of 1 Mb or more. Do not use it for short
+contigs or for reads.
+
 ## Day 2: amplicon sequencing (DADA2)
 
 | File | Size | Download | md5 |
@@ -65,7 +95,7 @@ md5sum hash.k2d      # must be 68e052782ee8f31df0699747402e5c82
 | What | Size |
 |---|---|
 | Tools (all Pixi environments) | about 12 GB |
-| Databases | about 13 GB |
+| Databases | about 14 GB |
 | Course data | about 1 GB |
 | Results of the tutorials | about 2 GB |
 | **Total** | **about 28 GB** (up to 34 GB for a moment while unpacking) |
