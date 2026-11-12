@@ -184,6 +184,33 @@ The `_tax.txt` file is the report: a "tree" view with the percentage of reads as
 Which percentage of the reads was classified in each sample? Is it the same for the pig and the human samples?
 :::
 
+### Host reads
+
+A gut sample also contains DNA of the **host** (here a pig or a human). Host reads are not part of the microbiome.
+They waste computing time, they can be assigned to the wrong organism, and human reads are personal data.
+In a real project, host reads are removed **before** the classification: the reads are mapped to the genome of the
+host (for example with Bowtie 2), and only the pairs that do not map are kept.
+
+A host genome index is too large for this tutorial, but we can **check** how many host reads are in our data.
+The Kraken 2 database contains the human genome. Its taxonomy identifier (TaxID) is 9606, in the fifth column of
+the report:
+
+```bash
+awk -F'\t' '$5 == 9606 {print FILENAME ": " $2 " read pairs (" $1 "% of the sample)"}' results/*_tax.txt
+```
+
+::: {.callout-tip title="Question" icon=false}
+How many human read pairs are there in the human samples? What does it tell you about the data that were deposited in the public archive?
+:::
+
+::: {.callout-tip title="Question" icon=false}
+The database does not contain the pig genome. If a pig sample contained pig reads, in which line of the report would they be counted? Can this check tell you whether the pig samples are free of host reads?
+:::
+
+::: {.callout-note}
+To practise a real host removal, follow the Galaxy tutorial [Remove contamination and host reads](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/host-removal/tutorial.html) (about 1 hour).
+:::
+
 ### Visualization with Pavian
 
 Pavian is a web application for exploring metagenomics classification results.
