@@ -7,13 +7,13 @@ title: "Introduction to Metagenomics"
 [https://usegalaxy.eu/join-training/heh-mag2025](https://usegalaxy.eu/join-training/heh-mag2025/)
 
 1. Introduction to Galaxy [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html) 
-2. Introduction to Metagenomics and environmental studies [Slides 1](slides/intro_to_metagenomics.pdf) [Slides 2](https://training.galaxyproject.org/training-material/topics/metagenomics/slides/introduction.html#1)
+2. Introduction to Metagenomics and environmental studies [Slides 1](slides/intro_to_metagenomics.pdf) [Slides 2](https://training.galaxyproject.org/training-material/topics/microbiome/slides/introduction.html#1)
 3. [The global presentation](slides/Metagenomics_global_RVanDamme.pdf)
 4. Muffin A nextflow Genomic Workflow [Slides](slides/MUFFIN_genomic_workflow.pdf)
 
 ### Additional Introductions:
 
-* Link to all [Galaxy Metagenomics courses](https://training.galaxyproject.org/training-material/topics/metagenomics/)
+* Link to all [Galaxy microbiome tutorials](https://training.galaxyproject.org/training-material/topics/microbiome/)
 * Ancient DNA and metagenomics [Slides](slides/Ancient_metagenomics.pdf)
 
 ## Shotgun metagenomics (assembly free)
