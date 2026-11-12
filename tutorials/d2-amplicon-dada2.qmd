@@ -269,6 +269,10 @@ A mock community can show two kinds of problems: sequences that should not be th
 Now we assign taxonomy to our sequences using the [SILVA](https://www.arb-silva.de) database, release 138.2.
 The first step compares each sequence with the reference and gives a name down to the genus. The second step adds a species name only when the sequence is exactly identical to a reference sequence.
 
+::: {.callout-warning}
+This step needs about 5 GB of memory and takes a few minutes. RStudio runs on your own system, not in WSL. On a Windows laptop with 8 GB, first give the memory of WSL back to Windows: close the Ubuntu terminals and run `wsl --shutdown` in PowerShell. Close the other programs too.
+:::
+
 ```{r assign_taxonomy}
 taxa <- assignTaxonomy(seq_table_nochim,
                        'MiSeq_SOP/silva_nr99_v138.2_toGenus_trainset.fa.gz',
