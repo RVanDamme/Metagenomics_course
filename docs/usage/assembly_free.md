@@ -3,7 +3,7 @@
 Before anything RUN THIS:
 
 ```bash
-conda create -n Meta_free -c bioconda fastqc kraken
+conda create -n Meta_free -c conda-forge -c bioconda fastqc kraken2
 ```
 
 ### Table of Contents
@@ -39,7 +39,7 @@ The choice of shotgun or 16S approaches is usually dictated by the nature of the
 ### Softwares Required for this Tutorial
 
 * [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-* [Kraken](https://ccb.jhu.edu/software/kraken/)
+* [Kraken 2](https://github.com/DerrickWood/kraken2)
 * [R](https://www.r-project.org/)
 * [Pavian](https://github.com/fbreitwieser/pavian)
 
@@ -83,28 +83,38 @@ We can directly move to the classification step.
 
 ### Taxonomic Classification
 
-[Kraken](https://ccb.jhu.edu/software/kraken/) is a system for assigning taxonomic labels to short DNA sequences (i.e. reads)  
-Kraken aims to achieve high sensitivity and high speed by utilizing exact alignments of k-mers and a novel classification algorithm (sic).
+[Kraken 2](https://github.com/DerrickWood/kraken2) is a system for assigning taxonomic labels to short DNA sequences (i.e. reads).
+It looks up the k-mers of each read in a database of reference genomes and assigns the read to the lowest taxon that explains them.
+It is *extremely* fast compared to traditional approaches (i.e. BLAST).
 
-In short, kraken uses a new approach with exact k-mer matching to assign taxonomy to short reads. It is *extremely* fast compared to traditional
-approaches (i.e. BLAST).
+!!! note
+    Older versions of this tutorial used Kraken 1 with the `minikraken` database from 2017. Kraken 1 is no longer supported by its authors, so we use Kraken 2. The principle is the same.
 
-By default, the authors of kraken built their database based on RefSeq Bacteria, Archaea and Viruses. We'll use it for the purpose of this tutorial.
-We will download a shrunk database (minikraken) provided by Kraken developers that is only 4GB.
+The result of a classifier depends on its database. The standard Kraken 2 database contains the RefSeq genomes of Archaea, Bacteria, viruses and plasmids, plus the human genome and common vectors.
+The full database is far too large for a laptop, so we use **Standard-8**: the same content, reduced to fit in 8 GB.
+Fewer reads are classified than with the full database. Always report which database, and which version, you used.
+
+The Kraken 2 authors provide ready-made databases on the [index page](https://benlangmead.github.io/aws-indexes/k2).
+The download is 5.5 GB. If your teacher gives you a copy on a drive, use that instead of downloading.
 
 ```bash
 # First we create a databases directory in our home
-cd /mnt
-sudo mkdir databases
-cd databases
-# Then we download the minikraken database
-sudo wget https://ccb.jhu.edu/software/kraken/dl/minikraken_20171019_4GB.tgz
-sudo tar xzf minikraken_20171019_4GB.tgz
-KRAKEN_DB=/mnt/databases/minikraken_20171013_4GB
+mkdir -p ~/databases/k2_standard_08gb
+cd ~/databases/k2_standard_08gb
+# Then we download the Standard-8 database (version of 22 October 2026)
+curl -O https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08_GB_20261022.tar.gz
+# check that the download is complete: the result must be 7447d230ea402d0b523c14d217b5c20b
+md5sum k2_standard_08_GB_20261022.tar.gz
+tar xzf k2_standard_08_GB_20261022.tar.gz
+rm k2_standard_08_GB_20261022.tar.gz
+KRAKEN_DB=~/databases/k2_standard_08gb
 cd
 ```
 
-Now run kraken on the reads
+!!! warning
+    Keep the database inside your Linux home (`~`), not on the Windows drive (`/mnt/c/...`): reading it from there is very slow.
+
+Now run Kraken 2 on the reads
 
 ```bash
 # In the data/ directory
@@ -114,16 +124,21 @@ do
     prefix=$(basename $i _1.fastq)
     # print which sample is being processed
     echo $prefix
-    kraken --db $KRAKEN_DB --threads 2 --fastq-input \
-        ${prefix}_1.fastq ${prefix}_2.fastq > /home/student/wms/results/${prefix}.tab
-    kraken-report --db $KRAKEN_DB \
-        /home/student/wms/results/${prefix}.tab > /home/student/wms/results/${prefix}_tax.txt
+    kraken2 --db $KRAKEN_DB --memory-mapping --threads 2 --paired \
+        --output ~/wms/results/${prefix}.tab \
+        --report ~/wms/results/${prefix}_tax.txt \
+        ${prefix}_1.fastq ${prefix}_2.fastq
 done
 ```
 
-which produces a tab-delimited file with an assigned TaxID for each read.
+!!! note
+    `--memory-mapping` tells Kraken 2 to read the database from the disk instead of loading all of it into memory. The database file is 8 GB, more than the memory of most laptops, so **without this option Kraken 2 stops with an error or is killed**. The first sample is slower than the next ones.
 
-Kraken includes a script called `kraken-report` to transform this file into a "tree" view with the percentage of reads assigned to each taxa. We've run this script at each step in the loop. Take a look at the `_tax.txt` files!
+For each sample this produces two files. The `.tab` file has one line per read pair, with the TaxID assigned to it.
+The `_tax.txt` file is the report: a "tree" view with the percentage of reads assigned to each taxon. Take a look at the `_tax.txt` files!
+
+!!! question
+    Which percentage of the reads was classified in each sample? Is it the same for the pig and the human samples?
 
 ### Visualization with Pavian
 
@@ -140,7 +155,7 @@ remotes::install_github("fbreitwieser/pavian")
 pavian::runApp(port=5000)
 ```
 
-Then you will explore and compare the results produced by Kraken.
+Then you will explore and compare the results produced by Kraken 2 (upload the `_tax.txt` reports).
 
 Try to use Pavian to look at this data a bit!!
 
