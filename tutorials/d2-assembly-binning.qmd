@@ -211,8 +211,24 @@ Do CheckM and CheckM2 agree? For which bins do they differ the most?
 The two tools were given exactly the same bins. Why can their estimates differ? Which one is "right"?
 :::
 
+To decide which bins are good enough, many studies use the **MIMAG** standard ([Bowers et al. 2017](https://doi.org/10.1038/nbt.3893)):
+
+| Quality | Completeness | Contamination | Also required |
+|---|---|---|---|
+| High-quality draft | more than 90% | less than 5% | the 23S, 16S and 5S rRNA genes and at least 18 tRNAs |
+| Medium-quality draft | 50% or more | less than 10% | |
+| Low-quality draft | less than 50% | less than 10% | |
+
 ::: {.callout-tip title="Question" icon=false}
-Which bins should we keep for downstream analysis?
+Which bins should we keep for downstream analysis? Give each bin its MIMAG quality, once with the CheckM values and once with the CheckM2 values. Does a bin change category?
+:::
+
+::: {.callout-tip title="Question" icon=false}
+Both tools estimate contamination from marker genes that are found more than once. Imagine a bin that contains a few contigs of another organism, and these contigs carry no marker gene. What would the tools report? What does this tell you about a contamination of "2%"?
+:::
+
+::: {.callout-note}
+Our reads were simulated from 10 known genomes, and the name of each read still says which genome it comes from. So for this dataset the truth can be checked. Ask your teacher how the bins compare with the truth, after you have answered the questions.
 :::
 
 ::: {.callout-note title="If CheckM or CheckM2 does not run on your laptop"}
