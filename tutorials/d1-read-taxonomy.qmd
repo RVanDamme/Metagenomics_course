@@ -37,6 +37,7 @@ The choice of shotgun or 16S approaches is usually dictated by the nature of the
 * [fastp](https://github.com/OpenGene/fastp)
 * [MultiQC](https://multiqc.info)
 * [Kraken 2](https://github.com/DerrickWood/kraken2)
+* [Bracken](https://github.com/jenniferlu717/Bracken)
 * [R](https://www.r-project.org/)
 * [Pavian](https://github.com/fbreitwieser/pavian)
 
@@ -182,6 +183,60 @@ The `_tax.txt` file is the report: a "tree" view with the percentage of reads as
 
 ::: {.callout-tip title="Question" icon=false}
 Which percentage of the reads was classified in each sample? Is it the same for the pig and the human samples?
+:::
+
+### Abundance estimation with Bracken
+
+Look at one report: many reads are assigned to a genus, a family or even higher, because their k-mers are shared
+by several species. So the report underestimates the species.
+[Bracken](https://github.com/jenniferlu717/Bracken) uses the Kraken 2 report and the database to re-distribute
+these reads to the species level, and gives one estimated number of reads per species.
+
+```bash
+for i in results/*_tax.txt
+do
+    prefix=$(basename $i _tax.txt)
+    bracken -d $KRAKEN_DB -i results/${prefix}_tax.txt \
+        -o results/${prefix}.bracken -w results/${prefix}_bracken_tax.txt \
+        -r 100 -l S -t 10
+done
+```
+
+* `-r 100`: the read length. Our reads are about 90 bases long, and 100 is the closest value the database offers.
+* `-l S`: estimate at the species level.
+* `-t 10`: ignore species with fewer than 10 reads, which are mostly noise.
+
+::: {.callout-note title="On macOS"}
+Bracken is in its own environment on macOS (see [Setup](../setup.qmd)). Open a second terminal and run:
+
+```bash
+cd ~/mag2026/Metagenomics_course
+pixi shell -e bracken-mac
+cd ~/mag2026/d1
+KRAKEN_DB=~/mag2026/databases/k2_standard_08gb
+```
+
+Then run the loop above in that terminal.
+:::
+
+Each `.bracken` file is a table with one line per species. Look at the most abundant species of a pig sample:
+
+```bash
+sort -t$'\t' -k7,7gr results/ERR1135369.bracken | head -5 | cut -f1,6,7
+```
+
+The columns shown are the species, `new_est_reads` (estimated number of read pairs) and `fraction_total_reads`.
+
+::: {.callout-tip title="Question" icon=false}
+Take the first species of the list. According to Bracken, which fraction of the reads does it represent? Now compute it yourself: divide `new_est_reads` by the number of read pairs that entered Kraken 2 (printed by Kraken 2, and by fastp). Why are the two numbers so different?
+:::
+
+::: {.callout-tip title="Question" icon=false}
+"Species X makes up half of the pig gut microbiome." Is this sentence supported by the result? Write a sentence that is.
+:::
+
+::: {.callout-warning}
+The fractions of Bracken (and the percentages of most microbiome figures) are **relative abundances**: fractions of the *classified* reads, which always sum to about 1. They are not counts of cells. If one species goes up, all the others go down, even if their real numbers did not change.
 :::
 
 ### Host reads
