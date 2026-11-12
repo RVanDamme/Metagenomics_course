@@ -495,7 +495,38 @@ Warning
 </section>
 <section id="get-the-course-folder" class="level2">
 <h2 class="anchored" data-anchor-id="get-the-course-folder">2. Get the course folder</h2>
-<p>The course folder, the databases and your Day 1 work go in one folder, <code>~/mag2026</code>, inside your home (<code>~</code>).</p>
+<p>Everything of the course goes in one folder, <code>~/mag2026</code>, inside your home (<code>~</code>):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Folder</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>~/mag2026/Metagenomics_course</code></td>
+<td>the course folder: the list of tools and the tools themselves</td>
+</tr>
+<tr class="even">
+<td><code>~/mag2026/databases</code></td>
+<td>the reference databases (Kraken 2, CheckM, CheckM2, sourmash)</td>
+</tr>
+<tr class="odd">
+<td><code>~/mag2026/d1</code></td>
+<td>your work of Day 1, in <code>data/</code> and <code>results/</code></td>
+</tr>
+<tr class="even">
+<td><code>~/mag2026/d2</code></td>
+<td>your work of Day 2, in <code>data/</code> and <code>results/</code></td>
+</tr>
+</tbody>
+</table>
+<p>The tutorials create the folders <code>databases</code>, <code>d1</code> and <code>d2</code> when they are needed. Now create the first one:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/mag2026</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/RVanDamme/Metagenomics_course.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

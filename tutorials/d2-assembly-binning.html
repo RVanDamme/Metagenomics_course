@@ -365,7 +365,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#getting-the-data" id="toc-getting-the-data" class="nav-link active" data-scroll-target="#getting-the-data">Getting the Data</a></li>
+  <li><a href="#prepare-and-organise-your-working-directory" id="toc-prepare-and-organise-your-working-directory" class="nav-link active" data-scroll-target="#prepare-and-organise-your-working-directory">Prepare and organise your working directory</a></li>
+  <li><a href="#getting-the-data" id="toc-getting-the-data" class="nav-link" data-scroll-target="#getting-the-data">Getting the Data</a></li>
   <li><a href="#quality-control" id="toc-quality-control" class="nav-link" data-scroll-target="#quality-control">Quality Control</a></li>
   <li><a href="#assembly" id="toc-assembly" class="nav-link" data-scroll-target="#assembly">Assembly</a></li>
   <li><a href="#binning" id="toc-binning" class="nav-link" data-scroll-target="#binning">Binning</a></li>
@@ -430,21 +431,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this tutorial you’ll learn how to inspect assemble metagenomic data and retrieve draft genomes from assembled metagenomes</p>
 <p>We’ll use a mock community of 10 bacteria sequenced using the Illumina HiSeq. In reality the data were simulated using <a href="http://insilicoseq.readthedocs.io">InSilicoSeq</a>.</p>
 <p>The 10 bacteria in the dataset were selected from the <a href="http://ocean-microbiome.embl.de/companion.html">Tara Ocean study</a> that recovered 957 distinct Metagenome-assembled-genomes (or MAGs) that were previsouly unknown! (full list on <a href="https://figshare.com/articles/TARA-NON-REDUNDANT-MAGs/4902923/1">figshare</a> )</p>
+<section id="prepare-and-organise-your-working-directory" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-and-organise-your-working-directory">Prepare and organise your working directory</h2>
+<p>All the work of this tutorial is done in the folder <code>~/mag2026/d2</code>, organised like the one of Day 1: the reads go in <code>data/</code>, everything you compute goes in <code>results/</code>. Every command below is run <strong>from <code>~/mag2026/d2</code></strong>, unless the text says otherwise.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/mag2026/d2</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> data</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you close your terminal and come back later, activate the tools again (see the top of this page) and return to the folder with <code>cd ~/mag2026/d2</code>.</p>
+</section>
 <section id="getting-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="getting-the-data">Getting the Data</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/data</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/data</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> <span class="at">-J</span> <span class="at">-L</span> https://osf.io/th9z6/download</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> <span class="at">-J</span> <span class="at">-L</span> https://osf.io/k6vme/download</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> <span class="at">-w</span> tara_reads_R<span class="pp">*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2/data</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> <span class="at">-J</span> <span class="at">-L</span> https://osf.io/th9z6/download</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> <span class="at">-J</span> <span class="at">-L</span> https://osf.io/k6vme/download</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> <span class="at">-w</span> tara_reads_R<span class="pp">*</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The two files of reads are now in <code>data/</code>. The <code>chmod -w</code> command protects them: they can be read, but not changed or deleted by mistake.</p>
 </section>
 <section id="quality-control" class="level2">
 <h2 class="anchored" data-anchor-id="quality-control">Quality Control</h2>
 <p>we’ll use FastQC to check the quality of our data, as well as sickle for trimming the bad quality part of the reads.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/results</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/results</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ~/data/tara_reads_<span class="pp">*</span> .</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> tara_reads_<span class="pp">*</span>.fastq.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> results/fastqc</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span> results/fastqc data/tara_reads_<span class="pp">*</span>.fastq.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Open the two reports of <code>results/fastqc</code> in your web browser.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -472,8 +482,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now we’ll trim the reads using sickle</p>
-<pre><code>sickle pe -f tara_reads_R1.fastq.gz -r tara_reads_R2.fastq.gz -t sanger \
-    -o tara_trimmed_R1.fastq -p tara_trimmed_R2.fastq -s /dev/null</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sickle</span> pe <span class="at">-f</span> data/tara_reads_R1.fastq.gz <span class="at">-r</span> data/tara_reads_R2.fastq.gz <span class="at">-t</span> sanger <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> results/tara_trimmed_R1.fastq <span class="at">-p</span> results/tara_trimmed_R2.fastq <span class="at">-s</span> /dev/null</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -491,8 +501,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="assembly" class="level2">
 <h2 class="anchored" data-anchor-id="assembly">Assembly</h2>
 <p>Megahit will be used for the assembly.</p>
-<pre><code>megahit -1 tara_trimmed_R1.fastq -2 tara_trimmed_R2.fastq -o tara_assembly</code></pre>
-<p>the resulting assembly can be found under <code>tara_assembly/final.contigs.fa</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">megahit</span> <span class="at">-1</span> results/tara_trimmed_R1.fastq <span class="at">-2</span> results/tara_trimmed_R2.fastq <span class="at">-o</span> results/tara_assembly</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>the resulting assembly can be found under <code>results/tara_assembly/final.contigs.fa</code>.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -510,16 +520,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="binning" class="level2">
 <h2 class="anchored" data-anchor-id="binning">Binning</h2>
 <p>First we need to map the reads back against the assembly to get coverage information. We map the trimmed reads, the same reads that were used for the assembly. The mapping takes about 4 minutes.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> tara_assembly/final.contigs.fa .</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bowtie2-build</span> final.contigs.fa final.contigs</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bowtie2</span> <span class="at">-p</span> 2 <span class="at">-x</span> final.contigs <span class="at">-1</span> tara_trimmed_R1.fastq <span class="at">-2</span> tara_trimmed_R2.fastq <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">samtools</span> view <span class="at">-bS</span> <span class="at">-o</span> tara_to_sort.bam</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort tara_to_sort.bam <span class="at">-o</span> tara.bam</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index tara.bam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bowtie2-build</span> results/tara_assembly/final.contigs.fa results/final.contigs</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bowtie2</span> <span class="at">-p</span> 2 <span class="at">-x</span> results/final.contigs <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-1</span> results/tara_trimmed_R1.fastq <span class="at">-2</span> results/tara_trimmed_R2.fastq <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">samtools</span> view <span class="at">-bS</span> <span class="at">-o</span> results/tara_to_sort.bam</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort results/tara_to_sort.bam <span class="at">-o</span> results/tara.bam</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index results/tara.bam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>then we run metabat</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">runMetaBat.sh</span> <span class="at">-m</span> 1500 final.contigs.fa tara.bam</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> final.contigs.fa.metabat-bins<span class="pp">*</span> metabat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>MetaBAT 2 writes the bins in a folder whose name ends with the date and time of the run. The <code>mv</code> command renames it to <code>metabat</code>. Each bin is one FASTA file, <code>bin.1.fa</code>, <code>bin.2.fa</code>, and so on.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">runMetaBat.sh</span> <span class="at">-m</span> 1500 results/tara_assembly/final.contigs.fa results/tara.bam</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> final.contigs.fa.metabat-bins<span class="pp">*</span> results/metabat</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> final.contigs.fa.depth.txt results/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>MetaBAT 2 writes its output in the current folder: a table with the coverage of each contig (<code>final.contigs.fa.depth.txt</code>) and a folder of bins, whose name ends with the date and time of the run. The two <code>mv</code> commands put them in <code>results/</code>, and rename the folder of bins to <code>metabat</code>. Each bin is one FASTA file, <code>bin.1.fa</code>, <code>bin.2.fa</code>, and so on.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -551,22 +562,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="checkm" class="level3">
 <h3 class="anchored" data-anchor-id="checkm">CheckM</h3>
 <p>Open a <strong>second terminal</strong> and activate the CheckM environment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/Metagenomics_course</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> checkm1</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/Metagenomics_course</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> checkm1</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first time you run <code>checkm</code> you have to get its reference data (289 MB; ask your teacher for the drive copy) and tell CheckM where they are:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/mag2026/databases/checkm_data</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/databases/checkm_data</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check the download: the result must be 631012fa598c43fdeb88c619ad282c4d</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> checkm_data_2015_01_16.tar.gz</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> checkm_data_2015_01_16.tar.gz</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> checkm_data_2015_01_16.tar.gz</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> data setRoot ~/mag2026/databases/checkm_data</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/mag2026/databases/checkm_data</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/databases/checkm_data</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check the download: the result must be 631012fa598c43fdeb88c619ad282c4d</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> checkm_data_2015_01_16.tar.gz</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> checkm_data_2015_01_16.tar.gz</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> checkm_data_2015_01_16.tar.gz</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> data setRoot ~/mag2026/databases/checkm_data</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now run CheckM on the folder of bins (about 5 minutes):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> lineage_wf <span class="at">-t</span> 2 <span class="at">--gplace_max_memory</span> 2G <span class="at">-x</span> fa metabat checkm/</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> qa checkm/lineage.ms checkm <span class="at">--tab_table</span> <span class="at">-f</span> checkm.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> lineage_wf <span class="at">-t</span> 2 <span class="at">--gplace_max_memory</span> 2G <span class="at">-x</span> fa results/metabat results/checkm</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> qa results/checkm/lineage.ms results/checkm <span class="at">--tab_table</span> <span class="at">-f</span> results/checkm.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -580,27 +591,28 @@ Note
 <p><code>--gplace_max_memory 2G</code> limits the memory of the step that places the bins in the reference tree. Without this limit, CheckM needs far more memory than a laptop has and is stopped by the system (“Killed”).</p>
 </div>
 </div>
-<p>The result is the table <code>checkm.tsv</code>. Columns 12 and 13 are the completeness and the contamination:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1,12,13</span> checkm.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The result is the table <code>results/checkm.tsv</code>. Columns 12 and 13 are the completeness and the contamination:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1,12,13</span> results/checkm.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The other columns give the lineage that CheckM chose for the bin, and how many marker genes were found 0, 1, 2 or more times.</p>
 </section>
 <section id="checkm2" class="level3">
 <h3 class="anchored" data-anchor-id="checkm2">CheckM2</h3>
 <p>In the same second terminal, leave the CheckM environment and activate the CheckM2 environment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> checkm2</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> checkm2</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first time, get the CheckM2 database (1.7 GB to download, 2.9 GB on disk; ask your teacher for the drive copy):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/databases</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-o</span> checkm2_database.tar.gz <span class="st">"https://zenodo.org/records/14897628/files/checkm2_database.tar.gz?download=1"</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check the download: the result must be 07c10655620843b517d0df0c160d911f</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> checkm2_database.tar.gz</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> checkm2_database.tar.gz</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> checkm2_database.tar.gz</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/databases</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-o</span> checkm2_database.tar.gz <span class="st">"https://zenodo.org/records/14897628/files/checkm2_database.tar.gz?download=1"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check the download: the result must be 07c10655620843b517d0df0c160d911f</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> checkm2_database.tar.gz</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> checkm2_database.tar.gz</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> checkm2_database.tar.gz</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Run CheckM2 on the same bins (about 8 minutes):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm2</span> predict <span class="at">--lowmem</span> <span class="at">--threads</span> 2 <span class="at">-x</span> fa <span class="at">--input</span> metabat <span class="at">--output-directory</span> checkm2 <span class="dt">\</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--database_path</span> ~/mag2026/databases/CheckM2_database/uniref100.KO.1.dmnd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm2</span> predict <span class="at">--lowmem</span> <span class="at">--threads</span> 2 <span class="at">-x</span> fa <span class="dt">\</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> results/metabat <span class="at">--output-directory</span> results/checkm2 <span class="dt">\</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--database_path</span> ~/mag2026/databases/CheckM2_database/uniref100.KO.1.dmnd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -614,8 +626,8 @@ Note
 <p><code>--lowmem</code> makes CheckM2 use less memory, at the price of a longer run. Without it, CheckM2 does not fit in 6 GB.</p>
 </div>
 </div>
-<p>The result is the table <code>checkm2/quality_report.tsv</code>. Its first three columns are the name of the bin, the completeness and the contamination:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1-3</span> checkm2/quality_report.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The result is the table <code>results/checkm2/quality_report.tsv</code>. Its first three columns are the name of the bin, the completeness and the contamination:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1-3</span> results/checkm2/quality_report.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="compare-the-two-tools" class="level3">
 <h3 class="anchored" data-anchor-id="compare-the-two-tools">Compare the two tools</h3>
@@ -735,7 +747,7 @@ Note
 <p>Tell your teacher. There are two other ways to get the results:</p>
 <ol type="1">
 <li><strong>Result files.</strong> The teacher gives you <code>checkm.tsv</code> and <code>quality_report.tsv</code>, computed on the same data. Use them for the comparison.</li>
-<li><strong>Galaxy.</strong> Upload your 10 bin files (<code>metabat/bin.*.fa</code>, 20 MB) to <a href="https://usegalaxy.eu">usegalaxy.eu</a>, make a collection of them, and run the tools “CheckM lineage_wf” and “CheckM2” on it.</li>
+<li><strong>Galaxy.</strong> Upload your 10 bin files (<code>results/metabat/bin.*.fa</code>, 20 MB) to <a href="https://usegalaxy.eu">usegalaxy.eu</a>, make a collection of them, and run the tools “CheckM lineage_wf” and “CheckM2” on it.</li>
 </ol>
 </div>
 </div>
@@ -747,13 +759,13 @@ Note
 <p>Now we should have a collection of MAGs that we can further analyze. The first step is to predict genes as right now we only have raw genomic sequences. We will use Prokka, a widely used annotation tool for prokaryotic genomes.</p>
 <p>This tool does gene prediction as well as some decent and useful annotations, and is actually quite easy to run!</p>
 <p>Prokka is in its own environment. Open a second terminal (or reuse the one of CheckM, after <code>exit</code>) and activate it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/Metagenomics_course</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> prokka</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/Metagenomics_course</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> prokka</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>On a Mac with Apple Silicon, this environment runs through Rosetta: see <a href="../setup.html">Setup</a>.</p>
 <p>Choose one bin, for example a bin with a high completeness and a low contamination, and annotate it (about 3 minutes; replace <code>bin.1</code> and <code>bin1</code> by your choice):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prokka</span> <span class="at">--cpus</span> 2 <span class="at">--outdir</span> prokka_bin1 <span class="at">--prefix</span> bin1 metabat/bin.1.fa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Prokka produces a number of output files in the folder <code>prokka_bin1</code>, which mostly represent the same thing in different formats:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prokka</span> <span class="at">--cpus</span> 2 <span class="at">--outdir</span> results/prokka_bin1 <span class="at">--prefix</span> bin1 results/metabat/bin.1.fa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Prokka produces a number of output files in the folder <code>results/prokka_bin1</code>, which mostly represent the same thing in different formats:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -789,8 +801,8 @@ Note
 </tbody>
 </table>
 <p>Prokka also renames all the sequences with nicer IDs.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> prokka_bin1/bin1.txt</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"hypothetical protein"</span> prokka_bin1/bin1.faa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> results/prokka_bin1/bin1.txt</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"hypothetical protein"</span> results/prokka_bin1/bin1.faa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -869,30 +881,30 @@ Note
 <li><code>gtdb-rs226.lineages.csv</code> (103 MB): the taxonomy of each genome.</li>
 </ul>
 <p>Copy them into <code>~/mag2026/databases/sourmash/</code>. The <a href="../data/README.html">Data page</a> explains how the reduced file was made and how to rebuild it.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="va">SOURMASH_DB</span><span class="op">=</span>~/mag2026/databases/sourmash</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="va">$SOURMASH_DB</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="va">SOURMASH_DB</span><span class="op">=</span>~/mag2026/databases/sourmash</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="va">$SOURMASH_DB</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="sketch-the-bins-and-search-the-database" class="level3">
 <h3 class="anchored" data-anchor-id="sketch-the-bins-and-search-the-database">Sketch the bins and search the database</h3>
 <p>sourmash is in the main environment (the first terminal). For each bin we make a sketch (<code>sourmash sketch</code>), then search the genomes of the database that best explain it (<code>sourmash gather</code>). This takes about 1 minute per bin.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/results</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> sourmash</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> metabat/bin.<span class="pp">*</span>.fa</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">name</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">$i</span> .fa<span class="va">)</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$name</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sourmash</span> sketch dna <span class="at">-p</span> k=31,scaled=10000 <span class="at">--name</span> <span class="va">$name</span> <span class="va">$i</span> <span class="at">-o</span> sourmash/<span class="va">${name}</span>.sig</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sourmash</span> gather sourmash/<span class="va">${name}</span>.sig <span class="va">$SOURMASH_DB</span>/gtdb-reps-rs226-k31.s10k.zip <span class="dt">\</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">-o</span> sourmash/<span class="va">${name}</span>.gather.csv</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> results/sourmash</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> results/metabat/bin.<span class="pp">*</span>.fa</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">name</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">$i</span> .fa<span class="va">)</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$name</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sourmash</span> sketch dna <span class="at">-p</span> k=31,scaled=10000 <span class="at">--name</span> <span class="va">$name</span> <span class="va">$i</span> <span class="at">-o</span> results/sourmash/<span class="va">${name}</span>.sig</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sourmash</span> gather results/sourmash/<span class="va">${name}</span>.sig <span class="va">$SOURMASH_DB</span>/gtdb-reps-rs226-k31.s10k.zip <span class="dt">\</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">-o</span> results/sourmash/<span class="va">${name}</span>.gather.csv</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For each bin, <code>gather</code> prints the genomes it found and which part of the bin they explain. If nothing in the database is similar enough, it prints “No matches” and writes no file.</p>
 </section>
 <section id="from-genomes-to-a-taxonomy" class="level3">
 <h3 class="anchored" data-anchor-id="from-genomes-to-a-taxonomy">From genomes to a taxonomy</h3>
 <p><code>sourmash tax genome</code> reads the matches and the taxonomy file, and gives one classification per bin:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sourmash</span> tax genome <span class="at">-g</span> sourmash/<span class="pp">*</span>.gather.csv <span class="at">-t</span> <span class="va">$SOURMASH_DB</span>/gtdb-rs226.lineages.csv <span class="dt">\</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> sourmash/bins <span class="at">--output-format</span> csv_summary human</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> sourmash/bins.human.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sourmash</span> tax genome <span class="at">-g</span> results/sourmash/<span class="pp">*</span>.gather.csv <span class="at">-t</span> <span class="va">$SOURMASH_DB</span>/gtdb-rs226.lineages.csv <span class="dt">\</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> results/sourmash/bins <span class="at">--output-format</span> csv_summary human</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> results/sourmash/bins.human.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The lineage is written with the GTDB prefixes: <code>d__</code> domain, <code>p__</code> phylum, <code>c__</code> class, <code>o__</code> order, <code>f__</code> family, <code>g__</code> genus, <code>s__</code> species.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">

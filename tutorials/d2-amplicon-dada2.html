@@ -442,7 +442,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="download-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="download-the-data">Download the Data</h2>
-<p>You will also need to download the data, as well as the SILVA database. The downloads are done from R, so this works the same way on Windows, macOS and Linux. The files are saved in your current working directory (check it with <code>getwd()</code>).</p>
+<p>You will also need to download the data, as well as the SILVA database. The downloads are done from R, so this works the same way on Windows, macOS and Linux. The files are saved in the working directory of R. Keep the work of this tutorial in one folder, as for the other tutorials:</p>
+<ol type="1">
+<li>Create a folder for this tutorial, for example <code>mag2026/d2_amplicon</code> in your Documents.</li>
+<li>If you use the notebook: save it in this folder and open it from there. R then works in this folder.</li>
+<li>If you copy and paste the code: in RStudio, choose this folder with the menu Session, Set Working Directory, Choose Directory.</li>
+</ol>
+<p>Check where R works with <code>getwd()</code>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># large files: allow up to 10 minutes per download</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">timeout =</span> <span class="dv">600</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
