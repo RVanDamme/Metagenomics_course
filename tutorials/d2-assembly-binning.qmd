@@ -13,10 +13,10 @@ pixi shell
 
 In this tutorial you'll learn how to inspect assemble metagenomic data and retrieve draft genomes from assembled metagenomes
 
-We'll use a mock community of 20 bacteria sequenced using the Illumina HiSeq.
+We'll use a mock community of 10 bacteria sequenced using the Illumina HiSeq.
 In reality the data were simulated using [InSilicoSeq](http://insilicoseq.readthedocs.io).
 
-The 20 bacteria in the dataset were selected from the [Tara Ocean study](http://ocean-microbiome.embl.de/companion.html) that recovered 957 distinct Metagenome-assembled-genomes (or MAGs) that were previsouly unknown! (full list on [figshare](https://figshare.com/articles/TARA-NON-REDUNDANT-MAGs/4902923/1) )
+The 10 bacteria in the dataset were selected from the [Tara Ocean study](http://ocean-microbiome.embl.de/companion.html) that recovered 957 distinct Metagenome-assembled-genomes (or MAGs) that were previsouly unknown! (full list on [figshare](https://figshare.com/articles/TARA-NON-REDUNDANT-MAGs/4902923/1) )
 
 ## Getting the Data
 
