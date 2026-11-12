@@ -312,7 +312,7 @@
     "href": "slides.html",
     "title": "Slides",
     "section": "",
-    "text": "The lecture slides, as PDF files. Click a link to open the file, or right-click it to download.\n\n\n\nLecture\nDay\nSlides\n\n\n\n\nIntroduction to metagenomics and environmental studies\nDay 1\nPDF\n\n\nShotgun metagenomics\nDay 1 and Day 2\nPDF\n\n\nAmplicon sequencing (metabarcoding)\nDay 2\nPDF\n\n\nAncient DNA and metagenomics\nDay 3\nPDF\n\n\nMUFFIN, a Nextflow genomic workflow\nDay 3\nPDF\n\n\nThe global presentation (summary)\nDay 4\nPDF\n\n\n\nThe introduction to Galaxy uses the Galaxy Training Network slides.\n\n\n\n\n\n\nNote\n\n\n\nThese are the slides of the 2020–2024 courses. Updated slides will replace them here before the next course."
+    "text": "The lecture slides will be offered here as PDF files.\n\n\n\n\n\n\n\n\nLecture\nWhen\nSlides\n\n\n\n\nIntroduction to metagenomics\nDay 1, morning\ncoming soon\n\n\nShotgun metagenomics I: assembly-free\nDay 1, morning\ncoming soon\n\n\nShotgun metagenomics II: assembly and binning\nDay 2, morning\ncoming soon\n\n\nAmplicon sequencing\nDay 2, afternoon\ncoming soon\n\n\nMetatranscriptomics\nDay 3, morning\ncoming soon\n\n\nAncient DNA and metagenomics\nDay 3, morning\ncoming soon\n\n\nMUFFIN and hybrid workflows\nDay 3, morning\ncoming soon\n\n\nThe global presentation (summary)\nDay 4, morning\ncoming soon\n\n\n\nThe introduction to Galaxy uses the Galaxy Training Network slides.\n\n\n\n\n\n\nNote\n\n\n\nThe slides are being rebuilt for the next course. Each file appears here as soon as it is ready."
   },
   {
     "objectID": "tutorials/d2-amplicon-dada2.html",
@@ -424,14 +424,14 @@
     "href": "ATTRIBUTION.html",
     "title": "Licence and credits",
     "section": "",
-    "text": "Text and slides: Creative Commons Attribution 4.0 International (CC BY 4.0). The full text is in the file LICENSE.\nCode (commands, scripts, configuration files): MIT licence. The full text is in the file LICENSE-code.\n\nYou may reuse and adapt the material if you give credit: “Introduction to Metagenomics, Renaud Van Damme and contributors, https://github.com/RVanDamme/Metagenomics_course, CC BY 4.0”.\nException: the PDF slides made before 2026 (in slides/) contain images from other sources. They are not covered by the CC BY 4.0 licence. They will be replaced by rebuilt slides."
+    "text": "Text and slides: Creative Commons Attribution 4.0 International (CC BY 4.0). The full text is in the file LICENSE.\nCode (commands, scripts, configuration files): MIT licence. The full text is in the file LICENSE-code.\n\nYou may reuse and adapt the material if you give credit: “Introduction to Metagenomics, Renaud Van Damme and contributors, https://github.com/RVanDamme/Metagenomics_course, CC BY 4.0”."
   },
   {
     "objectID": "ATTRIBUTION.html#licence",
     "href": "ATTRIBUTION.html#licence",
     "title": "Licence and credits",
     "section": "",
-    "text": "Text and slides: Creative Commons Attribution 4.0 International (CC BY 4.0). The full text is in the file LICENSE.\nCode (commands, scripts, configuration files): MIT licence. The full text is in the file LICENSE-code.\n\nYou may reuse and adapt the material if you give credit: “Introduction to Metagenomics, Renaud Van Damme and contributors, https://github.com/RVanDamme/Metagenomics_course, CC BY 4.0”.\nException: the PDF slides made before 2026 (in slides/) contain images from other sources. They are not covered by the CC BY 4.0 licence. They will be replaced by rebuilt slides."
+    "text": "Text and slides: Creative Commons Attribution 4.0 International (CC BY 4.0). The full text is in the file LICENSE.\nCode (commands, scripts, configuration files): MIT licence. The full text is in the file LICENSE-code.\n\nYou may reuse and adapt the material if you give credit: “Introduction to Metagenomics, Renaud Van Damme and contributors, https://github.com/RVanDamme/Metagenomics_course, CC BY 4.0”."
   },
   {
     "objectID": "ATTRIBUTION.html#credits",
