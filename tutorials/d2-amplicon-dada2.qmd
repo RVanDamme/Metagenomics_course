@@ -340,12 +340,16 @@ physeq <- prune_samples(sample_names(physeq) != 'Mock', physeq)
 physeq
 ```
 
-Let's look at the alpha diversity of our samples
+Let's look at the alpha diversity of our samples: the number of sequence variants observed in each sample (`Observed`) and the Shannon index, which also takes into account how evenly the reads are spread over the variants.
 
 ```{r plot_alpha}
-plot_richness(physeq, x='day', measures=c('Shannon', 'Fisher'), color='when') +
+plot_richness(physeq, x='day', measures=c('Observed', 'Shannon'), color='when') +
     theme_minimal()
 ```
+
+::: {.callout-note}
+Other richness measures, such as Chao1, ACE or Fisher's alpha, estimate the number of unseen variants from the variants that were seen only once (singletons). DADA2 removes singletons, because it cannot tell them from errors. So these measures have no meaning on a DADA2 table: do not use them here.
+:::
 
 No obvious differences. Let's look at ordination methods (beta diversity)
 
