@@ -34,6 +34,8 @@ The choice of shotgun or 16S approaches is usually dictated by the nature of the
 ### Softwares Required for this Tutorial
 
 * [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+* [fastp](https://github.com/OpenGene/fastp)
+* [MultiQC](https://multiqc.info)
 * [Kraken 2](https://github.com/DerrickWood/kraken2)
 * [R](https://www.r-project.org/)
 * [Pavian](https://github.com/fbreitwieser/pavian)
@@ -75,8 +77,51 @@ fastqc data/sub_100000/*.fastq
 
 FastQC writes one `.html` report per file, next to the reads. Open a few of them in your web browser.
 
-If the quality appears to be good, it's because it was probably the cleaned reads that were deposited into SRA.
-We can directly move to the classification step.
+::: {.callout-tip title="Question" icon=false}
+Compare a pig sample (`ERR1135...`) with a human sample (`ERR3215...`). Look at the graph "Per base sequence quality". What differs?
+:::
+
+#### Trimming and filtering with fastp
+
+FastQC only *reports* the quality. [fastp](https://github.com/OpenGene/fastp) *cleans* the reads: it removes adapter
+sequences, trims bad ends and drops reads of low quality. It keeps the two reads of a pair together.
+
+```bash
+mkdir -p results/fastp
+for i in data/sub_100000/*_1.fastq
+do
+    prefix=$(basename $i _1.fastq)
+    echo $prefix
+    fastp --in1 data/sub_100000/${prefix}_1.fastq --in2 data/sub_100000/${prefix}_2.fastq \
+        --out1 results/fastp/${prefix}_1.fastq.gz --out2 results/fastp/${prefix}_2.fastq.gz \
+        --detect_adapter_for_pe --thread 2 \
+        --json results/fastp/${prefix}.fastp.json --html results/fastp/${prefix}.fastp.html
+done
+```
+
+For each sample, fastp prints a summary and writes a report (`.html`) in `results/fastp`.
+
+With 6 samples and 2 tools we already have 18 reports. [MultiQC](https://multiqc.info) reads them all and makes one summary report:
+
+```bash
+multiqc --outdir results/multiqc data/sub_100000 results/fastp
+```
+
+Open `results/multiqc/multiqc_report.html` in your web browser.
+
+::: {.callout-tip title="Question" icon=false}
+How many reads did fastp remove in each sample? Which samples lost the most reads, and why were these reads removed?
+:::
+
+::: {.callout-tip title="Question" icon=false}
+The pig samples and the human samples come from two different studies, sequenced in different places at different times. How could that explain what you see? Why does it matter when you compare the two groups?
+:::
+
+::: {.callout-note}
+Reads deposited in public archives are sometimes already cleaned, sometimes not. Never assume it: always check the quality of the data yourself.
+:::
+
+From now on we work with the cleaned reads of `results/fastp`.
 
 ### Taxonomic Classification
 
@@ -124,7 +169,7 @@ do
     kraken2 --db $KRAKEN_DB --memory-mapping --threads 2 --paired \
         --output results/${prefix}.tab \
         --report results/${prefix}_tax.txt \
-        data/sub_100000/${prefix}_1.fastq data/sub_100000/${prefix}_2.fastq
+        results/fastp/${prefix}_1.fastq.gz results/fastp/${prefix}_2.fastq.gz
 done
 ```
 
