@@ -324,16 +324,16 @@ We can perform an MDS with euclidean distance (mathematically equivalent to a PC
 ```{r plot_euclidean}
 ord <- ordinate(physeq, 'MDS', 'euclidean')
 plot_ordination(physeq, ord, type='samples', color='when',
-                title='PCA of the samples from the MiSeq SOP') +
+                title='MDS (PCoA) with Euclidean distance, MiSeq SOP samples') +
     theme_minimal()
 ```
 
-now with the Bray-Curtis distance
+now with the Bray-Curtis distance, and another ordination method (NMDS). This plot is **not** a PCA: its axes have no unit, only the distances between the points matter.
 
 ```{r plot_bray}
 ord <- ordinate(physeq, 'NMDS', 'bray')
 plot_ordination(physeq, ord, type='samples', color='when',
-                title='PCA of the samples from the MiSeq SOP') +
+                title='NMDS with Bray-Curtis distance, MiSeq SOP samples') +
     theme_minimal()
 ```
 
