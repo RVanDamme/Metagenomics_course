@@ -101,7 +101,25 @@ How many bins did we obtain?
 
 ## Checking the quality of the bins
 
-CheckM is in its own environment. Open a second terminal, activate it and go back to your results:
+A bin is only a *draft* genome. Before using it, we estimate two numbers:
+
+* **completeness**: which part of the genome is in the bin;
+* **contamination**: how much of the bin comes from other genomes.
+
+Nobody knows the true genome, so both numbers are **estimates**. They are based on genes that almost every
+bacterium has in exactly one copy (single-copy marker genes): a missing marker lowers the completeness, a marker
+found twice raises the contamination.
+
+We will use two tools that make this estimate in different ways, and compare them:
+
+* [CheckM](https://github.com/Ecogenomics/CheckM) (version 1) places each bin in a reference tree and counts the marker genes of its lineage;
+* [CheckM2](https://github.com/chklovski/CheckM2) predicts the two numbers with machine-learning models trained on many genomes.
+
+Each tool has its own environment and its own reference data.
+
+### CheckM
+
+Open a **second terminal** and activate the CheckM environment:
 
 ```bash
 cd ~/mag2026/Metagenomics_course
@@ -109,27 +127,102 @@ pixi shell -e checkm1
 cd ~/results
 ```
 
-The first time you run `checkm` you have to create the database
+The first time you run `checkm` you have to get its reference data (289 MB; ask your teacher for the drive copy) and tell CheckM where they are:
 
 ```bash
-mkdir   db/
-wget --no-check-certificate https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz
-mv  checkm_data_2015_01_16.tar.gz db/
-cd db/
-tar -xzvf checkm_data_2015_01_16.tar.gz
-cd ..
-checkm data setRoot db/
+mkdir -p ~/mag2026/databases/checkm_data
+cd ~/mag2026/databases/checkm_data
+curl -O https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz
+# check the download: the result must be 631012fa598c43fdeb88c619ad282c4d
+md5sum checkm_data_2015_01_16.tar.gz
+tar -xzf checkm_data_2015_01_16.tar.gz
+rm checkm_data_2015_01_16.tar.gz
+checkm data setRoot ~/mag2026/databases/checkm_data
+cd ~/results
 ```
 
+Now run CheckM on the folder of bins (about 5 minutes):
+
 ```bash
-checkm lineage_wf -x fa metabat checkm/
-checkm qa  checkm/lineage.ms checkm > checkm.txt
+checkm lineage_wf -t 2 --gplace_max_memory 2G -x fa metabat checkm/
+checkm qa checkm/lineage.ms checkm --tab_table -f checkm.tsv
 ```
+
+::: {.callout-note}
+`--gplace_max_memory 2G` limits the memory of the step that places the bins in the reference tree. Without this limit, CheckM needs far more memory than a laptop has and is stopped by the system ("Killed").
+:::
+
+The result is the table `checkm.tsv`. Columns 12 and 13 are the completeness and the contamination:
+
+```bash
+cut -f1,12,13 checkm.tsv
+```
+
+The other columns give the lineage that CheckM chose for the bin, and how many marker genes were found 0, 1, 2 or more times.
+
+### CheckM2
+
+In the same second terminal, leave the CheckM environment and activate the CheckM2 environment:
+
+```bash
+exit
+pixi shell -e checkm2
+cd ~/results
+```
+
+The first time, get the CheckM2 database (1.7 GB to download, 2.9 GB on disk; ask your teacher for the drive copy):
+
+```bash
+cd ~/mag2026/databases
+curl -L -o checkm2_database.tar.gz "https://zenodo.org/records/14897628/files/checkm2_database.tar.gz?download=1"
+# check the download: the result must be 07c10655620843b517d0df0c160d911f
+md5sum checkm2_database.tar.gz
+tar -xzf checkm2_database.tar.gz
+rm checkm2_database.tar.gz
+cd ~/results
+```
+
+Run CheckM2 on the same bins (about 8 minutes):
+
+```bash
+checkm2 predict --lowmem --threads 2 -x fa --input metabat --output-directory checkm2 \
+    --database_path ~/mag2026/databases/CheckM2_database/uniref100.KO.1.dmnd
+```
+
+::: {.callout-note}
+`--lowmem` makes CheckM2 use less memory, at the price of a longer run. Without it, CheckM2 does not fit in 6 GB.
+:::
+
+The result is the table `checkm2/quality_report.tsv`. Its first three columns are the name of the bin, the completeness and the contamination:
+
+```bash
+cut -f1-3 checkm2/quality_report.tsv
+```
+
+### Compare the two tools
+
+Put the completeness and contamination of both tools side by side, for example in a spreadsheet or on paper.
+
+::: {.callout-tip title="Question" icon=false}
+Do CheckM and CheckM2 agree? For which bins do they differ the most?
+:::
+
+::: {.callout-tip title="Question" icon=false}
+The two tools were given exactly the same bins. Why can their estimates differ? Which one is "right"?
+:::
 
 ::: {.callout-tip title="Question" icon=false}
 Which bins should we keep for downstream analysis?
 :::
 
+::: {.callout-note title="If CheckM or CheckM2 does not run on your laptop"}
+Tell your teacher. There are two other ways to get the results:
+
+1. **Result files.** The teacher gives you `checkm.tsv` and `quality_report.tsv`, computed on the same data. Use them for the comparison.
+2. **Galaxy.** Upload your 10 bin files (`metabat/bin.*.fa`, 20 MB) to [usegalaxy.eu](https://usegalaxy.eu), make a collection of them, and run the tools "CheckM lineage_wf" and "CheckM2" on it.
+:::
+
+When you have finished, close the second terminal, or type `exit` to leave the environment.
 
 ## Functional annotation
 

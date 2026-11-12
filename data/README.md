@@ -50,6 +50,7 @@ md5sum hash.k2d      # must be 68e052782ee8f31df0699747402e5c82
 | `tara_reads_R1.fastq.gz` | 99 MB | <https://osf.io/th9z6/download> | `e535bcf613be85d4720cfe4dbd5b99a4` |
 | `tara_reads_R2.fastq.gz` | 101 MB | <https://osf.io/k6vme/download> | `24a1b4e13963666e854671346d653b35` |
 | `checkm_data_2015_01_16.tar.gz` (CheckM 1 reference data) | 289 MB (1.4 GB unpacked) | <https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz> (mirror: [Zenodo 7401545](https://zenodo.org/records/7401545)) | `631012fa598c43fdeb88c619ad282c4d` |
+| `checkm2_database.tar.gz` (CheckM2 database) | 1.7 GB (2.9 GB unpacked) | [Zenodo 14897628](https://zenodo.org/records/14897628) | `07c10655620843b517d0df0c160d911f` |
 
 ## Day 2: amplicon sequencing (DADA2)
 
@@ -64,9 +65,9 @@ md5sum hash.k2d      # must be 68e052782ee8f31df0699747402e5c82
 | What | Size |
 |---|---|
 | Tools (all Pixi environments) | about 12 GB |
-| Databases | about 10 GB |
+| Databases | about 13 GB |
 | Course data | about 1 GB |
 | Results of the tutorials | about 2 GB |
-| **Total** | **about 25 GB** (up to 32 GB for a moment while unpacking) |
+| **Total** | **about 28 GB** (up to 34 GB for a moment while unpacking) |
 
 Checksums were computed on 12 November 2026.
