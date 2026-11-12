@@ -47,7 +47,10 @@ website:
 
 format:
   html:
-    theme: cosmo
+    # light theme by default; the reader can switch to the dark theme with the button in the menu bar
+    theme:
+      light: flatly
+      dark: darkly
     toc: true
     toc-depth: 3
     code-copy: true
