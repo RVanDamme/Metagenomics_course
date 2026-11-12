@@ -229,6 +229,14 @@ This setting needs Windows 11 version 22H2 or later. It also helps when a VPN is
     echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf
     ```
 
+### A warning about "post-link scripts" during `pixi install`
+
+Pixi does not run the small scripts that some packages (here Krona) would like to run after their installation, and it tells you so. This warning is harmless: the tools of the course work without these scripts.
+
+### FastQC prints "usage: fastqc …" and stops when you use `-o`
+
+Recent versions of FastQC no longer accept the short option `-o` for the output folder. Use the long form, as in the tutorials: `fastqc --outdir results/fastqc ...`.
+
 ### A step is "Killed" or stops without a message
 
 The step probably needed more memory than Linux has. Check the memory with `free -h` and see

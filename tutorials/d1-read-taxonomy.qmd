@@ -74,10 +74,11 @@ The reads are now in `data/sub_100000`: two files per sample (`_1.fastq` and `_2
 We'll use FastQC to check the quality of our data.
 
 ```bash
-fastqc data/sub_100000/*.fastq
+mkdir -p results/fastqc
+fastqc --outdir results/fastqc data/sub_100000/*.fastq
 ```
 
-FastQC writes one `.html` report per file, next to the reads. Open a few of them in your web browser.
+FastQC writes one `.html` report per file in `results/fastqc`. Open a few of them in your web browser.
 
 ::: {.callout-tip title="Question" icon=false}
 Compare a pig sample (`ERR1135...`) with a human sample (`ERR3215...`). Look at the graph "Per base sequence quality". What differs?
@@ -106,7 +107,7 @@ For each sample, fastp prints a summary and writes a report (`.html`) in `result
 With 6 samples and 2 tools we already have 18 reports. [MultiQC](https://multiqc.info) reads them all and makes one summary report:
 
 ```bash
-multiqc --outdir results/multiqc data/sub_100000 results/fastp
+multiqc --outdir results/multiqc results/fastqc results/fastp
 ```
 
 Open `results/multiqc/multiqc_report.html` in your web browser.
