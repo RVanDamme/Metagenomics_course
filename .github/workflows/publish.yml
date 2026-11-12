@@ -1,4 +1,6 @@
-# Builds the Quarto site and publishes it to GitHub Pages on every push to main.
+# Builds the Quarto site and publishes it to GitHub Pages.
+# It runs on every push to main, and to Upgrade while the update is being previewed
+# (remove "Upgrade" from the list below after the merge).
 # One-time setup in the repository: Settings -> Pages -> Source: "Deploy from a branch",
 # branch "gh-pages", folder "/ (root)".
 name: Publish site
@@ -20,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2

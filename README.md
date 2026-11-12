@@ -40,7 +40,7 @@ Edit `pixi.toml`, run `pixi lock`, test, and commit `pixi.toml` and `pixi.lock` 
 
 ## Publish
 
-Push to `main`. GitHub Actions renders the site and publishes it to the `gh-pages` branch.
+Push to `main` (or, during the update, to `Upgrade`). GitHub Actions renders the site and publishes it to the `gh-pages` branch.
 One-time setup: in the repository settings, under Pages, choose "Deploy from a branch", branch `gh-pages`,
 folder `/ (root)`.
 
