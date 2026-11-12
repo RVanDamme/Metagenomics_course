@@ -228,11 +228,48 @@ When you have finished, close the second terminal, or type `exit` to leave the e
 
 Now we should have a collection of MAGs that we can further analyze. The first step is to predict genes as right now we only have raw genomic sequences. We will use Prokka, a widely used annotation tool for prokaryotic genomes.
 
-Prokka is in its own environment: activate it in a new terminal with `pixi shell -e prokka` (from the course folder).
-
 This tool does gene prediction as well as some decent and useful annotations, and is actually quite easy to run!
 
-Prokka produces a number of output files that all kinds of represent similar things. Mostly variants of FASTA-files, one with the genome again, one with the predicted proteins, one with the genes of the predicted proteins. Also, it renames all the sequences with nicer IDs! Additionally, a very useful file generated is a GFF-file, which gives more information about the annotations than just the names you can see in the FASTA-files.
+Prokka is in its own environment. Open a second terminal (or reuse the one of CheckM, after `exit`) and activate it:
+
+```bash
+cd ~/mag2026/Metagenomics_course
+pixi shell -e prokka
+cd ~/results
+```
+
+On a Mac with Apple Silicon, this environment runs through Rosetta: see [Setup](../setup.qmd).
+
+Choose one bin, for example a bin with a high completeness and a low contamination, and annotate it (about 3 minutes; replace `bin.1` and `bin1` by your choice):
+
+```bash
+prokka --cpus 2 --outdir prokka_bin1 --prefix bin1 metabat/bin.1.fa
+```
+
+Prokka produces a number of output files in the folder `prokka_bin1`, which mostly represent the same thing in different formats:
+
+| File | Content |
+|---|---|
+| `bin1.txt` | a summary: number of contigs, genes (CDS), tRNA and rRNA genes |
+| `bin1.faa` | the predicted proteins (FASTA). **You need this file for eggNOG-mapper** |
+| `bin1.ffn` | the predicted genes (FASTA, DNA) |
+| `bin1.gff` | the position and the annotation of every gene on the contigs |
+| `bin1.tsv` | a table with one line per gene |
+
+Prokka also renames all the sequences with nicer IDs.
+
+```bash
+cat prokka_bin1/bin1.txt
+grep -c "hypothetical protein" prokka_bin1/bin1.faa
+```
+
+::: {.callout-tip title="Question" icon=false}
+How many genes (CDS) did Prokka find? How many of them are "hypothetical proteins"? What does "hypothetical" mean here?
+:::
+
+::: {.callout-tip title="Question" icon=false}
+Every bacterium has rRNA genes (16S, 23S, 5S) and a full set of tRNA genes. Look at the summary of your bin: is something missing? Why would these genes be absent from a bin, even when the bin is almost complete?
+:::
 
 ### eggNOG-mapper (on Galaxy)
 
