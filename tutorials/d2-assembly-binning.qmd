@@ -75,12 +75,13 @@ How many contigs does this assembly contain?
 
 ## Binning
 
-First we need to map the reads back against the assembly to get coverage information
+First we need to map the reads back against the assembly to get coverage information.
+We map the trimmed reads, the same reads that were used for the assembly. The mapping takes about 4 minutes.
 
 ```bash
 ln -s tara_assembly/final.contigs.fa .
 bowtie2-build final.contigs.fa final.contigs
-bowtie2 -x final.contigs -1 tara_reads_R1.fastq.gz -2 tara_reads_R2.fastq.gz | \
+bowtie2 -p 2 -x final.contigs -1 tara_trimmed_R1.fastq -2 tara_trimmed_R2.fastq | \
     samtools view -bS -o tara_to_sort.bam
 samtools sort tara_to_sort.bam -o tara.bam
 samtools index tara.bam
