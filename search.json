@@ -1,0 +1,450 @@
+[
+  {
+    "objectID": "data/README.html",
+    "href": "data/README.html",
+    "title": "Data and databases",
+    "section": "",
+    "text": "Every file that the local tutorials download is listed here, with its size and its md5 checksum. No large file is stored in this repository."
+  },
+  {
+    "objectID": "data/README.html#how-to-check-a-file",
+    "href": "data/README.html#how-to-check-a-file",
+    "title": "Data and databases",
+    "section": "How to check a file",
+    "text": "How to check a file\nA checksum is a fingerprint of a file. If your file gives the same checksum as the one in the table, the download is complete and correct.\nmd5sum subset_wms.tar.gz        # Linux and WSL\nmd5 subset_wms.tar.gz           # macOS\nIn R: tools::md5sum('miseqsopdata.zip')."
+  },
+  {
+    "objectID": "data/README.html#day-1-read-based-taxonomy",
+    "href": "data/README.html#day-1-read-based-taxonomy",
+    "title": "Data and databases",
+    "section": "Day 1: read-based taxonomy",
+    "text": "Day 1: read-based taxonomy\n\n\n\nFile\nSize\nDownload\nmd5\n\n\n\n\nsubset_wms.tar.gz (6 gut samples, 100,000 read pairs each)\n111 MB (363 MB unpacked)\nhttps://osf.io/h9x6e/download\n1aca45157f01be9500bcfcd0c3c66e9b\n\n\nk2_standard_08_GB_20261022.tar.gz (Kraken 2 Standard-8 database, 22 Oct 2026)\n5.9 GB (8.7 GB unpacked)\nhttps://genome-idx.s3.amazonaws.com/kraken/k2_standard_08_GB_20261022.tar.gz\n7447d230ea402d0b523c14d217b5c20b\n\n\n\nThe Kraken 2 database comes from the Kraken 2 index page.\n\n\n\n\n\n\nNoteShort on disk space?\n\n\n\nDownloading the Kraken 2 archive and then unpacking it needs about 15 GB for a moment. To use only 8.7 GB, unpack while downloading:\nmkdir -p ~/mag2026/databases/k2_standard_08gb\ncd ~/mag2026/databases/k2_standard_08gb\ncurl -L https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08_GB_20261022.tar.gz | tar xzf -\nmd5sum hash.k2d      # must be 68e052782ee8f31df0699747402e5c82"
+  },
+  {
+    "objectID": "data/README.html#day-2-assembly-and-binning",
+    "href": "data/README.html#day-2-assembly-and-binning",
+    "title": "Data and databases",
+    "section": "Day 2: assembly and binning",
+    "text": "Day 2: assembly and binning\n\n\n\nFile\nSize\nDownload\nmd5\n\n\n\n\ntara_reads_R1.fastq.gz\n99 MB\nhttps://osf.io/th9z6/download\ne535bcf613be85d4720cfe4dbd5b99a4\n\n\ntara_reads_R2.fastq.gz\n101 MB\nhttps://osf.io/k6vme/download\n24a1b4e13963666e854671346d653b35\n\n\ncheckm_data_2015_01_16.tar.gz (CheckM 1 reference data)\n289 MB (1.4 GB unpacked)\nhttps://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz (mirror: Zenodo 7401545)\n631012fa598c43fdeb88c619ad282c4d\n\n\ncheckm2_database.tar.gz (CheckM2 database)\n1.7 GB (2.9 GB unpacked)\nZenodo 14897628\n07c10655620843b517d0df0c160d911f\n\n\n\n\nThe sourmash database for the taxonomy of the bins\n\n\n\nFile\nSize\nSource\nmd5\n\n\n\n\ngtdb-reps-rs226-k31.s10k.zip\n447 MB\nmade for this course (see below); from the teacher\n89f132ff5af712356e4cefdcc1a6cf68\n\n\ngtdb-rs226.lineages.csv\n103 MB\nhttps://farm.cse.ucdavis.edu/~ctbrown/sourmash-db.new/gtdb-rs226/gtdb-rs226.lineages.csv\n519293f254dfa763c6f30473d1e3e952\n\n\n\nWhat the file is. gtdb-reps-rs226-k31.s10k.zip contains one sourmash sketch (k = 31) for each of the 143,384 species-representative genomes of GTDB release 226. It is a reduced copy of the official sourmash database gtdb-reps-rs226-k31.dna.zip (3.9 GB), listed on the sourmash databases page.\nWhy it is reduced. The official file keeps 1 k-mer in 1,000 of each genome (scaled=1000). Searching it takes 6 minutes per bin, or 6 GB of memory with the fast search. The course file keeps 1 k-mer in 10,000 (scaled=10000): the search takes 1 minute per bin and less than 1 GB of memory. On the course data it gives the same species for every bin as the official file.\nHow to use it. Sketch your genomes with the same settings, -p k=31,scaled=10000, then run sourmash gather and sourmash tax genome as in the assembly and binning tutorial.\nHow it was made. Anyone can rebuild it from the official file (8 minutes, 4.5 GB of memory):\ncurl -O https://farm.cse.ucdavis.edu/~ctbrown/sourmash-db.new/gtdb-rs226/gtdb-reps-rs226-k31.dna.zip\nsourmash sig downsample --scaled 10000 gtdb-reps-rs226-k31.dna.zip -o gtdb-reps-rs226-k31.s10k.zip\nLimits. A sketch this small is made for whole genomes and bins of 1 Mb or more. Do not use it for short contigs or for reads."
+  },
+  {
+    "objectID": "data/README.html#day-2-amplicon-sequencing-dada2",
+    "href": "data/README.html#day-2-amplicon-sequencing-dada2",
+    "title": "Data and databases",
+    "section": "Day 2: amplicon sequencing (DADA2)",
+    "text": "Day 2: amplicon sequencing (DADA2)\n\n\n\nFile\nSize\nDownload\nmd5\n\n\n\n\nmiseqsopdata.zip (MiSeq SOP, 20 samples)\n37 MB\nhttps://mothur.s3.us-east-2.amazonaws.com/wiki/miseqsopdata.zip\n98144f5057628139271d94612bb27d96\n\n\nsilva_nr99_v138.2_toGenus_trainset.fa.gz (SILVA 138.2 for DADA2)\n140 MB\nZenodo 14169026\n1764e2a36b4500ccb1c7d5261948a414\n\n\nsilva_v138.2_assignSpecies.fa.gz\n70 MB\nZenodo 14169026\n62fd939bd1aa9832d2089847f9f0b87d"
+  },
+  {
+    "objectID": "data/README.html#disk-space",
+    "href": "data/README.html#disk-space",
+    "title": "Data and databases",
+    "section": "Disk space",
+    "text": "Disk space\n\n\n\n\n\n\n\nWhat\nSize\n\n\n\n\nTools (all Pixi environments)\nabout 12 GB\n\n\nDatabases\nabout 14 GB\n\n\nCourse data\nabout 1 GB\n\n\nResults of the tutorials\nabout 2 GB\n\n\nTotal\nabout 28 GB (up to 34 GB for a moment while unpacking)\n\n\n\nChecksums were computed on 12 November 2026."
+  },
+  {
+    "objectID": "tutorials/d2-assembly-binning.html",
+    "href": "tutorials/d2-assembly-binning.html",
+    "title": "Day 2: metagenome assembly and binning",
+    "section": "",
+    "text": "ImportantBefore you start\n\n\n\nDo the Setup first. Then open a terminal and activate the tools of the course:\ncd ~/mag2026/Metagenomics_course\npixi shell\nIn this tutorial you’ll learn how to inspect assemble metagenomic data and retrieve draft genomes from assembled metagenomes\nWe’ll use a mock community of 10 bacteria sequenced using the Illumina HiSeq. In reality the data were simulated using InSilicoSeq.\nThe 10 bacteria in the dataset were selected from the Tara Ocean study that recovered 957 distinct Metagenome-assembled-genomes (or MAGs) that were previsouly unknown! (full list on figshare )"
+  },
+  {
+    "objectID": "tutorials/d2-assembly-binning.html#getting-the-data",
+    "href": "tutorials/d2-assembly-binning.html#getting-the-data",
+    "title": "Day 2: metagenome assembly and binning",
+    "section": "Getting the Data",
+    "text": "Getting the Data\nmkdir -p ~/data\ncd ~/data\ncurl -O -J -L https://osf.io/th9z6/download\ncurl -O -J -L https://osf.io/k6vme/download\nchmod -w tara_reads_R*"
+  },
+  {
+    "objectID": "tutorials/d2-assembly-binning.html#quality-control",
+    "href": "tutorials/d2-assembly-binning.html#quality-control",
+    "title": "Day 2: metagenome assembly and binning",
+    "section": "Quality Control",
+    "text": "Quality Control\nwe’ll use FastQC to check the quality of our data, as well as sickle for trimming the bad quality part of the reads.\nmkdir -p ~/results\ncd ~/results\nln -s ~/data/tara_reads_* .\nfastqc tara_reads_*.fastq.gz\n\n\n\n\n\n\nTipQuestion\n\n\n\nWhat is the average read length? The average quality?\n\n\n\n\n\n\n\n\nTipQuestion\n\n\n\nCompared to single genome sequencing, what graphs differ?\n\n\nNow we’ll trim the reads using sickle\nsickle pe -f tara_reads_R1.fastq.gz -r tara_reads_R2.fastq.gz -t sanger \\\n    -o tara_trimmed_R1.fastq -p tara_trimmed_R2.fastq -s /dev/null\n\n\n\n\n\n\nTipQuestion\n\n\n\nHow many reads were trimmed?"
+  },
+  {
+    "objectID": "tutorials/d2-assembly-binning.html#assembly",
+    "href": "tutorials/d2-assembly-binning.html#assembly",
+    "title": "Day 2: metagenome assembly and binning",
+    "section": "Assembly",
+    "text": "Assembly\nMegahit will be used for the assembly.\nmegahit -1 tara_trimmed_R1.fastq -2 tara_trimmed_R2.fastq -o tara_assembly\nthe resulting assembly can be found under tara_assembly/final.contigs.fa.\n\n\n\n\n\n\nTipQuestion\n\n\n\nHow many contigs does this assembly contain?"
+  },
+  {
+    "objectID": "tutorials/d2-assembly-binning.html#binning",
+    "href": "tutorials/d2-assembly-binning.html#binning",
+    "title": "Day 2: metagenome assembly and binning",
+    "section": "Binning",
+    "text": "Binning\nFirst we need to map the reads back against the assembly to get coverage information. We map the trimmed reads, the same reads that were used for the assembly. The mapping takes about 4 minutes.\nln -s tara_assembly/final.contigs.fa .\nbowtie2-build final.contigs.fa final.contigs\nbowtie2 -p 2 -x final.contigs -1 tara_trimmed_R1.fastq -2 tara_trimmed_R2.fastq | \\\n    samtools view -bS -o tara_to_sort.bam\nsamtools sort tara_to_sort.bam -o tara.bam\nsamtools index tara.bam\nthen we run metabat\nrunMetaBat.sh -m 1500 final.contigs.fa tara.bam\nmv final.contigs.fa.metabat-bins* metabat\nMetaBAT 2 writes the bins in a folder whose name ends with the date and time of the run. The mv command renames it to metabat. Each bin is one FASTA file, bin.1.fa, bin.2.fa, and so on.\n\n\n\n\n\n\nTipQuestion\n\n\n\nHow many bins did we obtain?"
+  },
+  {
+    "objectID": "tutorials/d2-assembly-binning.html#checking-the-quality-of-the-bins",
+    "href": "tutorials/d2-assembly-binning.html#checking-the-quality-of-the-bins",
+    "title": "Day 2: metagenome assembly and binning",
+    "section": "Checking the quality of the bins",
+    "text": "Checking the quality of the bins\nA bin is only a draft genome. Before using it, we estimate two numbers:\n\ncompleteness: which part of the genome is in the bin;\ncontamination: how much of the bin comes from other genomes.\n\nNobody knows the true genome, so both numbers are estimates. They are based on genes that almost every bacterium has in exactly one copy (single-copy marker genes): a missing marker lowers the completeness, a marker found twice raises the contamination.\nWe will use two tools that make this estimate in different ways, and compare them:\n\nCheckM (version 1) places each bin in a reference tree and counts the marker genes of its lineage;\nCheckM2 predicts the two numbers with machine-learning models trained on many genomes.\n\nEach tool has its own environment and its own reference data.\n\nCheckM\nOpen a second terminal and activate the CheckM environment:\ncd ~/mag2026/Metagenomics_course\npixi shell -e checkm1\ncd ~/results\nThe first time you run checkm you have to get its reference data (289 MB; ask your teacher for the drive copy) and tell CheckM where they are:\nmkdir -p ~/mag2026/databases/checkm_data\ncd ~/mag2026/databases/checkm_data\ncurl -O https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz\n# check the download: the result must be 631012fa598c43fdeb88c619ad282c4d\nmd5sum checkm_data_2015_01_16.tar.gz\ntar -xzf checkm_data_2015_01_16.tar.gz\nrm checkm_data_2015_01_16.tar.gz\ncheckm data setRoot ~/mag2026/databases/checkm_data\ncd ~/results\nNow run CheckM on the folder of bins (about 5 minutes):\ncheckm lineage_wf -t 2 --gplace_max_memory 2G -x fa metabat checkm/\ncheckm qa checkm/lineage.ms checkm --tab_table -f checkm.tsv\n\n\n\n\n\n\nNote\n\n\n\n--gplace_max_memory 2G limits the memory of the step that places the bins in the reference tree. Without this limit, CheckM needs far more memory than a laptop has and is stopped by the system (“Killed”).\n\n\nThe result is the table checkm.tsv. Columns 12 and 13 are the completeness and the contamination:\ncut -f1,12,13 checkm.tsv\nThe other columns give the lineage that CheckM chose for the bin, and how many marker genes were found 0, 1, 2 or more times.\n\n\nCheckM2\nIn the same second terminal, leave the CheckM environment and activate the CheckM2 environment:\nexit\npixi shell -e checkm2\ncd ~/results\nThe first time, get the CheckM2 database (1.7 GB to download, 2.9 GB on disk; ask your teacher for the drive copy):\ncd ~/mag2026/databases\ncurl -L -o checkm2_database.tar.gz \"https://zenodo.org/records/14897628/files/checkm2_database.tar.gz?download=1\"\n# check the download: the result must be 07c10655620843b517d0df0c160d911f\nmd5sum checkm2_database.tar.gz\ntar -xzf checkm2_database.tar.gz\nrm checkm2_database.tar.gz\ncd ~/results\nRun CheckM2 on the same bins (about 8 minutes):\ncheckm2 predict --lowmem --threads 2 -x fa --input metabat --output-directory checkm2 \\\n    --database_path ~/mag2026/databases/CheckM2_database/uniref100.KO.1.dmnd\n\n\n\n\n\n\nNote\n\n\n\n--lowmem makes CheckM2 use less memory, at the price of a longer run. Without it, CheckM2 does not fit in 6 GB.\n\n\nThe result is the table checkm2/quality_report.tsv. Its first three columns are the name of the bin, the completeness and the contamination:\ncut -f1-3 checkm2/quality_report.tsv\n\n\nCompare the two tools\nPut the completeness and contamination of both tools side by side, for example in a spreadsheet or on paper.\n\n\n\n\n\n\nTipQuestion\n\n\n\nDo CheckM and CheckM2 agree? For which bins do they differ the most?\n\n\n\n\n\n\n\n\nTipQuestion\n\n\n\nThe two tools were given exactly the same bins. Why can their estimates differ? Which one is “right”?\n\n\nTo decide which bins are good enough, many studies use the MIMAG standard (Bowers et al. 2017):\n\n\n\n\n\n\n\n\n\nQuality\nCompleteness\nContamination\nAlso required\n\n\n\n\nHigh-quality draft\nmore than 90%\nless than 5%\nthe 23S, 16S and 5S rRNA genes and at least 18 tRNAs\n\n\nMedium-quality draft\n50% or more\nless than 10%\n\n\n\nLow-quality draft\nless than 50%\nless than 10%\n\n\n\n\n\n\n\n\n\n\nTipQuestion\n\n\n\nWhich bins should we keep for downstream analysis? Give each bin its MIMAG quality, once with the CheckM values and once with the CheckM2 values. Does a bin change category?\n\n\n\n\n\n\n\n\nTipQuestion\n\n\n\nBoth tools estimate contamination from marker genes that are found more than once. Imagine a bin that contains a few contigs of another organism, and these contigs carry no marker gene. What would the tools report? What does this tell you about a contamination of “2%”?\n\n\n\n\n\n\n\n\nNote\n\n\n\nOur reads were simulated from 10 known genomes, and the name of each read still says which genome it comes from. So for this dataset the truth can be checked. Ask your teacher how the bins compare with the truth, after you have answered the questions.\n\n\n\n\n\n\n\n\nNoteIf CheckM or CheckM2 does not run on your laptop\n\n\n\nTell your teacher. There are two other ways to get the results:\n\nResult files. The teacher gives you checkm.tsv and quality_report.tsv, computed on the same data. Use them for the comparison.\nGalaxy. Upload your 10 bin files (metabat/bin.*.fa, 20 MB) to usegalaxy.eu, make a collection of them, and run the tools “CheckM lineage_wf” and “CheckM2” on it.\n\n\n\nWhen you have finished, close the second terminal, or type exit to leave the environment."
+  },
+  {
+    "objectID": "tutorials/d2-assembly-binning.html#functional-annotation",
+    "href": "tutorials/d2-assembly-binning.html#functional-annotation",
+    "title": "Day 2: metagenome assembly and binning",
+    "section": "Functional annotation",
+    "text": "Functional annotation\nNow we should have a collection of MAGs that we can further analyze. The first step is to predict genes as right now we only have raw genomic sequences. We will use Prokka, a widely used annotation tool for prokaryotic genomes.\nThis tool does gene prediction as well as some decent and useful annotations, and is actually quite easy to run!\nProkka is in its own environment. Open a second terminal (or reuse the one of CheckM, after exit) and activate it:\ncd ~/mag2026/Metagenomics_course\npixi shell -e prokka\ncd ~/results\nOn a Mac with Apple Silicon, this environment runs through Rosetta: see Setup.\nChoose one bin, for example a bin with a high completeness and a low contamination, and annotate it (about 3 minutes; replace bin.1 and bin1 by your choice):\nprokka --cpus 2 --outdir prokka_bin1 --prefix bin1 metabat/bin.1.fa\nProkka produces a number of output files in the folder prokka_bin1, which mostly represent the same thing in different formats:\n\n\n\n\n\n\n\nFile\nContent\n\n\n\n\nbin1.txt\na summary: number of contigs, genes (CDS), tRNA and rRNA genes\n\n\nbin1.faa\nthe predicted proteins (FASTA). You need this file for eggNOG-mapper\n\n\nbin1.ffn\nthe predicted genes (FASTA, DNA)\n\n\nbin1.gff\nthe position and the annotation of every gene on the contigs\n\n\nbin1.tsv\na table with one line per gene\n\n\n\nProkka also renames all the sequences with nicer IDs.\ncat prokka_bin1/bin1.txt\ngrep -c \"hypothetical protein\" prokka_bin1/bin1.faa\n\n\n\n\n\n\nTipQuestion\n\n\n\nHow many genes (CDS) did Prokka find? How many of them are “hypothetical proteins”? What does “hypothetical” mean here?\n\n\n\n\n\n\n\n\nTipQuestion\n\n\n\nEvery bacterium has rRNA genes (16S, 23S, 5S) and a full set of tRNA genes. Look at the summary of your bin: is something missing? Why would these genes be absent from a bin, even when the bin is almost complete?\n\n\n\neggNOG-mapper (on Galaxy)\nThe annotations of Prokka are good but not very complete for environmental bacteria. eggNOG-mapper compares each protein with the eggNOG database of groups of related genes (orthologous groups), and transfers their annotation: gene names, functional categories (COG), pathways (KEGG) and more. This is a bit heavier in computation.\nThe eggNOG database takes more than 40 GB, too much for a laptop. So this step runs on Galaxy, not on your computer.\n\nChoose one MAG (don’t be greedy, it is not fast!). You need its protein file: the .faa file that Prokka made for this MAG.\nLog in to usegalaxy.eu and upload the .faa file with the “Upload” button.\nSearch the tool panel for “eggNOG Mapper” and run the tool on your file. Keep the default settings.\nWait until the job is green, then open the annotation table.\n\nusegalaxy.eu runs eggNOG-mapper 2.1.13 with version 5.0.2 of the eggNOG database. Write these two versions down: they are part of your result.\n\n\n\n\n\n\nTipQuestion\n\n\n\nOPTIONAL: understand the output. Find three proteins that Prokka named “hypothetical protein”. What does eggNOG-mapper say about them?\n\n\n\n\n\n\n\n\nNoteIf Galaxy is slow or not available\n\n\n\nThe authors of eggNOG-mapper offer a web service: https://eggnog-mapper.cgmlab.org (the old address, eggnog-mapper.embl.de, sends you there). Upload the same .faa file and follow the instructions of the page. Submit your job early: jobs wait in a queue, and a job can take an hour or more. The web service uses a newer database (eggNOG 7), so some annotations differ from the Galaxy result."
+  },
+  {
+    "objectID": "tutorials/d2-assembly-binning.html#taxonomic-annotation",
+    "href": "tutorials/d2-assembly-binning.html#taxonomic-annotation",
+    "title": "Day 2: metagenome assembly and binning",
+    "section": "Taxonomic annotation",
+    "text": "Taxonomic annotation\nWe now know more about the genes your MAG contains, however we do not really know who we have?! checkm might have given us an indication but it is only approximative.\nTaxonomic classification for full genomes is not always easy for MAGs, often the 16S gene is missing as it assembles badly, and which other genes to use to for taxonomy is not always evident. Typically marker genes, min-hashes or k-mer databases are used as reference. It is often problematic for environmental data as the databases are not biased into our direction! We will use a min-hash database of the GTDB representative genomes with a tool called sourmash.\nGTDB is a taxonomy built from genomes. It contains one representative genome per species, including many species known only from MAGs. sourmash keeps a small “sketch” of each genome: a sample of its k-mers. Comparing two sketches is very fast.\n\nGet the database\nThe database of this tutorial is a reduced copy of the sourmash database “GTDB R226, species representatives, k=31”, made for this course so that it fits in the memory of a laptop. Your teacher gives you the two files on a drive:\n\ngtdb-reps-rs226-k31.s10k.zip (447 MB): the sketches of the 143,384 GTDB representative genomes;\ngtdb-rs226.lineages.csv (103 MB): the taxonomy of each genome.\n\nCopy them into ~/mag2026/databases/sourmash/. The Data page explains how the reduced file was made and how to rebuild it.\nSOURMASH_DB=~/mag2026/databases/sourmash\nls $SOURMASH_DB\n\n\nSketch the bins and search the database\nsourmash is in the main environment (the first terminal). For each bin we make a sketch (sourmash sketch), then search the genomes of the database that best explain it (sourmash gather). This takes about 1 minute per bin.\ncd ~/results\nmkdir -p sourmash\nfor i in metabat/bin.*.fa\ndo\n    name=$(basename $i .fa)\n    echo $name\n    sourmash sketch dna -p k=31,scaled=10000 --name $name $i -o sourmash/${name}.sig\n    sourmash gather sourmash/${name}.sig $SOURMASH_DB/gtdb-reps-rs226-k31.s10k.zip \\\n        -o sourmash/${name}.gather.csv\ndone\nFor each bin, gather prints the genomes it found and which part of the bin they explain. If nothing in the database is similar enough, it prints “No matches” and writes no file.\n\n\nFrom genomes to a taxonomy\nsourmash tax genome reads the matches and the taxonomy file, and gives one classification per bin:\nsourmash tax genome -g sourmash/*.gather.csv -t $SOURMASH_DB/gtdb-rs226.lineages.csv \\\n    -o sourmash/bins --output-format csv_summary human\ncat sourmash/bins.human.txt\nThe lineage is written with the GTDB prefixes: d__ domain, p__ phylum, c__ class, o__ order, f__ family, g__ genus, s__ species.\n\n\n\n\n\n\nTipQuestion\n\n\n\nHow many bins received a classification? At which rank? Look at the species names: what do names such as sp002699365 tell you about these organisms?\n\n\n\n\n\n\n\n\nTipQuestion\n\n\n\nOne bin has no match. Does that mean the bin is bad? Compare with its CheckM results before you answer.\n\n\nThe GTDB database is also used by the tool GTDB-Tk. It uses marker genes and places each genome in a reference tree. It is more sensitive, but its database is far too large for a laptop.\n\n\n\n\n\n\nNoteOptional\n\n\n\nRun GTDB-Tk on Galaxy: upload your bins to usegalaxy.eu and search the tool panel for “GTDB-Tk Classify genomes”. Compare its answer with the one of sourmash."
+  },
+  {
+    "objectID": "tutorials/d2-assembly-binning.html#further-reading",
+    "href": "tutorials/d2-assembly-binning.html#further-reading",
+    "title": "Day 2: metagenome assembly and binning",
+    "section": "Further reading",
+    "text": "Further reading\n\nRecovery of nearly 8,000 metagenome-assembled genomes substantially expands the tree of life\nThe reconstruction of 2,631 draft metagenome-assembled genomes from the global oceans\n\n\n\n\n\n\n\nNoteCredits\n\n\n\nThis tutorial is shared teaching material, co-developed with Hadrien Gourlé. It started from his tutorial Metagenome assembly and binning. See Licence and credits.\n\n\nThe functional and taxonomic annotation parts were written by Renaud Van Damme and Hadrien Gourlé."
+  },
+  {
+    "objectID": "tutorials/d1-read-taxonomy.html",
+    "href": "tutorials/d1-read-taxonomy.html",
+    "title": "Day 1: read-based taxonomy (assembly-free)",
+    "section": "",
+    "text": "ImportantBefore you start\n\n\n\nDo the Setup first. Then open a terminal and activate the tools of the course:\ncd ~/mag2026/Metagenomics_course\npixi shell"
+  },
+  {
+    "objectID": "tutorials/d1-read-taxonomy.html#functional-classification",
+    "href": "tutorials/d1-read-taxonomy.html#functional-classification",
+    "title": "Day 1: read-based taxonomy (assembly-free)",
+    "section": "Functional Classification",
+    "text": "Functional Classification\nSo far we asked “who is there?”. Shotgun reads can also answer “what can they do?”: the reads are compared with databases of genes and pathways. A widely used tool is HUMAnN (version 3; the older HUMAnN2 is no longer maintained). Its databases are too large for this tutorial. You will meet HUMAnN on Galaxy, in the metatranscriptomics tutorial of Day 3.\n\n\n\n\n\n\nNoteCredits\n\n\n\nThis tutorial is shared teaching material, co-developed with Hadrien Gourlé. It started from his tutorial Whole Metagenome Sequencing. See Licence and credits."
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "Project",
+    "section": "",
+    "text": "From the afternoon of Day 3, you work on an individual project. On Day 5 you present it."
+  },
+  {
+    "objectID": "project.html#grade-breakdown",
+    "href": "project.html#grade-breakdown",
+    "title": "Project",
+    "section": "Grade breakdown",
+    "text": "Grade breakdown\n\n40% Active participation\n20% Project report\n40% Pre-Project presentation and discussion"
+  },
+  {
+    "objectID": "project.html#the-project",
+    "href": "project.html#the-project",
+    "title": "Project",
+    "section": "The project",
+    "text": "The project\n\nInstructions\nFind a tool, pipeline, or analysis method of metagenomics that has not been seen during the course and test and evaluate it. You must explain how it works, how you found it, and its use in metagenomics studies. You can compare it to a similar tool/method seen during the course.\nYou are tasked to have a report of at least two pages (not counting graphics, pictures, and tables). Additional points will be provided if your work is easily reproducible (scripts, command list, and workflows provided in addition to the report).\n\n\nProject grade breakdown\n\n10% originality\n20% Reasoning and Explanation of what it should do\n30% execution and testing\n20% analysis of the results\n20% comparison to existing methods"
+  },
+  {
+    "objectID": "project.html#presentation-plan",
+    "href": "project.html#presentation-plan",
+    "title": "Project",
+    "section": "Presentation plan",
+    "text": "Presentation plan\nYou will present your individual project and a summary of the course.\n15 minutes of group presentation where you summarise the principles and methods of metagenomics.\n15 minutes of individual presentation where you expose your work:\n\nMethods selected and Why\nResults\nDiscussion (comparison with a method seen during the course)"
+  },
+  {
+    "objectID": "project.html#use-of-ai-tools",
+    "href": "project.html#use-of-ai-tools",
+    "title": "Project",
+    "section": "Use of AI tools",
+    "text": "Use of AI tools\n\nTutorials: not allowed. You follow the instructions and think about the questions yourself.\nWritten report: not allowed. The report is written by you.\nProject work: allowed as a support, not to do the work for you.\nPresentation: made by you. You may use AI to generate images."
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Setup",
+    "section": "",
+    "text": "We do the setup together in class on Day 1. This page is the reference."
+  },
+  {
+    "objectID": "setup.html#what-you-need",
+    "href": "setup.html#what-you-need",
+    "title": "Setup",
+    "section": "What you need",
+    "text": "What you need\n\nA laptop with at least 8 GB of memory (RAM) and 50 GB of free disk space.\nWindows 10 or 11 with WSL (Ubuntu), or Linux, or macOS.\nAn internet connection for the first installation (about 3 GB of downloads for the tools).\n\nThe local tutorials run in a Linux terminal: the Ubuntu terminal of WSL on Windows, or the Terminal on Linux and macOS."
+  },
+  {
+    "objectID": "setup.html#windows-wsl",
+    "href": "setup.html#windows-wsl",
+    "title": "Setup",
+    "section": "Windows: WSL",
+    "text": "Windows: WSL\nThe local tutorials run in WSL 2 (Windows Subsystem for Linux) with Ubuntu. If WSL is not installed yet: open PowerShell as administrator, run the command below, and restart the computer.\nwsl --install\nThen open “Ubuntu” from the Start menu and choose a user name and a password.\n\nGive WSL 6 GB of memory\nThe tutorials need 6 GB of memory inside Linux. By default, WSL gets half of the memory of the computer:\n\n\n\nMemory of the laptop\nWSL gets by default\nWhat to do\n\n\n\n\n16 GB or more\n8 GB\nnothing\n\n\n12 GB\n6 GB\nnothing\n\n\n8 GB\n4 GB\nset it to 6 GB (below)\n\n\n\nFirst check what you have. In the Ubuntu terminal:\nfree -h\nLook at the total column of the Mem: line. If it shows less than about 5.7Gi, change the setting:\n\nOpen PowerShell (not Ubuntu) and open the WSL settings file in Notepad. Answer “Yes” if Notepad asks to create the file.\nnotepad \"$env:USERPROFILE\\.wslconfig\"\nWrite these two lines in the file, save it and close Notepad.\n[wsl2]\nmemory=6GB\nStop WSL, still in PowerShell. This closes all your Ubuntu terminals.\nwsl --shutdown\nOpen Ubuntu again and run free -h. The total is now about 5.8Gi.\n\n\n\n\n\n\n\nWarning\n\n\n\nOn a laptop with 8 GB, this leaves only 2 GB for Windows. During the long steps (Kraken 2, assembly, CheckM), close the other Windows programs, the web browser first."
+  },
+  {
+    "objectID": "setup.html#install-pixi",
+    "href": "setup.html#install-pixi",
+    "title": "Setup",
+    "section": "1. Install Pixi",
+    "text": "1. Install Pixi\nPixi installs the tools of the course, in the same versions for everybody.\ncurl -fsSL https://pixi.sh/install.sh | sh\nClose the terminal and open a new one. Then check that Pixi answers:\npixi --version"
+  },
+  {
+    "objectID": "setup.html#get-the-course-folder",
+    "href": "setup.html#get-the-course-folder",
+    "title": "Setup",
+    "section": "2. Get the course folder",
+    "text": "2. Get the course folder\nThe course folder, the databases and your Day 1 work go in one folder, ~/mag2026, inside your home (~).\nmkdir -p ~/mag2026\ncd ~/mag2026\ngit clone https://github.com/RVanDamme/Metagenomics_course.git\n\n\n\n\n\n\nWarning\n\n\n\nOn Windows, stay inside the Linux home (~). Do not work in /mnt/c/... (the Windows drive): the tools are very slow there."
+  },
+  {
+    "objectID": "setup.html#install-the-tools",
+    "href": "setup.html#install-the-tools",
+    "title": "Setup",
+    "section": "3. Install the tools",
+    "text": "3. Install the tools\ncd ~/mag2026/Metagenomics_course\npixi install --all\nThis downloads and installs every tool the local tutorials need (about 12 GB on disk once installed). The versions are fixed by the files pixi.toml and pixi.lock of the course folder.\nThe tools are grouped in environments:\n\n\n\n\n\n\n\n\nEnvironment\nTools\nUsed in\n\n\n\n\nmain (no name needed)\nFastQC, fastp, MultiQC, Kraken 2, Bracken (Linux), KrakenTools, Krona, sickle, MEGAHIT, Bowtie 2, samtools, MetaBAT 2, sourmash, seqkit\nDay 1 and Day 2\n\n\ncheckm1\nCheckM 1\nDay 2, quality of the bins\n\n\ncheckm2\nCheckM2\nDay 2, quality of the bins\n\n\nprokka\nProkka\nDay 2, annotation\n\n\nbracken-mac\nBracken (macOS only)\nDay 1"
+  },
+  {
+    "objectID": "setup.html#check-your-setup",
+    "href": "setup.html#check-your-setup",
+    "title": "Setup",
+    "section": "4. Check your setup",
+    "text": "4. Check your setup\ncd ~/mag2026/Metagenomics_course\npixi run check\nThe check lists every tool, the memory, the free disk space and the place of the course folder. Each line starts with OK, WARNING or PROBLEM. A PROBLEM line tells you what to do. When the last line says “Everything is ready”, you are done."
+  },
+  {
+    "objectID": "setup.html#start-a-work-session",
+    "href": "setup.html#start-a-work-session",
+    "title": "Setup",
+    "section": "5. Start a work session",
+    "text": "5. Start a work session\nEach time you open a new terminal for a tutorial, activate the main environment:\ncd ~/mag2026/Metagenomics_course\npixi shell\nYour prompt now starts with (mag-2026). Go to your working folder and follow the tutorial. To leave the environment, type exit.\nFor a step that uses another environment, open a second terminal and give the name of the environment:\ncd ~/mag2026/Metagenomics_course\npixi shell -e checkm1"
+  },
+  {
+    "objectID": "setup.html#macos-with-apple-silicon-m1-and-later-rosetta",
+    "href": "setup.html#macos-with-apple-silicon-m1-and-later-rosetta",
+    "title": "Setup",
+    "section": "macOS with Apple Silicon (M1 and later): Rosetta",
+    "text": "macOS with Apple Silicon (M1 and later): Rosetta\nTwo tools of the course have no version for Apple Silicon processors:\n\nProkka (environment prokka);\nBracken (environment bracken-mac).\n\nBoth environments use the Intel version of the tools. macOS runs Intel programs through Rosetta 2. Install Rosetta once, before pixi install --all:\nsoftwareupdate --install-rosetta --agree-to-license\nAfter that, you use these environments like any other. Pixi sees that the environment exists only for Intel Macs and starts it through Rosetta:\ncd ~/mag2026/Metagenomics_course\npixi shell -e prokka\nInside this environment the command uname -m answers x86_64 (Intel) instead of arm64. This is expected. Tools run a little slower under Rosetta than native tools.\nOn a Mac with an Intel processor you do not need Rosetta: the same environments run directly.\n\n\n\n\n\n\nNote\n\n\n\nLinux and Windows (WSL) users have nothing to do here: Prokka and Bracken are installed with the other tools."
+  },
+  {
+    "objectID": "setup.html#galaxy-account",
+    "href": "setup.html#galaxy-account",
+    "title": "Setup",
+    "section": "Galaxy account",
+    "text": "Galaxy account\n\nRegister to usegalaxy.eu.\n\n\n\n\nGalaxy1\n\n\n\n\n\nGalaxy2\n\n\n\n\n\nGalaxy3\n\n\n\nClick the verification link you will receive by email.\nGo to this https://usegalaxy.eu/join-training/heh-mag2025/ to join our training session. It should say you successfully registered in heh-mag2025\n\n\n\n\nGalaxy4\n\n\n\nIntroduction to Galaxy\nSlides here\nWe will follow this tutorial"
+  },
+  {
+    "objectID": "setup.html#r-and-rstudio",
+    "href": "setup.html#r-and-rstudio",
+    "title": "Setup",
+    "section": "R and RStudio",
+    "text": "R and RStudio\nThe amplicon tutorial (DADA2) runs in RStudio, installed on your own system (Windows, macOS or Linux), not inside WSL. Install R first, then RStudio. The tutorial page lists the R packages to install."
+  },
+  {
+    "objectID": "setup.html#troubleshooting",
+    "href": "setup.html#troubleshooting",
+    "title": "Setup",
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\n\n“HTTP error” or “could not resolve host” in WSL\nSometimes WSL loses its connection to the internet, and pixi install, curl or git clone stop with an HTTP or “could not resolve host” error. The usual cause is the network or DNS setting of WSL, not the tool. Try these steps in order, and test after each one.\nTest. In the Ubuntu terminal, this command must print an address:\ngetent hosts conda.anaconda.org\nStep 1: restart WSL. In PowerShell, run wsl --shutdown, then open Ubuntu again. If that is not enough, restart the computer.\nStep 2 (Windows 11): use the network of Windows. Open the WSL settings file from PowerShell with notepad \"$env:USERPROFILE\\.wslconfig\" and add the two network lines under [wsl2]. Keep the memory line if you have one.\n[wsl2]\nnetworkingMode=mirrored\ndnsTunneling=true\nSave, run wsl --shutdown in PowerShell, open Ubuntu again and repeat the test. This setting needs Windows 11 version 22H2 or later. It also helps when a VPN is active.\nStep 3 (last resort): set the DNS server by hand. Ask your teacher before you do this.\n\nIn Ubuntu, open the WSL configuration with sudo nano /etc/wsl.conf and add:\n[network]\ngenerateResolvConf = false\nIn PowerShell, run wsl --shutdown, then open Ubuntu again.\nIn Ubuntu, write a public DNS server in the DNS file:\nsudo rm -f /etc/resolv.conf\necho \"nameserver 1.1.1.1\" | sudo tee /etc/resolv.conf\n\n\n\nA warning about “post-link scripts” during pixi install\nPixi does not run the small scripts that some packages (here Krona) would like to run after their installation, and it tells you so. This warning is harmless: the tools of the course work without these scripts.\n\n\nFastQC prints “usage: fastqc …” and stops when you use -o\nRecent versions of FastQC no longer accept the short option -o for the output folder. Use the long form, as in the tutorials: fastqc --outdir results/fastqc ....\n\n\nA step is “Killed” or stops without a message\nThe step probably needed more memory than Linux has. Check the memory with free -h and see Give WSL 6 GB of memory. Close other programs and run the step again."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Metagenomics",
+    "section": "",
+    "text": "A one-week course on the analysis of microbial communities by sequencing: amplicon sequencing, shotgun metagenomics (read-based, and with assembly and binning), long reads and metatranscriptomics.\nThe week has lectures and practicals for two and a half days, then an individual project. Each practical exists in two forms: a local tutorial on your laptop, and a Galaxy tutorial on usegalaxy.eu. The whole class follows the same one; the teacher says which."
+  },
+  {
+    "objectID": "index.html#start-here",
+    "href": "index.html#start-here",
+    "title": "Introduction to Metagenomics",
+    "section": "Start here",
+    "text": "Start here\n\nSetup: install the tools on your laptop and create your Galaxy account. We do this together on Day 1.\nTutorials: one page per practical.\nGalaxy route: the Galaxy tutorial that goes with each practical.\nSlides: the lectures.\nProject: the project, the presentations and the grades."
+  },
+  {
+    "objectID": "index.html#the-week",
+    "href": "index.html#the-week",
+    "title": "Introduction to Metagenomics",
+    "section": "The week",
+    "text": "The week\nEvery day from 9:00 to 17:15, with breaks at 10:15–10:30, 12:30–13:30 (lunch) and 15:00–15:15.\n\n\n\nWhen\nLectures\nPractical\n\n\n\n\nDay 1, morning\nWelcome and a hands-on activity; Introduction to Galaxy; Introduction to metagenomics; Shotgun metagenomics I (assembly-free)\nSetup\n\n\nDay 1, afternoon\n\nRead-based taxonomy\n\n\nDay 2, morning\nDiscussion of Day 1; Shotgun metagenomics II (assembly and binning)\nAssembly and binning\n\n\nDay 2, afternoon\nAmplicon sequencing\nAmplicon sequencing: mothur on Galaxy, then DADA2\n\n\nDay 3, morning\nMetatranscriptomics; Ancient DNA; MUFFIN and hybrid workflows\nMetatranscriptomics or Nanopore 16S, on Galaxy\n\n\nDay 3, afternoon\n\nProject\n\n\nDay 4\nThe global presentation: summary of the week (morning)\nProject\n\n\nDay 5\nDiscussion (morning); presentations (early afternoon); course evaluation (late afternoon)\nProject (morning)\n\n\n\nThe Galaxy tutorial of each practical is on the Galaxy route page. The slides of each lecture are on the Slides page."
+  },
+  {
+    "objectID": "index.html#use-of-ai-tools",
+    "href": "index.html#use-of-ai-tools",
+    "title": "Introduction to Metagenomics",
+    "section": "Use of AI tools",
+    "text": "Use of AI tools\n\nTutorials: not allowed. You follow the instructions and think about the questions yourself.\nWritten report: not allowed. The report is written by you.\nProject work: allowed as a support, not to do the work for you.\nPresentation: made by you. You may use AI to generate images."
+  },
+  {
+    "objectID": "index.html#bibliography-and-resources",
+    "href": "index.html#bibliography-and-resources",
+    "title": "Introduction to Metagenomics",
+    "section": "Bibliography and resources",
+    "text": "Bibliography and resources\nCore Papers:\n\nhttps://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.000409\nhttps://www.nature.com/articles/nbt.3935/figures/1\nhttps://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/metagenomics\nhttps://doi.org/10.1371/journal.pone.0057923\n\nAdditional read:\n\nhttps://www.nature.com/articles/nbt.3935\nhttps://www.nature.com/articles/srep01968\nhttps://www.frontiersin.org/articles/10.3389/fmicb.2021.613791/full\nhttps://academic.oup.com/bib/article/22/6/bbab330/6358409\nhttps://academic.oup.com/bib/article/21/2/584/5363831\nhttps://www.nature.com/articles/s42003-021-02510-6\nhttps://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03667-3\n\nTools:\n\nMUFFIN: https://github.com/RVanDamme/MUFFIN & https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008716\nmetaWRAP: https://github.com/bxlab/metaWRAP & https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0541-1\nFlye: https://github.com/fenderglass/Flye & https://www.nature.com/articles/s41592-020-00971-x\nKraken2: https://github.com/DerrickWood/kraken2 & https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0"
+  },
+  {
+    "objectID": "galaxy.html",
+    "href": "galaxy.html",
+    "title": "Galaxy route",
+    "section": "",
+    "text": "Each practical of the course can be done in two ways: on your laptop (the local tutorials of this site) or on Galaxy, with tutorials of the Galaxy Training Network (GTN).\nThe whole class follows the same route. For each practical, the teacher says which route we use. If we have to change route during a practical (for example because a server is slow), everybody changes together and we start the other route from its beginning.\nThe Galaxy tutorials use their own data, not the data of the local tutorials, unless the table says “same data”. The methods are the same; the numbers are not."
+  },
+  {
+    "objectID": "galaxy.html#before-the-first-galaxy-practical",
+    "href": "galaxy.html#before-the-first-galaxy-practical",
+    "title": "Galaxy route",
+    "section": "Before the first Galaxy practical",
+    "text": "Before the first Galaxy practical\n\nCreate an account on usegalaxy.eu and confirm your e-mail address (see Setup).\nJoin the training group of the course with the link given on the Setup page.\nFollow the short introduction to Galaxy."
+  },
+  {
+    "objectID": "galaxy.html#which-tutorial-for-which-practical",
+    "href": "galaxy.html#which-tutorial-for-which-practical",
+    "title": "Galaxy route",
+    "section": "Which tutorial for which practical",
+    "text": "Which tutorial for which practical\n\n\n\nDay\nPractical\nLocal tutorial\nGalaxy tutorial (GTN)\nGTN time\nData\n\n\n\n\n1\nRead-based taxonomy\nDay 1: read-based taxonomy\nTaxonomic Profiling and Visualization of Metagenomic Data\n2 h\ndifferent (pond water, 2 samples)\n\n\n1\nHost reads\nsection “Host reads” of the Day 1 tutorial\nRemove contamination and host reads\n1 h\ndifferent (bee gut)\n\n\n2 am\nAssembly\nDay 2: assembly and binning, first half\nAssembly of metagenomic sequencing data\n2 h\ndifferent (coffee fermentation)\n\n\n2 am\nBinning and bin quality\nsame tutorial, second half\nBinning of metagenomic sequencing data\n2 h\ndifferent\n\n\n2 pm\nAmplicon, OTUs (main route)\nnone\n16S Microbial Analysis with mothur (short)\n2 h\nsame data as DADA2 (MiSeq SOP)\n\n\n2 pm\nAmplicon, ASVs\nDay 2: amplicon sequencing with DADA2\nBuilding an amplicon sequence variant (ASV) table from 16S data using DADA2\n3 h\nsame data and same method\n\n\n3 am\nMetatranscriptomics\nnone\nMetatranscriptomics analysis using microbiome RNA-seq data (short)\n3 h\nGalaxy only\n\n\n\nOn Day 3 we do either the metatranscriptomics tutorial or the Nanopore 16S tutorial (below). The other one is for self-study.\n\n\n\n\n\n\nWarningMetatranscriptomics tutorial: two tool versions differ on usegalaxy.eu\n\n\n\nWhen you run a GTN tutorial, Galaxy offers the tool versions that the tutorial was written with. On 12 November 2026, two tools of the metatranscriptomics tutorial were not installed on usegalaxy.eu in that exact version:\n\n\n\n\n\n\n\nThe tutorial asks for\nUse instead on usegalaxy.eu\n\n\n\n\nHUMAnN “Regroup” table tool, version 3.9\nthe same tool, version 3.8\n\n\n“Combine MetaPhlAn2 and HUMAnN2 outputs”, version 0.2.0\n“Combine MetaPhlAn and HUMAnN outputs”, version 0.3.0\n\n\n\nIf Galaxy says that a tool or a version is missing, search the tool by its name in the tool panel and use the version that is installed. Write down the version you used."
+  },
+  {
+    "objectID": "galaxy.html#extra-tutorials-if-time-allows-or-for-self-study",
+    "href": "galaxy.html#extra-tutorials-if-time-allows-or-for-self-study",
+    "title": "Galaxy route",
+    "section": "Extra tutorials (if time allows, or for self-study)",
+    "text": "Extra tutorials (if time allows, or for self-study)\n\n\n\nTopic\nGalaxy tutorial (GTN)\nGTN time\nWhy it is interesting\n\n\n\n\nNanopore, shotgun\nIdentification of the micro-organisms in a beer using Nanopore sequencing\n1 h\nThe same read classification as Day 1 (Kraken 2), on long reads. What changes with Nanopore data?\n\n\nNanopore, 16S\n16S Microbial analysis with Nanopore data\n2 h\nFull-length 16S reads classified with Kraken 2, instead of OTUs or ASVs\n\n\nDiversity\nCalculating α and β diversity from microbiome taxonomic data\n20 min\nFollows the taxonomic profiling tutorial"
+  },
+  {
+    "objectID": "galaxy.html#what-differs-between-the-two-routes",
+    "href": "galaxy.html#what-differs-between-the-two-routes",
+    "title": "Galaxy route",
+    "section": "What differs between the two routes",
+    "text": "What differs between the two routes\n\nDatabases. A result depends on the reference database and on its version. The local Day 1 tutorial uses the Kraken 2 database Standard-8 of October 2026. The Galaxy tutorial uses a larger database (PlusPF), and the Standard-8 database on usegalaxy.eu dates from June 2022. Expect different numbers, and always write down the database and its version.\nTools. The Galaxy binning tutorial uses several binners and refines their bins; the local tutorial uses one binner (MetaBAT 2). The local DADA2 tutorial uses SILVA 138.2; the Galaxy DADA2 tutorial uses the SILVA release installed on Galaxy (132), which still has the old names of the phyla (Firmicutes, Bacteroidetes).\nWaiting time. On Galaxy your jobs wait in a queue with the jobs of other users. Start the long jobs before a break.\n\nThe GTN tutorials are updated regularly. The links were checked on 12 November 2026."
+  },
+  {
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Slides",
+    "section": "",
+    "text": "The lecture slides, as PDF files. Click a link to open the file, or right-click it to download.\n\n\n\nLecture\nDay\nSlides\n\n\n\n\nIntroduction to metagenomics and environmental studies\nDay 1\nPDF\n\n\nShotgun metagenomics\nDay 1 and Day 2\nPDF\n\n\nAmplicon sequencing (metabarcoding)\nDay 2\nPDF\n\n\nAncient DNA and metagenomics\nDay 3\nPDF\n\n\nMUFFIN, a Nextflow genomic workflow\nDay 3\nPDF\n\n\nThe global presentation (summary)\nDay 4\nPDF\n\n\n\nThe introduction to Galaxy uses the Galaxy Training Network slides.\n\n\n\n\n\n\nNote\n\n\n\nThese are the slides of the 2020–2024 courses. Updated slides will replace them here before the next course."
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html",
+    "href": "tutorials/d2-amplicon-dada2.html",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "",
+    "text": "This tutorial is aimed at being a walkthrough of the DADA2 pipeline. It uses the data of the now famous MiSeq SOP by the Mothur authors but analyses the data using DADA2.\nDADA2 is a relatively new method to analyse amplicon data which uses exact variants instead of OTUs.\nThe advantages of the DADA2 method is described in the paper"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#before-starting",
+    "href": "tutorials/d2-amplicon-dada2.html#before-starting",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Before Starting",
+    "text": "Before Starting\nThere are two ways to follow this tutorial in RStudio:\n\ncopy and paste the code blocks below into R, one at a time; or\ndownload this page as a notebook (right-click, “Save link as”), open it in RStudio and run the chunks one by one."
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#install-and-load-packages",
+    "href": "tutorials/d2-amplicon-dada2.html#install-and-load-packages",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Install and Load Packages",
+    "text": "Install and Load Packages\nThis tutorial runs in RStudio, with R 4.5 or newer. Check your version with R.version.string.\nFirst install DADA2 and the other packages. Run the lines one by one. The installation takes several minutes. If R asks “Update all/some/none?”, answer n (none).\nif (!require(\"BiocManager\", quietly = TRUE))\n    install.packages(\"BiocManager\")\nBiocManager::install(c(\"dada2\", \"phyloseq\", \"DECIPHER\"))\ninstall.packages(c(\"ggplot2\", \"phangorn\"))\nBiocManager installs the version of DADA2 that belongs to your version of R: DADA2 1.38 with R 4.5, DADA2 1.40 with R 4.6. This tutorial was tested with DADA2 1.38.\nNow load the packages and look at your DADA2 version. Write it down: it is part of your methods\nlibrary(dada2)\nlibrary(ggplot2)\nlibrary(phyloseq)\nlibrary(phangorn)\nlibrary(DECIPHER)\npackageVersion('dada2')"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#download-the-data",
+    "href": "tutorials/d2-amplicon-dada2.html#download-the-data",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Download the Data",
+    "text": "Download the Data\nYou will also need to download the data, as well as the SILVA database. The downloads are done from R, so this works the same way on Windows, macOS and Linux. The files are saved in your current working directory (check it with getwd()).\n# large files: allow up to 10 minutes per download\noptions(timeout = 600)\n\n# the MiSeq SOP data (37 MB)\ndownload.file('https://mothur.s3.us-east-2.amazonaws.com/wiki/miseqsopdata.zip',\n              'miseqsopdata.zip', mode = 'wb')\n# check that the download is complete:\n# the result must be 98144f5057628139271d94612bb27d96\ntools::md5sum('miseqsopdata.zip')\nunzip('miseqsopdata.zip')\n\n# the SILVA reference files (release 138.2), placed in the data folder\n# 140 MB and 70 MB: this can take a few minutes\ndownload.file('https://zenodo.org/records/14169026/files/silva_nr99_v138.2_toGenus_trainset.fa.gz',\n              'MiSeq_SOP/silva_nr99_v138.2_toGenus_trainset.fa.gz', mode = 'wb')\ndownload.file('https://zenodo.org/records/14169026/files/silva_v138.2_assignSpecies.fa.gz',\n              'MiSeq_SOP/silva_v138.2_assignSpecies.fa.gz', mode = 'wb')\n# check the downloads: the results must be\n# 1764e2a36b4500ccb1c7d5261948a414 and 62fd939bd1aa9832d2089847f9f0b87d\ntools::md5sum(c('MiSeq_SOP/silva_nr99_v138.2_toGenus_trainset.fa.gz',\n                'MiSeq_SOP/silva_v138.2_assignSpecies.fa.gz'))\nThen check that you have downloaded the data\npath &lt;- 'MiSeq_SOP'\nlist.files(path)"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#filtering-and-trimming",
+    "href": "tutorials/d2-amplicon-dada2.html#filtering-and-trimming",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Filtering and Trimming",
+    "text": "Filtering and Trimming\nFirst we create two lists with the sorted name of the reads: one for the forward reads, one for the reverse reads\nraw_forward &lt;- sort(list.files(path, pattern=\"_R1_001.fastq\",\n                               full.names=TRUE))\n\nraw_reverse &lt;- sort(list.files(path, pattern=\"_R2_001.fastq\",\n                               full.names=TRUE))\n\n# we also need the sample names\nsample_names &lt;- sapply(strsplit(basename(raw_forward), \"_\"),\n                       `[`,  # extracts the first element of a subset\n                       1)\nthen we visualise the quality of our reads\nplotQualityProfile(raw_forward[1:2])\nplotQualityProfile(raw_reverse[1:2])\nThe forward reads are good quality (although dropping a bit at the end as usual) while the reverse are way worse.\nBased on these profiles, we will truncate the forward reads at position 240 and the reverse reads at position 160 where the quality distribution crashes.\nDada2 requires us to define the name of our output files\n# place filtered files in filtered/ subdirectory\nfiltered_path &lt;- file.path(path, \"filtered\")\n\nfiltered_forward &lt;- file.path(filtered_path,\n                              paste0(sample_names, \"_R1_trimmed.fastq.gz\"))\n\nfiltered_reverse &lt;- file.path(filtered_path,\n                              paste0(sample_names, \"_R2_trimmed.fastq.gz\"))\nWe’ll use standard filtering parameters: maxN=0 (DADA22 requires no Ns), truncQ=2, rm.phix=TRUE and maxEE=2. The maxEE parameter sets the maximum number of “expected errors” allowed in a read, which according to the USEARCH authors is a better filter than simply averaging quality scores.\nout &lt;- filterAndTrim(raw_forward, filtered_forward, raw_reverse,\n                     filtered_reverse, truncLen=c(240,160), maxN=0,\n                     maxEE=c(2,2), truncQ=2, rm.phix=TRUE, compress=TRUE,\n                     multithread=TRUE)\nhead(out)"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#learn-the-error-rates",
+    "href": "tutorials/d2-amplicon-dada2.html#learn-the-error-rates",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Learn the Error Rates",
+    "text": "Learn the Error Rates\nThe DADA2 algorithm depends on a parametric error model and every amplicon dataset has a slightly different error rate. The learnErrors of Dada2 learns the error model from the data and will help DADA2 to fits its method to your data\nerrors_forward &lt;- learnErrors(filtered_forward, multithread=TRUE)\nerrors_reverse &lt;- learnErrors(filtered_reverse, multithread=TRUE)\nthen we visualise the estimated error rates\nplotErrors(errors_forward, nominalQ=TRUE) +\n    theme_minimal()"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#dereplication",
+    "href": "tutorials/d2-amplicon-dada2.html#dereplication",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Dereplication",
+    "text": "Dereplication\nFrom the Dada2 documentation:\n\nDereplication combines all identical sequencing reads into into “unique sequences” with a corresponding “abundance”: the number of reads with that unique sequence. Dereplication substantially reduces computation time by eliminating redundant comparisons.\n\nderep_forward &lt;- derepFastq(filtered_forward, verbose=TRUE)\nderep_reverse &lt;- derepFastq(filtered_reverse, verbose=TRUE)\n# name the derep-class objects by the sample names\nnames(derep_forward) &lt;- sample_names\nnames(derep_reverse) &lt;- sample_names"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#sample-inference",
+    "href": "tutorials/d2-amplicon-dada2.html#sample-inference",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Sample inference",
+    "text": "Sample inference\nWe are now ready to apply the core sequence-variant inference algorithm to the dereplicated data.\ndada_forward &lt;- dada(derep_forward, err=errors_forward, multithread=TRUE)\ndada_reverse &lt;- dada(derep_reverse, err=errors_reverse, multithread=TRUE)\n\n# inspect the dada-class object\ndada_forward[[1]]\nThe DADA2 algorithm inferred 128 real sequence variants from the 1979 unique sequences in the first sample."
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#merge-paired-end-reads",
+    "href": "tutorials/d2-amplicon-dada2.html#merge-paired-end-reads",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Merge Paired-end Reads",
+    "text": "Merge Paired-end Reads\nNow that the reads are trimmed, dereplicated and error-corrected we can merge them together\nmerged_reads &lt;- mergePairs(dada_forward, derep_forward, dada_reverse,\n                           derep_reverse, verbose=TRUE)\n\n# inspect the merger data.frame from the first sample\nhead(merged_reads[[1]])"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#construct-sequence-table",
+    "href": "tutorials/d2-amplicon-dada2.html#construct-sequence-table",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Construct Sequence Table",
+    "text": "Construct Sequence Table\nWe can now construct a sequence table of our mouse samples, a higher-resolution version of the OTU table produced by traditional methods.\nseq_table &lt;- makeSequenceTable(merged_reads)\ndim(seq_table)\n\n# inspect distribution of sequence lengths\ntable(nchar(getSequences(seq_table)))"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#remove-chimeras",
+    "href": "tutorials/d2-amplicon-dada2.html#remove-chimeras",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Remove Chimeras",
+    "text": "Remove Chimeras\nThe dada method used earlier removes substitutions and indel errors but chimeras remain. We remove the chimera with\nseq_table_nochim &lt;- removeBimeraDenovo(seq_table, method='consensus',\n                                       multithread=TRUE, verbose=TRUE)\ndim(seq_table_nochim)\n\n# which percentage of our reads did we keep?\nsum(seq_table_nochim) / sum(seq_table)\nAs a final check of our progress, we’ll look at the number of reads that made it through each step in the pipeline\nget_n &lt;- function(x) sum(getUniques(x))\n\ntrack &lt;- cbind(out, sapply(dada_forward, get_n), sapply(merged_reads, get_n),\n               rowSums(seq_table), rowSums(seq_table_nochim))\n\ncolnames(track) &lt;- c('input', 'filtered', 'denoised', 'merged', 'tabled',\n                     'nonchim')\nrownames(track) &lt;- sample_names\nhead(track)\nWe kept the majority of our reads!"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#check-the-result-with-the-mock-community",
+    "href": "tutorials/d2-amplicon-dada2.html#check-the-result-with-the-mock-community",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Check the Result with the Mock Community",
+    "text": "Check the Result with the Mock Community\nOne of the samples, Mock, is not a mouse sample. It is a mock community: a mix of about 20 known bacterial strains, prepared in the laboratory and sequenced together with the real samples. We know what it contains, so we can check what our analysis does.\nThe file HMP_MOCK.v35.fasta of the data folder contains the true sequences of these strains.\n# the sequence variants found in the Mock sample\nmock_asvs &lt;- seq_table_nochim['Mock', ]\nmock_asvs &lt;- sort(mock_asvs[mock_asvs &gt; 0], decreasing=TRUE)\nlength(mock_asvs)\n\n# how many of them are exactly identical to a true sequence?\nmock_ref &lt;- getSequences(file.path(path, 'HMP_MOCK.v35.fasta'))\nis_exact &lt;- sapply(names(mock_asvs),\n                   function(x) any(grepl(x, mock_ref, fixed=TRUE)))\nsum(is_exact)\n\n# how many reads are in sequence variants that match no true sequence?\nsum(mock_asvs[!is_exact])\n\n\n\n\n\n\nTipQuestion\n\n\n\nHow many sequence variants did DADA2 find in the mock community? How many are exact matches to a true sequence? What does this tell you about the errors that remain after the whole analysis?\n\n\n\n\n\n\n\n\nTipQuestion\n\n\n\nA mock community can show two kinds of problems: sequences that should not be there, and strains that are missing. Which of the two did we check here? How would you check the other one?"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#assign-taxonomy",
+    "href": "tutorials/d2-amplicon-dada2.html#assign-taxonomy",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Assign Taxonomy",
+    "text": "Assign Taxonomy\nNow we assign taxonomy to our sequences using the SILVA database, release 138.2. The first step compares each sequence with the reference and gives a name down to the genus. The second step adds a species name only when the sequence is exactly identical to a reference sequence.\n\n\n\n\n\n\nWarning\n\n\n\nThis step needs about 5 GB of memory and takes a few minutes. RStudio runs on your own system, not in WSL. On a Windows laptop with 8 GB, first give the memory of WSL back to Windows: close the Ubuntu terminals and run wsl --shutdown in PowerShell. Close the other programs too.\n\n\ntaxa &lt;- assignTaxonomy(seq_table_nochim,\n                       'MiSeq_SOP/silva_nr99_v138.2_toGenus_trainset.fa.gz',\n                       multithread=TRUE)\ntaxa &lt;- addSpecies(taxa, 'MiSeq_SOP/silva_v138.2_assignSpecies.fa.gz')\n\n\n\n\n\n\nNote\n\n\n\nThe names depend on the release of the database. SILVA 138.2 uses the current names of the phyla, the same as the Kraken 2 database of Day 1: Bacillota (before: Firmicutes), Bacteroidota (Bacteroidetes), Pseudomonadota (Proteobacteria), Actinomycetota (Actinobacteria). Older tutorials and papers, and the Galaxy version of this tutorial (SILVA 132), show the old names for the same organisms.\n\n\nfor inspecting the classification\ntaxa_print &lt;- taxa  # removing sequence rownames for display only\nrownames(taxa_print) &lt;- NULL\nhead(taxa_print)"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#phylogenetic-tree",
+    "href": "tutorials/d2-amplicon-dada2.html#phylogenetic-tree",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Phylogenetic Tree",
+    "text": "Phylogenetic Tree\nDADA2 is reference-free so we have to build the tree ourselves\nWe first align our sequences\n# use the table without chimeras: a chimera is not a real sequence and has no place in the tree\nsequences &lt;- getSequences(seq_table_nochim)\nnames(sequences) &lt;- sequences  # this propagates to the tip labels of the tree\nalignment &lt;- AlignSeqs(DNAStringSet(sequences), anchor=NA)\nThen we build a neighbour-joining tree then fit a maximum likelihood tree using the neighbour-joining tree as a starting point. This is the longest step of the tutorial: about 5 to 10 minutes.\nphang_align &lt;- phyDat(as(alignment, 'matrix'), type='DNA')\ndm &lt;- dist.ml(phang_align)\ntreeNJ &lt;- NJ(dm)  # note, tip order != sequence order\nfit = pml(treeNJ, data=phang_align)\n\n# negative edges length changed to 0!\n\nfitGTR &lt;- update(fit, k=4, inv=0.2)\nfitGTR &lt;- optim.pml(fitGTR, model='GTR', optInv=TRUE, optGamma=TRUE,\n                    rearrangement='stochastic',\n                    control=pml.control(trace=0))\ndetach('package:phangorn', unload=TRUE)"
+  },
+  {
+    "objectID": "tutorials/d2-amplicon-dada2.html#phyloseq",
+    "href": "tutorials/d2-amplicon-dada2.html#phyloseq",
+    "title": "Day 2: amplicon sequencing with DADA2",
+    "section": "Phyloseq",
+    "text": "Phyloseq\nFirst load the metadata\nsample_data &lt;- read.table(\n    'https://hadrieng.github.io/tutorials/data/16S_metadata.txt',\n    header=TRUE, row.names=\"sample_name\")\nWe can now construct a phyloseq object from our output and newly created metadata\nphyseq &lt;- phyloseq(otu_table(seq_table_nochim, taxa_are_rows=FALSE),\n                   sample_data(sample_data),\n                   tax_table(taxa),\n                   phy_tree(fitGTR$tree))\n# remove the mock sample: we have used it above, it is not part of the mouse experiment\nphyseq &lt;- prune_samples(sample_names(physeq) != 'Mock', physeq)\nphyseq\nLet’s look at the alpha diversity of our samples: the number of sequence variants observed in each sample (Observed) and the Shannon index, which also takes into account how evenly the reads are spread over the variants.\nplot_richness(physeq, x='day', measures=c('Observed', 'Shannon'), color='when') +\n    theme_minimal()\n\n\n\n\n\n\nNote\n\n\n\nOther richness measures, such as Chao1, ACE or Fisher’s alpha, estimate the number of unseen variants from the variants that were seen only once (singletons). DADA2 removes singletons, because it cannot tell them from errors. So these measures have no meaning on a DADA2 table: do not use them here. This is also why plot_richness prints a warning about singletons: with DADA2 data, the warning is expected.\n\n\nNo obvious differences. Let’s look at ordination methods (beta diversity)\nWe can perform an MDS with euclidean distance (mathematically equivalent to a PCA)\nord &lt;- ordinate(physeq, 'MDS', 'euclidean')\nplot_ordination(physeq, ord, type='samples', color='when',\n                title='MDS (PCoA) with Euclidean distance, MiSeq SOP samples') +\n    theme_minimal()\nnow with the Bray-Curtis distance, and another ordination method (NMDS). This plot is not a PCA: its axes have no unit, only the distances between the points matter.\nord &lt;- ordinate(physeq, 'NMDS', 'bray')\nplot_ordination(physeq, ord, type='samples', color='when',\n                title='NMDS with Bray-Curtis distance, MiSeq SOP samples') +\n    theme_minimal()\nThere we can see a clear difference between our samples.\nLet us take a look a the distribution of the most abundant families\ntop20 &lt;- names(sort(taxa_sums(physeq), decreasing=TRUE))[1:20]\nphyseq_top20 &lt;- transform_sample_counts(physeq, function(OTU) OTU/sum(OTU))\nphyseq_top20 &lt;- prune_taxa(top20, physeq_top20)\nplot_bar(physeq_top20, x='day', fill='Family') +\n    facet_wrap(~when, scales='free_x') +\n    theme_minimal()\nWe can place the sequences of one phylum, here the Bacteroidota, in a tree\nbacteroidota &lt;- subset_taxa(physeq, Phylum %in% c('Bacteroidota'))\nplot_tree(bacteroidota, ladderize='left', size='abundance',\n          color='when', label.tips='Family')\n\n\n\n\n\n\nNoteCredits\n\n\n\nThis tutorial is shared teaching material, co-developed with Hadrien Gourlé. It started from his tutorial Metabarcoding. See Licence and credits."
+  },
+  {
+    "objectID": "ATTRIBUTION.html",
+    "href": "ATTRIBUTION.html",
+    "title": "Licence and credits",
+    "section": "",
+    "text": "Text and slides: Creative Commons Attribution 4.0 International (CC BY 4.0). The full text is in the file LICENSE.\nCode (commands, scripts, configuration files): MIT licence. The full text is in the file LICENSE-code.\n\nYou may reuse and adapt the material if you give credit: “Introduction to Metagenomics, Renaud Van Damme and contributors, https://github.com/RVanDamme/Metagenomics_course, CC BY 4.0”.\nException: the PDF slides made before 2026 (in slides/) contain images from other sources. They are not covered by the CC BY 4.0 licence. They will be replaced by rebuilt slides."
+  },
+  {
+    "objectID": "ATTRIBUTION.html#licence",
+    "href": "ATTRIBUTION.html#licence",
+    "title": "Licence and credits",
+    "section": "",
+    "text": "Text and slides: Creative Commons Attribution 4.0 International (CC BY 4.0). The full text is in the file LICENSE.\nCode (commands, scripts, configuration files): MIT licence. The full text is in the file LICENSE-code.\n\nYou may reuse and adapt the material if you give credit: “Introduction to Metagenomics, Renaud Van Damme and contributors, https://github.com/RVanDamme/Metagenomics_course, CC BY 4.0”.\nException: the PDF slides made before 2026 (in slides/) contain images from other sources. They are not covered by the CC BY 4.0 licence. They will be replaced by rebuilt slides."
+  },
+  {
+    "objectID": "ATTRIBUTION.html#credits",
+    "href": "ATTRIBUTION.html#credits",
+    "title": "Licence and credits",
+    "section": "Credits",
+    "text": "Credits\nThis course is taught and maintained by Renaud Van Damme.\n\nTutorials. The three local tutorials are shared teaching material, co-developed with Hadrien Gourlé. They started from his tutorials (https://github.com/HadrienG/tutorials, CC BY 4.0): Whole Metagenome Sequencing, Metagenome assembly and binning and Metabarcoding. The annotation and taxonomy parts of the assembly tutorial were written by Renaud Van Damme and Hadrien Gourlé.\nSlides. The introduction and shotgun lectures were developed with Moritz Buck. The ancient DNA lecture is based on the work of Zoé Pochon.\nGalaxy tutorials. The Galaxy route uses tutorials of the Galaxy Training Network (CC BY 4.0). Each tutorial is linked with its title; its authors are listed on its page."
+  },
+  {
+    "objectID": "ATTRIBUTION.html#data",
+    "href": "ATTRIBUTION.html#data",
+    "title": "Licence and credits",
+    "section": "Data",
+    "text": "Data\nThe course uses published data. If you reuse the data, cite the original studies.\n\n\n\nPractical\nData\nSource\n\n\n\n\nDay 1, read-based taxonomy\nPig gut metagenomes (subsampled)\nXiao et al. 2016, Nature Microbiology, doi:10.1038/nmicrobiol.2016.161\n\n\nDay 1, read-based taxonomy\nHuman gut metagenomes (subsampled)\nLe Chatelier et al. 2013, Nature, doi:10.1038/nature12506\n\n\nDay 2, assembly and binning\nReads simulated with InSilicoSeq from Tara Oceans genomes\nSimulation by Hadrien Gourlé; genomes from the Tara Oceans MAG collection\n\n\nDay 2, amplicon\nMiSeq SOP data (mouse gut, 16S V4)\nKozich et al. 2013, Applied and Environmental Microbiology, doi:10.1128/AEM.01043-13; distributed with the mothur MiSeq SOP\n\n\n\nReference databases (Kraken 2, SILVA, CheckM, GTDB) are downloaded from their providers and keep their own licences. Check the provider’s terms before you redistribute a database."
+  }
+]
