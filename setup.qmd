@@ -1,0 +1,103 @@
+---
+title: "Setup"
+---
+
+We do the setup together in class on Day 1. This page is the reference.
+
+## What you need
+
+- A laptop with **at least 8 GB of memory (RAM)** and **50 GB of free disk space**.
+- Windows 10 or 11 with WSL (Ubuntu), or Linux, or macOS.
+- An internet connection for the first installation (about 3 GB of downloads for the tools).
+
+The local tutorials run in a Linux terminal: the Ubuntu terminal of WSL on Windows, or the Terminal on Linux and macOS.
+
+## 1. Install Pixi
+
+[Pixi](https://pixi.sh) installs the tools of the course, in the same versions for everybody.
+
+```bash
+curl -fsSL https://pixi.sh/install.sh | sh
+```
+
+Close the terminal and open a new one. Then check that Pixi answers:
+
+```bash
+pixi --version
+```
+
+## 2. Get the course folder
+
+All the course work goes in one folder, `~/mag2026`, inside your home (`~`).
+
+```bash
+mkdir -p ~/mag2026
+cd ~/mag2026
+git clone https://github.com/RVanDamme/Metagenomics_course.git
+```
+
+::: {.callout-warning}
+On Windows, stay inside the Linux home (`~`). Do not work in `/mnt/c/...` (the Windows drive): the tools are very slow there.
+:::
+
+## 3. Install the tools
+
+```bash
+cd ~/mag2026/Metagenomics_course
+pixi install --all
+```
+
+This downloads and installs every tool the local tutorials need (about 12 GB on disk once installed).
+The versions are fixed by the files `pixi.toml` and `pixi.lock` of the course folder.
+
+The tools are grouped in **environments**:
+
+| Environment | Tools | Used in |
+|---|---|---|
+| main (no name needed) | FastQC, fastp, MultiQC, Kraken 2, Bracken (Linux), KrakenTools, Krona, sickle, MEGAHIT, Bowtie 2, samtools, MetaBAT 2, sourmash, seqkit | Day 1 and Day 2 |
+| `checkm1` | CheckM 1 | Day 2, quality of the bins |
+| `checkm2` | CheckM2 | Day 2, quality of the bins |
+| `prokka` | Prokka | Day 2, annotation |
+| `bracken-mac` | Bracken (macOS only) | Day 1 |
+
+## 4. Check your setup
+
+```bash
+cd ~/mag2026/Metagenomics_course
+pixi run check
+```
+
+The check lists every tool, the memory, the free disk space and the place of the course folder.
+Each line starts with `OK`, `WARNING` or `PROBLEM`. A `PROBLEM` line tells you what to do.
+When the last line says "Everything is ready", you are done.
+
+## 5. Start a work session
+
+Each time you open a new terminal for a tutorial, activate the main environment:
+
+```bash
+cd ~/mag2026/Metagenomics_course
+pixi shell
+```
+
+Your prompt now starts with `(mag-2026)`. Go to your working folder and follow the tutorial.
+To leave the environment, type `exit`.
+
+For a step that uses another environment, open a **second terminal** and give the name of the environment:
+
+```bash
+cd ~/mag2026/Metagenomics_course
+pixi shell -e checkm1
+```
+
+## R and RStudio
+
+The amplicon tutorial (DADA2) runs in [RStudio](https://posit.co/download/rstudio-desktop/), installed on your own
+system (Windows, macOS or Linux), not inside WSL. Install [R](https://cloud.r-project.org/) first, then RStudio.
+The tutorial page lists the R packages to install.
+
+## Troubleshooting
+
+::: {.callout-warning title="HTTP error in WSL"}
+If you are on Ubuntu in WSL, you might get an HTTP error during the installation. Restart your computer and try again.
+:::

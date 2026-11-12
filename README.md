@@ -14,6 +14,9 @@ The site is a [Quarto](https://quarto.org) website.
 | `index.qmd` | home page |
 | `tutorials/` | the local tutorials, one page per practical |
 | `slides.qmd`, `slides/` | the Slides page and the PDF files it links to |
+| `setup.qmd` | how students install the tools |
+| `pixi.toml`, `pixi.lock` | the tools of the local tutorials, with fixed versions for Linux and macOS |
+| `scripts/check_setup.sh` | setup check, run with `pixi run check` |
 | `figures/` | images used by the pages |
 | `_quarto.yml` | site configuration (menu, theme) |
 | `.github/workflows/publish.yml` | publishes the site on every push to `main` |
@@ -22,11 +25,15 @@ The code on the tutorial pages is **shown, not run**, when the site is built.
 
 ## Preview the site on your computer
 
-Install [Quarto](https://quarto.org/docs/get-started/), then run this in the repository folder:
+Install [Pixi](https://pixi.sh), then run this in the repository folder:
 
 ```bash
-quarto preview
+pixi run -e site quarto preview
 ```
+
+## Change a tool version
+
+Edit `pixi.toml`, run `pixi lock`, test, and commit `pixi.toml` and `pixi.lock` together.
 
 ## Publish
 

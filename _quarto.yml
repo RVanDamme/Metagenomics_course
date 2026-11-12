@@ -3,6 +3,7 @@ project:
   output-dir: _site
   render:
     - index.qmd
+    - setup.qmd
     - slides.qmd
     - tutorials/*.qmd
     - ATTRIBUTION.md
@@ -17,6 +18,8 @@ website:
     left:
       - text: Home
         href: index.qmd
+      - text: Setup
+        href: setup.qmd
       - text: Tutorials
         menu:
           - text: "Day 1: read-based taxonomy"

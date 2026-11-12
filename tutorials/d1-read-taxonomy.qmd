@@ -2,11 +2,14 @@
 title: "Day 1: read-based taxonomy (assembly-free)"
 ---
 
-Before anything RUN THIS:
+::: {.callout-important title="Before you start"}
+Do the [Setup](../setup.qmd) first. Then open a terminal and activate the tools of the course:
 
 ```bash
-conda create -n Meta_free -c conda-forge -c bioconda fastqc kraken2
+cd ~/mag2026/Metagenomics_course
+pixi shell
 ```
+:::
 
 ### Introduction
 
