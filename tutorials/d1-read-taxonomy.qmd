@@ -40,39 +40,40 @@ The choice of shotgun or 16S approaches is usually dictated by the nature of the
 
 ### Prepare and organise your working directory
 
-You will first login to your virtual machine using the IP provided by the teachers.
-All the exercise will be performed on your VM in the cloud.
-
-::: {.callout-note}
-When you login with the ssh command, please add the option -X at the end of it to be able to use graphical interface
-:::
+All the work of this tutorial is done on your own computer, in the folder `~/mag2026/d1`.
+Every command below is run **from this folder**, unless the text says otherwise.
 
 ```bash
-mkdir ~/wms
-cd ~/wms
+mkdir -p ~/mag2026/d1
+cd ~/mag2026/d1
 mkdir data
 mkdir results
-mkdir scripts
 ```
+
+If you close your terminal and come back later, activate the tools again (see the top of this page) and return to
+the folder with `cd ~/mag2026/d1`.
 
 ### Getting the Data and Checking their Quality
 
-As the data were very big, we have prepared performed a downsampling on all 6 datasets (3 pigs and 3 humans).
+As the data were very big, we have performed a downsampling on all 6 datasets (3 pigs and 3 humans).
 We will first download and unpack the data.
 
 ```bash
-cd ~/wms/data
+cd ~/mag2026/d1/data
 curl -O -J -L https://osf.io/h9x6e/download
 tar xvf subset_wms.tar.gz
-cd sub_100000
+cd ~/mag2026/d1
 ```
+
+The reads are now in `data/sub_100000`: two files per sample (`_1.fastq` and `_2.fastq`), and a `metadata.txt` file.
 
 We'll use FastQC to check the quality of our data.
-FastQC should be already installed on your VM, so you need to type
 
 ```bash
-fastqc *.fastq
+fastqc data/sub_100000/*.fastq
 ```
+
+FastQC writes one `.html` report per file, next to the reads. Open a few of them in your web browser.
 
 If the quality appears to be good, it's because it was probably the cleaned reads that were deposited into SRA.
 We can directly move to the classification step.
@@ -92,20 +93,20 @@ The full database is far too large for a laptop, so we use **Standard-8**: the s
 Fewer reads are classified than with the full database. Always report which database, and which version, you used.
 
 The Kraken 2 authors provide ready-made databases on the [index page](https://benlangmead.github.io/aws-indexes/k2).
-The download is 5.5 GB. If your teacher gives you a copy on a drive, use that instead of downloading.
+The download is 5.9 GB. If your teacher gives you a copy on a drive, use that instead of downloading.
 
 ```bash
-# First we create a databases directory in our home
-mkdir -p ~/databases/k2_standard_08gb
-cd ~/databases/k2_standard_08gb
+# First we create a databases directory in the course folder
+mkdir -p ~/mag2026/databases/k2_standard_08gb
+cd ~/mag2026/databases/k2_standard_08gb
 # Then we download the Standard-8 database (version of 22 October 2026)
 curl -O https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08_GB_20261022.tar.gz
 # check that the download is complete: the result must be 7447d230ea402d0b523c14d217b5c20b
 md5sum k2_standard_08_GB_20261022.tar.gz
 tar xzf k2_standard_08_GB_20261022.tar.gz
 rm k2_standard_08_GB_20261022.tar.gz
-KRAKEN_DB=~/databases/k2_standard_08gb
-cd
+KRAKEN_DB=~/mag2026/databases/k2_standard_08gb
+cd ~/mag2026/d1
 ```
 
 ::: {.callout-warning}
@@ -115,17 +116,15 @@ Keep the database inside your Linux home (`~`), not on the Windows drive (`/mnt/
 Now run Kraken 2 on the reads
 
 ```bash
-# In the data/ directory
-cd ~/wms/data/sub_100000
-for i in *_1.fastq
+for i in data/sub_100000/*_1.fastq
 do
     prefix=$(basename $i _1.fastq)
     # print which sample is being processed
     echo $prefix
     kraken2 --db $KRAKEN_DB --memory-mapping --threads 2 --paired \
-        --output ~/wms/results/${prefix}.tab \
-        --report ~/wms/results/${prefix}_tax.txt \
-        ${prefix}_1.fastq ${prefix}_2.fastq
+        --output results/${prefix}.tab \
+        --report results/${prefix}_tax.txt \
+        data/sub_100000/${prefix}_1.fastq data/sub_100000/${prefix}_2.fastq
 done
 ```
 
@@ -155,7 +154,7 @@ remotes::install_github("fbreitwieser/pavian")
 pavian::runApp(port=5000)
 ```
 
-Then you will explore and compare the results produced by Kraken 2 (upload the `_tax.txt` reports).
+Then you will explore and compare the results produced by Kraken 2: upload the `_tax.txt` reports of the folder `~/mag2026/d1/results`.
 
 Try to use Pavian to look at this data a bit!!
 
