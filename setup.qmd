@@ -83,7 +83,16 @@ pixi --version
 
 ## 2. Get the course folder
 
-The course folder, the databases and your Day 1 work go in one folder, `~/mag2026`, inside your home (`~`).
+Everything of the course goes in one folder, `~/mag2026`, inside your home (`~`):
+
+| Folder | Content |
+|---|---|
+| `~/mag2026/Metagenomics_course` | the course folder: the list of tools and the tools themselves |
+| `~/mag2026/databases` | the reference databases (Kraken 2, CheckM, CheckM2, sourmash) |
+| `~/mag2026/d1` | your work of Day 1, in `data/` and `results/` |
+| `~/mag2026/d2` | your work of Day 2, in `data/` and `results/` |
+
+The tutorials create the folders `databases`, `d1` and `d2` when they are needed. Now create the first one:
 
 ```bash
 mkdir -p ~/mag2026

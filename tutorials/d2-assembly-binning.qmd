@@ -18,26 +18,44 @@ In reality the data were simulated using [InSilicoSeq](http://insilicoseq.readth
 
 The 10 bacteria in the dataset were selected from the [Tara Ocean study](http://ocean-microbiome.embl.de/companion.html) that recovered 957 distinct Metagenome-assembled-genomes (or MAGs) that were previsouly unknown! (full list on [figshare](https://figshare.com/articles/TARA-NON-REDUNDANT-MAGs/4902923/1) )
 
+## Prepare and organise your working directory
+
+All the work of this tutorial is done in the folder `~/mag2026/d2`, organised like the one of Day 1:
+the reads go in `data/`, everything you compute goes in `results/`.
+Every command below is run **from `~/mag2026/d2`**, unless the text says otherwise.
+
+```bash
+mkdir -p ~/mag2026/d2
+cd ~/mag2026/d2
+mkdir data
+mkdir results
+```
+
+If you close your terminal and come back later, activate the tools again (see the top of this page) and return to
+the folder with `cd ~/mag2026/d2`.
+
 ## Getting the Data
 
 ```bash
-mkdir -p ~/data
-cd ~/data
+cd ~/mag2026/d2/data
 curl -O -J -L https://osf.io/th9z6/download
 curl -O -J -L https://osf.io/k6vme/download
 chmod -w tara_reads_R*
+cd ~/mag2026/d2
 ```
+
+The two files of reads are now in `data/`. The `chmod -w` command protects them: they can be read, but not changed or deleted by mistake.
 
 ## Quality Control
 
 we'll use FastQC to check the quality of our data, as well as sickle for trimming the bad quality part of the reads.
 
 ```bash
-mkdir -p ~/results
-cd ~/results
-ln -s ~/data/tara_reads_* .
-fastqc tara_reads_*.fastq.gz
+mkdir -p results/fastqc
+fastqc --outdir results/fastqc data/tara_reads_*.fastq.gz
 ```
+
+Open the two reports of `results/fastqc` in your web browser.
 
 ::: {.callout-tip title="Question" icon=false}
 What is the average read length? The average quality?
@@ -50,9 +68,9 @@ Compared to single genome sequencing, what graphs differ?
 
 Now we'll trim the reads using sickle
 
-```
-sickle pe -f tara_reads_R1.fastq.gz -r tara_reads_R2.fastq.gz -t sanger \
-    -o tara_trimmed_R1.fastq -p tara_trimmed_R2.fastq -s /dev/null
+```bash
+sickle pe -f data/tara_reads_R1.fastq.gz -r data/tara_reads_R2.fastq.gz -t sanger \
+    -o results/tara_trimmed_R1.fastq -p results/tara_trimmed_R2.fastq -s /dev/null
 ```
 
 ::: {.callout-tip title="Question" icon=false}
@@ -63,11 +81,11 @@ How many reads were trimmed?
 
 Megahit will be used for the assembly.
 
-```
-megahit -1 tara_trimmed_R1.fastq -2 tara_trimmed_R2.fastq -o tara_assembly
+```bash
+megahit -1 results/tara_trimmed_R1.fastq -2 results/tara_trimmed_R2.fastq -o results/tara_assembly
 ```
 
-the resulting assembly can be found under `tara_assembly/final.contigs.fa`.
+the resulting assembly can be found under `results/tara_assembly/final.contigs.fa`.
 
 ::: {.callout-tip title="Question" icon=false}
 How many contigs does this assembly contain?
@@ -79,22 +97,23 @@ First we need to map the reads back against the assembly to get coverage informa
 We map the trimmed reads, the same reads that were used for the assembly. The mapping takes about 4 minutes.
 
 ```bash
-ln -s tara_assembly/final.contigs.fa .
-bowtie2-build final.contigs.fa final.contigs
-bowtie2 -p 2 -x final.contigs -1 tara_trimmed_R1.fastq -2 tara_trimmed_R2.fastq | \
-    samtools view -bS -o tara_to_sort.bam
-samtools sort tara_to_sort.bam -o tara.bam
-samtools index tara.bam
+bowtie2-build results/tara_assembly/final.contigs.fa results/final.contigs
+bowtie2 -p 2 -x results/final.contigs \
+    -1 results/tara_trimmed_R1.fastq -2 results/tara_trimmed_R2.fastq | \
+    samtools view -bS -o results/tara_to_sort.bam
+samtools sort results/tara_to_sort.bam -o results/tara.bam
+samtools index results/tara.bam
 ```
 
 then we run metabat
 
 ```bash
-runMetaBat.sh -m 1500 final.contigs.fa tara.bam
-mv final.contigs.fa.metabat-bins* metabat
+runMetaBat.sh -m 1500 results/tara_assembly/final.contigs.fa results/tara.bam
+mv final.contigs.fa.metabat-bins* results/metabat
+mv final.contigs.fa.depth.txt results/
 ```
 
-MetaBAT 2 writes the bins in a folder whose name ends with the date and time of the run. The `mv` command renames it to `metabat`. Each bin is one FASTA file, `bin.1.fa`, `bin.2.fa`, and so on.
+MetaBAT 2 writes its output in the current folder: a table with the coverage of each contig (`final.contigs.fa.depth.txt`) and a folder of bins, whose name ends with the date and time of the run. The two `mv` commands put them in `results/`, and rename the folder of bins to `metabat`. Each bin is one FASTA file, `bin.1.fa`, `bin.2.fa`, and so on.
 
 ::: {.callout-tip title="Question" icon=false}
 How many bins did we obtain?
@@ -125,7 +144,7 @@ Open a **second terminal** and activate the CheckM environment:
 ```bash
 cd ~/mag2026/Metagenomics_course
 pixi shell -e checkm1
-cd ~/results
+cd ~/mag2026/d2
 ```
 
 The first time you run `checkm` you have to get its reference data (289 MB; ask your teacher for the drive copy) and tell CheckM where they are:
@@ -139,24 +158,24 @@ md5sum checkm_data_2015_01_16.tar.gz
 tar -xzf checkm_data_2015_01_16.tar.gz
 rm checkm_data_2015_01_16.tar.gz
 checkm data setRoot ~/mag2026/databases/checkm_data
-cd ~/results
+cd ~/mag2026/d2
 ```
 
 Now run CheckM on the folder of bins (about 5 minutes):
 
 ```bash
-checkm lineage_wf -t 2 --gplace_max_memory 2G -x fa metabat checkm/
-checkm qa checkm/lineage.ms checkm --tab_table -f checkm.tsv
+checkm lineage_wf -t 2 --gplace_max_memory 2G -x fa results/metabat results/checkm
+checkm qa results/checkm/lineage.ms results/checkm --tab_table -f results/checkm.tsv
 ```
 
 ::: {.callout-note}
 `--gplace_max_memory 2G` limits the memory of the step that places the bins in the reference tree. Without this limit, CheckM needs far more memory than a laptop has and is stopped by the system ("Killed").
 :::
 
-The result is the table `checkm.tsv`. Columns 12 and 13 are the completeness and the contamination:
+The result is the table `results/checkm.tsv`. Columns 12 and 13 are the completeness and the contamination:
 
 ```bash
-cut -f1,12,13 checkm.tsv
+cut -f1,12,13 results/checkm.tsv
 ```
 
 The other columns give the lineage that CheckM chose for the bin, and how many marker genes were found 0, 1, 2 or more times.
@@ -168,7 +187,7 @@ In the same second terminal, leave the CheckM environment and activate the Check
 ```bash
 exit
 pixi shell -e checkm2
-cd ~/results
+cd ~/mag2026/d2
 ```
 
 The first time, get the CheckM2 database (1.7 GB to download, 2.9 GB on disk; ask your teacher for the drive copy):
@@ -180,13 +199,14 @@ curl -L -o checkm2_database.tar.gz "https://zenodo.org/records/14897628/files/ch
 md5sum checkm2_database.tar.gz
 tar -xzf checkm2_database.tar.gz
 rm checkm2_database.tar.gz
-cd ~/results
+cd ~/mag2026/d2
 ```
 
 Run CheckM2 on the same bins (about 8 minutes):
 
 ```bash
-checkm2 predict --lowmem --threads 2 -x fa --input metabat --output-directory checkm2 \
+checkm2 predict --lowmem --threads 2 -x fa \
+    --input results/metabat --output-directory results/checkm2 \
     --database_path ~/mag2026/databases/CheckM2_database/uniref100.KO.1.dmnd
 ```
 
@@ -194,10 +214,10 @@ checkm2 predict --lowmem --threads 2 -x fa --input metabat --output-directory ch
 `--lowmem` makes CheckM2 use less memory, at the price of a longer run. Without it, CheckM2 does not fit in 6 GB.
 :::
 
-The result is the table `checkm2/quality_report.tsv`. Its first three columns are the name of the bin, the completeness and the contamination:
+The result is the table `results/checkm2/quality_report.tsv`. Its first three columns are the name of the bin, the completeness and the contamination:
 
 ```bash
-cut -f1-3 checkm2/quality_report.tsv
+cut -f1-3 results/checkm2/quality_report.tsv
 ```
 
 ### Compare the two tools
@@ -236,7 +256,7 @@ Our reads were simulated from 10 known genomes, and the name of each read still 
 Tell your teacher. There are two other ways to get the results:
 
 1. **Result files.** The teacher gives you `checkm.tsv` and `quality_report.tsv`, computed on the same data. Use them for the comparison.
-2. **Galaxy.** Upload your 10 bin files (`metabat/bin.*.fa`, 20 MB) to [usegalaxy.eu](https://usegalaxy.eu), make a collection of them, and run the tools "CheckM lineage_wf" and "CheckM2" on it.
+2. **Galaxy.** Upload your 10 bin files (`results/metabat/bin.*.fa`, 20 MB) to [usegalaxy.eu](https://usegalaxy.eu), make a collection of them, and run the tools "CheckM lineage_wf" and "CheckM2" on it.
 :::
 
 When you have finished, close the second terminal, or type `exit` to leave the environment.
@@ -252,7 +272,7 @@ Prokka is in its own environment. Open a second terminal (or reuse the one of Ch
 ```bash
 cd ~/mag2026/Metagenomics_course
 pixi shell -e prokka
-cd ~/results
+cd ~/mag2026/d2
 ```
 
 On a Mac with Apple Silicon, this environment runs through Rosetta: see [Setup](../setup.qmd).
@@ -260,10 +280,10 @@ On a Mac with Apple Silicon, this environment runs through Rosetta: see [Setup](
 Choose one bin, for example a bin with a high completeness and a low contamination, and annotate it (about 3 minutes; replace `bin.1` and `bin1` by your choice):
 
 ```bash
-prokka --cpus 2 --outdir prokka_bin1 --prefix bin1 metabat/bin.1.fa
+prokka --cpus 2 --outdir results/prokka_bin1 --prefix bin1 results/metabat/bin.1.fa
 ```
 
-Prokka produces a number of output files in the folder `prokka_bin1`, which mostly represent the same thing in different formats:
+Prokka produces a number of output files in the folder `results/prokka_bin1`, which mostly represent the same thing in different formats:
 
 | File | Content |
 |---|---|
@@ -276,8 +296,8 @@ Prokka produces a number of output files in the folder `prokka_bin1`, which most
 Prokka also renames all the sequences with nicer IDs.
 
 ```bash
-cat prokka_bin1/bin1.txt
-grep -c "hypothetical protein" prokka_bin1/bin1.faa
+cat results/prokka_bin1/bin1.txt
+grep -c "hypothetical protein" results/prokka_bin1/bin1.faa
 ```
 
 ::: {.callout-tip title="Question" icon=false}
@@ -342,15 +362,15 @@ ls $SOURMASH_DB
 sourmash is in the main environment (the first terminal). For each bin we make a sketch (`sourmash sketch`), then search the genomes of the database that best explain it (`sourmash gather`). This takes about 1 minute per bin.
 
 ```bash
-cd ~/results
-mkdir -p sourmash
-for i in metabat/bin.*.fa
+cd ~/mag2026/d2
+mkdir -p results/sourmash
+for i in results/metabat/bin.*.fa
 do
     name=$(basename $i .fa)
     echo $name
-    sourmash sketch dna -p k=31,scaled=10000 --name $name $i -o sourmash/${name}.sig
-    sourmash gather sourmash/${name}.sig $SOURMASH_DB/gtdb-reps-rs226-k31.s10k.zip \
-        -o sourmash/${name}.gather.csv
+    sourmash sketch dna -p k=31,scaled=10000 --name $name $i -o results/sourmash/${name}.sig
+    sourmash gather results/sourmash/${name}.sig $SOURMASH_DB/gtdb-reps-rs226-k31.s10k.zip \
+        -o results/sourmash/${name}.gather.csv
 done
 ```
 
@@ -361,9 +381,9 @@ For each bin, `gather` prints the genomes it found and which part of the bin the
 `sourmash tax genome` reads the matches and the taxonomy file, and gives one classification per bin:
 
 ```bash
-sourmash tax genome -g sourmash/*.gather.csv -t $SOURMASH_DB/gtdb-rs226.lineages.csv \
-    -o sourmash/bins --output-format csv_summary human
-cat sourmash/bins.human.txt
+sourmash tax genome -g results/sourmash/*.gather.csv -t $SOURMASH_DB/gtdb-rs226.lineages.csv \
+    -o results/sourmash/bins --output-format csv_summary human
+cat results/sourmash/bins.human.txt
 ```
 
 The lineage is written with the GTDB prefixes: `d__` domain, `p__` phylum, `c__` class, `o__` order, `f__` family, `g__` genus, `s__` species.

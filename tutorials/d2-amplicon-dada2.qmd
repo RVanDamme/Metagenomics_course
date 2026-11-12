@@ -49,7 +49,13 @@ packageVersion('dada2')
 
 You will also need to download the data, as well as the SILVA database.
 The downloads are done from R, so this works the same way on Windows, macOS and Linux.
-The files are saved in your current working directory (check it with `getwd()`).
+The files are saved in the working directory of R. Keep the work of this tutorial in one folder, as for the other tutorials:
+
+1. Create a folder for this tutorial, for example `mag2026/d2_amplicon` in your Documents.
+2. If you use the notebook: save it in this folder and open it from there. R then works in this folder.
+3. If you copy and paste the code: in RStudio, choose this folder with the menu Session, Set Working Directory, Choose Directory.
+
+Check where R works with `getwd()`.
 
 ```{r download}
 # large files: allow up to 10 minutes per download
