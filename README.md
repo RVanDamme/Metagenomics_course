@@ -33,3 +33,7 @@ quarto preview
 Push to `main`. GitHub Actions renders the site and publishes it to the `gh-pages` branch.
 One-time setup: in the repository settings, under Pages, choose "Deploy from a branch", branch `gh-pages`,
 folder `/ (root)`.
+
+## Licence
+
+Text and slides: CC BY 4.0 (`LICENSE`). Code: MIT (`LICENSE-code`). Credits and data sources: `ATTRIBUTION.md`.

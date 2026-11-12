@@ -121,13 +121,13 @@ Which bins should we keep for downstream analysis?
 
 ## Functional annotation
 
-Now we should have a collection of MAGs that we can further analyze. The first step is to predict genes as right now we only have raw genomic sequences. We will use one of my all-time-favorites : prokka.
+Now we should have a collection of MAGs that we can further analyze. The first step is to predict genes as right now we only have raw genomic sequences. We will use Prokka, a widely used annotation tool for prokaryotic genomes.
 
 This tool does gene prediction as well as some decent and useful annotations, and is actually quite easy to run!
 
 Prokka produces a number of output files that all kinds of represent similar things. Mostly variants of FASTA-files, one with the genome again, one with the predicted proteins, one with the genes of the predicted proteins. Also, it renames all the sequences with nicer IDs! Additionally, a very useful file generated is a GFF-file, which gives more information about the annotations than just the names you can see in the FASTA-files.
 
-The annotations of prokka are good but not very complete for environmental bacteria. Let’s run an other tool I like a lot, eggNOGmapper. This is a bit heavier in computation.
+The annotations of prokka are good but not very complete for environmental bacteria. A second tool, eggNOG-mapper, gives a more complete functional annotation. This is a bit heavier in computation.
 
     Install eggNOG-mapper run it on at least one MAG (don’t be greedy, it is not fast!) OPTIONAL : undestand the output of it …
 
@@ -135,7 +135,7 @@ The annotations of prokka are good but not very complete for environmental bacte
 
 We now know more about the genes your MAG contains, however we do not really know who we have?! checkm might have given us an indication but it is only approximative.
 
-Taxonomic classification for full genomes is not always easy for MAGs, often the 16S gene is missing as it assembles badly, and which other genes to use to for taxonomy is not always evident. Typically marker genes, min-hashes or k-mer databases are used as reference. It is often problematic for environmental data as the databases are not biased into our direction! We will use a min-hash database I compiled specifically for this (based on other tools and the full-datasets) using a tool called [sourmash](https://sourmash.readthedocs.io/en/latest/)
+Taxonomic classification for full genomes is not always easy for MAGs, often the 16S gene is missing as it assembles badly, and which other genes to use to for taxonomy is not always evident. Typically marker genes, min-hashes or k-mer databases are used as reference. It is often problematic for environmental data as the databases are not biased into our direction! We will use a min-hash database of the GTDB representative genomes with a tool called [sourmash](https://sourmash.readthedocs.io/en/latest/)
 
     Install sourmash in your computer! 
     
@@ -164,3 +164,9 @@ Links to an external site.. The GTDB database is also used by the tool gtdbtk, i
 
 * [Recovery of nearly 8,000 metagenome-assembled genomes substantially expands the tree of life](https://www.nature.com/articles/s41564-017-0012-7)
 * [The reconstruction of 2,631 draft metagenome-assembled genomes from the global oceans](https://www.nature.com/articles/sdata2017203)
+
+::: {.callout-note title="Credits"}
+This tutorial is shared teaching material, co-developed with Hadrien Gourlé. It started from his tutorial [Metagenome assembly and binning](https://github.com/HadrienG/tutorials/blob/master/docs/meta_assembly.md). See [Licence and credits](../ATTRIBUTION.md).
+:::
+
+The functional and taxonomic annotation parts were written by Renaud Van Damme and Hadrien Gourlé.

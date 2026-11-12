@@ -5,6 +5,7 @@ project:
     - index.qmd
     - slides.qmd
     - tutorials/*.qmd
+    - ATTRIBUTION.md
   resources:
     - slides/*.pdf
 
@@ -29,6 +30,8 @@ website:
     tools:
       - icon: github
         href: https://github.com/RVanDamme/Metagenomics_course
+  page-footer:
+    center: "Text and slides: CC BY 4.0. Code: MIT. [Licence and credits](/ATTRIBUTION.md)"
 
 format:
   html:

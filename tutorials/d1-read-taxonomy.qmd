@@ -159,3 +159,7 @@ Try to use Pavian to look at this data a bit!!
 ## Functional Classification
 
 You can use the humann2 pipeline for functional classification
+
+::: {.callout-note title="Credits"}
+This tutorial is shared teaching material, co-developed with Hadrien Gourlé. It started from his tutorial [Whole Metagenome Sequencing](https://github.com/HadrienG/tutorials/blob/master/docs/wms.md). See [Licence and credits](../ATTRIBUTION.md).
+:::

@@ -345,3 +345,7 @@ bacteroidetes <- subset_taxa(physeq, Phylum %in% c('Bacteroidetes'))
 plot_tree(bacteroidetes, ladderize='left', size='abundance',
           color='when', label.tips='Family')
 ```
+
+::: {.callout-note title="Credits"}
+This tutorial is shared teaching material, co-developed with Hadrien Gourlé. It started from his tutorial [Metabarcoding](https://github.com/HadrienG/tutorials/blob/master/docs/16S.md). See [Licence and credits](../ATTRIBUTION.md).
+:::
