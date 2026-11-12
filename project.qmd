@@ -1,0 +1,50 @@
+---
+title: "Project"
+---
+
+From the afternoon of Day 3, you work on an individual project. On Day 5 you present it.
+
+## Grade breakdown
+
+* 40% Active participation
+* 20% Project report
+* 40% Pre-Project presentation and discussion
+
+## The project
+
+### Instructions
+
+Find a tool, pipeline, or analysis method of metagenomics that has not been seen during the course and test and evaluate it.
+You must explain how it works, how you found it, and its use in metagenomics studies.
+You can compare it to a similar tool/method seen during the course.
+
+You are tasked to have a report of at least two pages (not counting graphics, pictures, and tables).
+Additional points will be provided if your work is easily reproducible (scripts, command list, and workflows provided in addition to the report).
+
+### Project grade breakdown
+
+* 10% originality
+* 20% Reasoning and Explanation of what it should do
+* 30% execution and testing
+* 20% analysis of the results
+* 20% comparison to existing methods
+
+## Presentation plan
+You will present your individual project and a summary of the course.
+
+**15 minutes** of group presentation where you summarise the principles and methods of metagenomics.
+
+**15 minutes** of individual presentation where you expose your work:
+
+* Methods selected and Why
+  
+* Results
+  
+* Discussion (comparison with a method seen during the course)
+
+## Use of AI tools
+
+- **Tutorials:** not allowed. You follow the instructions and think about the questions yourself.
+- **Written report:** not allowed. The report is written by you.
+- **Project work:** allowed as a support, not to do the work for you.
+- **Presentation:** made by you. You may use AI to generate images.

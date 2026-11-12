@@ -14,8 +14,8 @@ The methods are the same; the numbers are not.
 
 ## Before the first Galaxy practical
 
-1. Create an account on [usegalaxy.eu](https://usegalaxy.eu) and confirm your e-mail address (see the [home page](index.qmd)).
-2. Join the training group of the course with the link given on the [home page](index.qmd).
+1. Create an account on [usegalaxy.eu](https://usegalaxy.eu) and confirm your e-mail address (see [Setup](setup.qmd#galaxy-account)).
+2. Join the training group of the course with the link given on the [Setup](setup.qmd#galaxy-account) page.
 3. Follow the [short introduction to Galaxy](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html).
 
 ## Which tutorial for which practical

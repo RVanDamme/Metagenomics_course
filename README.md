@@ -11,7 +11,8 @@ The site is a [Quarto](https://quarto.org) website.
 
 | Path | Content |
 |---|---|
-| `index.qmd` | home page |
+| `index.qmd` | home page: overview, schedule, AI policy, bibliography |
+| `project.qmd` | the project, the presentations and the grades |
 | `tutorials/` | the local tutorials, one page per practical |
 | `slides.qmd`, `slides/` | the Slides page and the PDF files it links to |
 | `setup.qmd` | how students install the tools |

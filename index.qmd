@@ -2,99 +2,46 @@
 title: "Introduction to Metagenomics"
 ---
 
-## Introduction
+A one-week course on the analysis of microbial communities by sequencing: amplicon sequencing, shotgun
+metagenomics (read-based, and with assembly and binning), long reads and metatranscriptomics.
 
-[https://usegalaxy.eu/join-training/heh-mag2025](https://usegalaxy.eu/join-training/heh-mag2025/)
+The week has lectures and practicals for two and a half days, then an individual project.
+Each practical exists in two forms: a **local tutorial** on your laptop, and a **Galaxy tutorial** on
+[usegalaxy.eu](https://usegalaxy.eu). The whole class follows the same one; the teacher says which.
 
-1. Introduction to Galaxy [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html) 
-2. Introduction to Metagenomics and environmental studies [Slides 1](slides/intro_to_metagenomics.pdf) [Slides 2](https://training.galaxyproject.org/training-material/topics/microbiome/slides/introduction.html#1)
-3. [The global presentation](slides/Metagenomics_global_RVanDamme.pdf)
-4. Muffin A nextflow Genomic Workflow [Slides](slides/MUFFIN_genomic_workflow.pdf)
+## Start here
 
-### Additional Introductions:
+1. [Setup](setup.qmd): install the tools on your laptop and create your Galaxy account. We do this together on Day 1.
+2. [Tutorials](#the-week): one page per practical.
+3. [Galaxy route](galaxy.qmd): the Galaxy tutorial that goes with each practical.
+4. [Slides](slides.qmd): the lectures.
+5. [Project](project.qmd): the project, the presentations and the grades.
 
-* Link to all [Galaxy microbiome tutorials](https://training.galaxyproject.org/training-material/topics/microbiome/)
-* Ancient DNA and metagenomics [Slides](slides/Ancient_metagenomics.pdf)
+## The week {#the-week}
 
-## Shotgun metagenomics (assembly free)
+Every day from 9:00 to 17:15, with breaks at 10:15–10:30, 12:30–13:30 (lunch) and 15:00–15:15.
 
-[Slides](slides/shotgun_metagenomics.pdf)
+| When | Lectures | Practical |
+|---|---|---|
+| Day 1, morning | Welcome and a hands-on activity; Introduction to Galaxy; Introduction to metagenomics; Shotgun metagenomics I (assembly-free) | [Setup](setup.qmd) |
+| Day 1, afternoon | | [Read-based taxonomy](tutorials/d1-read-taxonomy.qmd) |
+| Day 2, morning | Discussion of Day 1; Shotgun metagenomics II (assembly and binning) | [Assembly and binning](tutorials/d2-assembly-binning.qmd) |
+| Day 2, afternoon | Amplicon sequencing | Amplicon sequencing: mothur on Galaxy, then [DADA2](tutorials/d2-amplicon-dada2.qmd) |
+| Day 3, morning | Metatranscriptomics; Ancient DNA; MUFFIN and hybrid workflows | Metatranscriptomics or Nanopore 16S, on Galaxy |
+| Day 3, afternoon | | [Project](project.qmd) |
+| Day 4 | The global presentation: summary of the week (morning) | Project |
+| Day 5 | Discussion (morning); presentations (early afternoon); course evaluation (late afternoon) | Project (morning) |
 
-Assembly-free method, [Practical 4h](tutorials/d1-read-taxonomy.qmd)
+The Galaxy tutorial of each practical is on the [Galaxy route](galaxy.qmd) page. The slides of each lecture are on the [Slides](slides.qmd) page.
 
-### Galaxy alternative
-[Taxonomic Profiling and Visualization of Metagenomic Data 2h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/taxonomic-profiling/tutorial.html)
+## Use of AI tools
 
-Extra, if time allows: [Identification of the micro-organisms in a beer using Nanopore sequencing 1h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/beer-data-analysis/tutorial.html)
+- **Tutorials:** not allowed. You follow the instructions and think about the questions yourself.
+- **Written report:** not allowed. The report is written by you.
+- **Project work:** allowed as a support, not to do the work for you.
+- **Presentation:** made by you. You may use AI to generate images.
 
-## Shotgun metagenomics (with assembly)
-
-Assembly and binning method, [Practical 4h](tutorials/d2-assembly-binning.qmd)
-
-### Galaxy alternative
-[Assembly of metagenomic sequencing data 2h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metagenomics-assembly/tutorial.html), then [Binning of metagenomic sequencing data 2h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metagenomics-binning/tutorial.html)
-
-## Amplicon sequencing 
-
-[Slides](slides/Metabarcoding.pdf)
-
-Main route (Galaxy, OTUs): [16S Microbial Analysis with mothur (short) 2h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/mothur-miseq-sop-short/tutorial.html)
-
-Then (Galaxy, ASVs): [Building an amplicon sequence variant (ASV) table from 16S data using DADA2 3h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/dada-16S/tutorial.html)
-
-### alternatives
-Local:
-[DADA2](tutorials/d2-amplicon-dada2.qmd)
-
-Extra, if time allows (Galaxy):
-[16S Microbial analysis with Nanopore data 2h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/nanopore-16S-metagenomics/tutorial.html)
-
-## Metatranscriptomics
-
-[Metatranscriptomics analysis using microbiome RNA-seq data (short) 3h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metatranscriptomics-short/tutorial.html)
-
-All the Galaxy tutorials of the course, and how they relate to the local tutorials, are on the [Galaxy route](galaxy.qmd) page.
-
-# Grade breakdown
-
-* 40% Active participation
-* 20% Project report
-* 40% Pre-Project presentation and discussion
-
-# Project 
-
-## instructions:
-
-Find a tool, pipeline, or analysis method of metagenomics that has not been seen during the course and test and evaluate it.
-You must explain how it works, how you found it, and its use in metagenomics studies.
-You can compare it to a similar tool/method seen during the course.
-
-You are tasked to have a report of at least two pages (not counting graphics, pictures, and tables).
-Additional points will be provided if your work is easily reproducible (scripts, command list, and workflows provided in addition to the report).
-
-## Project Grade breakdown
-
-* 10% originality
-* 20% Reasoning and Explanation of what it should do
-* 30% execution and testing
-* 20% analysis of the results
-* 20% comparison to existing methods
-
-## Presentation Plan 
-You will present your individual project and a summary of the course.
-
-**15 minutes** of group presentation where you summarise the principles and methods of metagenomics.
-
-**15 minutes** of individual presentation where you expose your work:
-
-* Methods selected and Why
-  
-* Results
-  
-* Discussion (comparison with a method seen during the course)
-
-
-# Bibliography and ressources
+## Bibliography and resources
 
 Core Papers: 
 
@@ -131,32 +78,3 @@ Tools:
 * Flye: [https://github.com/fenderglass/Flye](https://github.com/fenderglass/Flye) & [https://www.nature.com/articles/s41592-020-00971-x](https://www.nature.com/articles/s41592-020-00971-x)
 
 * Kraken2: [https://github.com/DerrickWood/kraken2](https://github.com/DerrickWood/kraken2) & [https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0)
-
-# Galaxy
-
-## Galaxy set up
-
-1. Register to [usegalaxy.eu](http://usegalaxy.eu/).
-
-![Galaxy1](figures/Galaxy1.png)
-
-![Galaxy2](figures/Galaxy2.png)
-
-![Galaxy3](figures/Galaxy3.png)
-
-2. Click the verification link you will receive by email.
-
-3. Go to this [https://usegalaxy.eu/join-training/heh-mag2025/](https://usegalaxy.eu/join-training/heh-mag2025/) to join our training session. 
-It should say you successfully registered in heh-mag2025
-
-![Galaxy4](figures/Galaxy4.png)
-
-## Galaxy introduction
-
-Slides [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/slides.html#1)
-
-We will follow this [tutorial](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html)
-
-# Local setup
-
-The local tutorials need a set of tools, installed with Pixi. Follow the [Setup](setup.qmd) page.

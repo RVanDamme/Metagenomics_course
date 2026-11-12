@@ -83,7 +83,7 @@ pixi --version
 
 ## 2. Get the course folder
 
-All the course work goes in one folder, `~/mag2026`, inside your home (`~`).
+The course folder, the databases and your Day 1 work go in one folder, `~/mag2026`, inside your home (`~`).
 
 ```bash
 mkdir -p ~/mag2026
@@ -175,6 +175,29 @@ On a Mac with an Intel processor you do not need Rosetta: the same environments 
 ::: {.callout-note}
 Linux and Windows (WSL) users have nothing to do here: Prokka and Bracken are installed with the other tools.
 :::
+
+## Galaxy account
+
+1. Register to [usegalaxy.eu](http://usegalaxy.eu/).
+
+![Galaxy1](figures/Galaxy1.png)
+
+![Galaxy2](figures/Galaxy2.png)
+
+![Galaxy3](figures/Galaxy3.png)
+
+2. Click the verification link you will receive by email.
+
+3. Go to this [https://usegalaxy.eu/join-training/heh-mag2025/](https://usegalaxy.eu/join-training/heh-mag2025/) to join our training session. 
+It should say you successfully registered in heh-mag2025
+
+![Galaxy4](figures/Galaxy4.png)
+
+### Introduction to Galaxy
+
+Slides [here](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/slides.html#1)
+
+We will follow this [tutorial](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html)
 
 ## R and RStudio
 

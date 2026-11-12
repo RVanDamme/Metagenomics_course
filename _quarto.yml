@@ -5,6 +5,7 @@ project:
     - index.qmd
     - setup.qmd
     - galaxy.qmd
+    - project.qmd
     - slides.qmd
     - tutorials/*.qmd
     - ATTRIBUTION.md
@@ -36,6 +37,8 @@ website:
         href: data/README.md
       - text: Slides
         href: slides.qmd
+      - text: Project
+        href: project.qmd
     tools:
       - icon: github
         href: https://github.com/RVanDamme/Metagenomics_course
