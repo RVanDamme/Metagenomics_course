@@ -234,6 +234,36 @@ head(track)
 
 We kept the majority of our reads!
 
+## Check the Result with the Mock Community
+
+One of the samples, `Mock`, is not a mouse sample. It is a **mock community**: a mix of about 20 known bacterial strains, prepared in the laboratory and sequenced together with the real samples. We know what it contains, so we can check what our analysis does.
+
+The file `HMP_MOCK.v35.fasta` of the data folder contains the true sequences of these strains.
+
+```{r mock_check}
+# the sequence variants found in the Mock sample
+mock_asvs <- seq_table_nochim['Mock', ]
+mock_asvs <- sort(mock_asvs[mock_asvs > 0], decreasing=TRUE)
+length(mock_asvs)
+
+# how many of them are exactly identical to a true sequence?
+mock_ref <- getSequences(file.path(path, 'HMP_MOCK.v35.fasta'))
+is_exact <- sapply(names(mock_asvs),
+                   function(x) any(grepl(x, mock_ref, fixed=TRUE)))
+sum(is_exact)
+
+# how many reads are in sequence variants that match no true sequence?
+sum(mock_asvs[!is_exact])
+```
+
+::: {.callout-tip title="Question" icon=false}
+How many sequence variants did DADA2 find in the mock community? How many are exact matches to a true sequence? What does this tell you about the errors that remain after the whole analysis?
+:::
+
+::: {.callout-tip title="Question" icon=false}
+A mock community can show two kinds of problems: sequences that should not be there, and strains that are missing. Which of the two did we check here? How would you check the other one?
+:::
+
 ## Assign Taxonomy
 
 Now we assign taxonomy to our sequences using the [SILVA](https://www.arb-silva.de) database, release 138.2.
@@ -305,7 +335,7 @@ physeq <- phyloseq(otu_table(seq_table_nochim, taxa_are_rows=FALSE),
                    sample_data(sample_data),
                    tax_table(taxa),
                    phy_tree(fitGTR$tree))
-# remove mock sample
+# remove the mock sample: we have used it above, it is not part of the mouse experiment
 physeq <- prune_samples(sample_names(physeq) != 'Mock', physeq)
 physeq
 ```
