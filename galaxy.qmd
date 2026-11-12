@@ -32,6 +32,18 @@ The methods are the same; the numbers are not.
 
 On Day 3 we do either the metatranscriptomics tutorial or the Nanopore 16S tutorial (below). The other one is for self-study.
 
+::: {.callout-warning title="Metatranscriptomics tutorial: two tool versions differ on usegalaxy.eu"}
+When you run a GTN tutorial, Galaxy offers the tool versions that the tutorial was written with.
+On 12 November 2026, two tools of the metatranscriptomics tutorial were not installed on usegalaxy.eu in that exact version:
+
+| The tutorial asks for | Use instead on usegalaxy.eu |
+|---|---|
+| HUMAnN "Regroup" table tool, version 3.9 | the same tool, version 3.8 |
+| "Combine MetaPhlAn2 and HUMAnN2 outputs", version 0.2.0 | "Combine MetaPhlAn and HUMAnN outputs", version 0.3.0 |
+
+If Galaxy says that a tool or a version is missing, search the tool by its name in the tool panel and use the version that is installed. Write down the version you used.
+:::
+
 ## Extra tutorials (if time allows, or for self-study)
 
 | Topic | Galaxy tutorial (GTN) | GTN time | Why it is interesting |
