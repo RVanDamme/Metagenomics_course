@@ -536,6 +536,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://farm.cse.ucdavis.edu/~ctbrown/sourmash-db.new/gtdb-rs226/gtdb-reps-rs226-k31.dna.zip</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sourmash</span> sig downsample <span class="at">--scaled</span> 10000 gtdb-reps-rs226-k31.dna.zip <span class="at">-o</span> gtdb-reps-rs226-k31.s10k.zip</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Limits.</strong> A sketch this small is made for whole genomes and bins of 1 Mb or more. Do not use it for short contigs or for reads.</p>
+<p><strong>Licence.</strong> The two files can be copied and shared, with credit.</p>
+<ul>
+<li>The taxonomy comes from GTDB, which is under the <a href="https://gtdb.ecogenomic.org/licenses">Creative Commons Attribution-ShareAlike 4.0 licence</a> (CC BY-SA 4.0): you may copy and adapt it if you give credit, link to the licence, say what you changed, and share your version under the same licence.</li>
+<li>The sketches were computed by the sourmash team and are marked CC0 (no restriction) inside the file.</li>
+<li>So the course file is shared under <strong>CC BY-SA 4.0</strong>. Credit: “GTDB release 226 (Parks et al., <a href="https://gtdb.ecogenomic.org" class="uri">https://gtdb.ecogenomic.org</a>); sketches from the sourmash project (<a href="https://sourmash.readthedocs.io" class="uri">https://sourmash.readthedocs.io</a>); reduced to scaled = 10000 for the course Introduction to Metagenomics”.</li>
+</ul>
 </section>
 </section>
 <section id="day-2-amplicon-sequencing-dada2" class="level2">
