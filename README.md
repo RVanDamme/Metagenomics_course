@@ -17,6 +17,7 @@ The site is a [Quarto](https://quarto.org) website.
 | `setup.qmd` | how students install the tools |
 | `pixi.toml`, `pixi.lock` | the tools of the local tutorials, with fixed versions for Linux and macOS |
 | `scripts/check_setup.sh` | setup check, run with `pixi run check` |
+| `galaxy.qmd` | which Galaxy (GTN) tutorial goes with which practical |
 | `data/README.md` | every download of the tutorials, with size and md5 checksum |
 | `figures/` | images used by the pages |
 | `_quarto.yml` | site configuration (menu, theme) |

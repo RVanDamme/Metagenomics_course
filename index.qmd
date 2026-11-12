@@ -23,31 +23,37 @@ title: "Introduction to Metagenomics"
 Assembly-free method, [Practical 4h](tutorials/d1-read-taxonomy.qmd)
 
 ### Galaxy alternative
-[Identification of the micro-organisms in a beer using Nanopore sequencing 1-1,5h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/beer-data-analysis/tutorial.html#assign-taxonomic-classification)
+[Taxonomic Profiling and Visualization of Metagenomic Data 2h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/taxonomic-profiling/tutorial.html)
+
+Extra, if time allows: [Identification of the micro-organisms in a beer using Nanopore sequencing 1h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/beer-data-analysis/tutorial.html)
 
 ## Shotgun metagenomics (with assembly)
 
 Assembly and binning method, [Practical 4h](tutorials/d2-assembly-binning.qmd)
 
 ### Galaxy alternative
-[Assembly of metagenomic sequencing data 2-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/metagenomics-assembly/tutorial.html#visualization-of-the-de-novo-assembly-graph)
+[Assembly of metagenomic sequencing data 2h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metagenomics-assembly/tutorial.html), then [Binning of metagenomic sequencing data 2h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metagenomics-binning/tutorial.html)
 
 ## Amplicon sequencing 
 
 [Slides](slides/Metabarcoding.pdf)
 
-[16S Microbial Analysis with mothur (short) 2-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/mothur-miseq-sop-short/tutorial.html#optional-calculate-error-rates-based-on-our-mock-community)
+Main route (Galaxy, OTUs): [16S Microbial Analysis with mothur (short) 2h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/mothur-miseq-sop-short/tutorial.html)
+
+Then (Galaxy, ASVs): [Building an amplicon sequence variant (ASV) table from 16S data using DADA2 3h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/dada-16S/tutorial.html)
 
 ### alternatives
-Galaxy:
-[16S Microbial analysis with Nanopore data 2-3h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/nanopore-16S-metagenomics/tutorial.html)
-
 Local:
 [DADA2](tutorials/d2-amplicon-dada2.qmd)
 
+Extra, if time allows (Galaxy):
+[16S Microbial analysis with Nanopore data 2h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/nanopore-16S-metagenomics/tutorial.html)
+
 ## Metatranscriptomics
 
-[Metatranscriptomics analysis using microbiome RNA-seq data (short) 3-4h](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/metatranscriptomics-short/tutorial.html)
+[Metatranscriptomics analysis using microbiome RNA-seq data (short) 3h](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metatranscriptomics-short/tutorial.html)
+
+All the Galaxy tutorials of the course, and how they relate to the local tutorials, are on the [Galaxy route](galaxy.qmd) page.
 
 # Grade breakdown
 

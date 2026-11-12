@@ -1,0 +1,54 @@
+---
+title: "Galaxy route"
+---
+
+Each practical of the course can be done in two ways: on your laptop (the local tutorials of this site) or on
+[Galaxy](https://usegalaxy.eu), with tutorials of the [Galaxy Training Network](https://training.galaxyproject.org/training-material/topics/microbiome/) (GTN).
+
+**The whole class follows the same route.** For each practical, the teacher says which route we use.
+If we have to change route during a practical (for example because a server is slow), everybody changes together
+and we start the other route from its beginning.
+
+The Galaxy tutorials use **their own data**, not the data of the local tutorials, unless the table says "same data".
+The methods are the same; the numbers are not.
+
+## Before the first Galaxy practical
+
+1. Create an account on [usegalaxy.eu](https://usegalaxy.eu) and confirm your e-mail address (see the [home page](index.qmd)).
+2. Join the training group of the course with the link given on the [home page](index.qmd).
+3. Follow the [short introduction to Galaxy](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html).
+
+## Which tutorial for which practical
+
+| Day | Practical | Local tutorial | Galaxy tutorial (GTN) | GTN time | Data |
+|---|---|---|---|---|---|
+| 1 | Read-based taxonomy | [Day 1: read-based taxonomy](tutorials/d1-read-taxonomy.qmd) | [Taxonomic Profiling and Visualization of Metagenomic Data](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/taxonomic-profiling/tutorial.html) | 2 h | different (pond water, 2 samples) |
+| 1 | Host reads | section "Host reads" of the Day 1 tutorial | [Remove contamination and host reads](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/host-removal/tutorial.html) | 1 h | different (bee gut) |
+| 2 am | Assembly | [Day 2: assembly and binning](tutorials/d2-assembly-binning.qmd), first half | [Assembly of metagenomic sequencing data](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metagenomics-assembly/tutorial.html) | 2 h | different (coffee fermentation) |
+| 2 am | Binning and bin quality | same tutorial, second half | [Binning of metagenomic sequencing data](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metagenomics-binning/tutorial.html) | 2 h | different |
+| 2 pm | Amplicon, OTUs (**main route**) | none | [16S Microbial Analysis with mothur (short)](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/mothur-miseq-sop-short/tutorial.html) | 2 h | **same data** as DADA2 (MiSeq SOP) |
+| 2 pm | Amplicon, ASVs | [Day 2: amplicon sequencing with DADA2](tutorials/d2-amplicon-dada2.qmd) | [Building an amplicon sequence variant (ASV) table from 16S data using DADA2](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/dada-16S/tutorial.html) | 3 h | **same data** and same method |
+| 3 am | Metatranscriptomics | none | [Metatranscriptomics analysis using microbiome RNA-seq data (short)](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metatranscriptomics-short/tutorial.html) | 3 h | Galaxy only |
+
+On Day 3 we do either the metatranscriptomics tutorial or the Nanopore 16S tutorial (below). The other one is for self-study.
+
+## Extra tutorials (if time allows, or for self-study)
+
+| Topic | Galaxy tutorial (GTN) | GTN time | Why it is interesting |
+|---|---|---|---|
+| Nanopore, shotgun | [Identification of the micro-organisms in a beer using Nanopore sequencing](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/beer-data-analysis/tutorial.html) | 1 h | The same read classification as Day 1 (Kraken 2), on long reads. What changes with Nanopore data? |
+| Nanopore, 16S | [16S Microbial analysis with Nanopore data](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/nanopore-16S-metagenomics/tutorial.html) | 2 h | Full-length 16S reads classified with Kraken 2, instead of OTUs or ASVs |
+| Diversity | [Calculating α and β diversity from microbiome taxonomic data](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/diversity/tutorial.html) | 20 min | Follows the taxonomic profiling tutorial |
+
+## What differs between the two routes
+
+- **Databases.** A result depends on the reference database and on its version. The local Day 1 tutorial uses the
+  Kraken 2 database Standard-8 of October 2026. The Galaxy tutorial uses a larger database (PlusPF), and the
+  Standard-8 database on usegalaxy.eu dates from June 2022. Expect different numbers, and always write down the
+  database and its version.
+- **Tools.** The Galaxy binning tutorial uses several binners and refines their bins; the local tutorial uses one
+  binner (MetaBAT 2). The Galaxy DADA2 tutorial uses the SILVA version installed on Galaxy (132).
+- **Waiting time.** On Galaxy your jobs wait in a queue with the jobs of other users. Start the long jobs before a
+  break.
+
+The GTN tutorials are updated regularly. The links were checked on 12 November 2026.

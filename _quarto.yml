@@ -4,6 +4,7 @@ project:
   render:
     - index.qmd
     - setup.qmd
+    - galaxy.qmd
     - slides.qmd
     - tutorials/*.qmd
     - ATTRIBUTION.md
@@ -29,6 +30,8 @@ website:
             href: tutorials/d2-assembly-binning.qmd
           - text: "Day 2: amplicon sequencing (DADA2)"
             href: tutorials/d2-amplicon-dada2.qmd
+      - text: Galaxy route
+        href: galaxy.qmd
       - text: Data
         href: data/README.md
       - text: Slides
