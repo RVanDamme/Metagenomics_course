@@ -108,10 +108,24 @@ samtools index results/tara.bam
 then we run metabat
 
 ```bash
-runMetaBat.sh -m 1500 results/tara_assembly/final.contigs.fa results/tara.bam
+runMetaBat.sh -m 1500 --seed 1 results/tara_assembly/final.contigs.fa results/tara.bam
 mv final.contigs.fa.metabat-bins* results/metabat
 mv final.contigs.fa.depth.txt results/
 ```
+
+::: {.callout-note title="Why `--seed 1`?"}
+MetaBAT 2 makes some of its choices at random. Without a seed, two runs on exactly the same files give slightly different bins: a few contigs change bin, and the bins get other numbers. Your `bin.3` would not be the `bin.3` of your neighbour.
+The option `--seed` fixes the starting point of the random choices (any number works; we all use 1), so the same input gives the same bins every time.
+
+**In this course** we fix the seed so that everybody has the same bins, and we can discuss them together.
+
+**In a research project** the answer has two parts.
+
+* *Do* fix the seed and write it in your methods, with the version of the tool: without it, nobody can reproduce your bins exactly, not even you.
+* *Do not* believe that a fixed seed makes the bins more correct. It only hides the variation. To see it, run the binning a few times with different seeds: the bins that stay the same are robust, and the contigs that move from one bin to another are uncertain.
+
+And never try several seeds to keep the one that gives the result you prefer.
+:::
 
 MetaBAT 2 writes its output in the current folder: a table with the coverage of each contig (`final.contigs.fa.depth.txt`) and a folder of bins, whose name ends with the date and time of the run. The two `mv` commands put them in `results/`, and rename the folder of bins to `metabat`. Each bin is one FASTA file, `bin.1.fa`, `bin.2.fa`, and so on.
 
