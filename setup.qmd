@@ -90,6 +90,37 @@ cd ~/mag2026/Metagenomics_course
 pixi shell -e checkm1
 ```
 
+## macOS with Apple Silicon (M1 and later): Rosetta
+
+Two tools of the course have no version for Apple Silicon processors:
+
+- **Prokka** (environment `prokka`);
+- **Bracken** (environment `bracken-mac`).
+
+Both environments use the Intel version of the tools. macOS runs Intel programs through **Rosetta 2**.
+Install Rosetta once, **before** `pixi install --all`:
+
+```bash
+softwareupdate --install-rosetta --agree-to-license
+```
+
+After that, you use these environments like any other. Pixi sees that the environment exists only for Intel Macs
+and starts it through Rosetta:
+
+```bash
+cd ~/mag2026/Metagenomics_course
+pixi shell -e prokka
+```
+
+Inside this environment the command `uname -m` answers `x86_64` (Intel) instead of `arm64`. This is expected.
+Tools run a little slower under Rosetta than native tools.
+
+On a Mac with an Intel processor you do not need Rosetta: the same environments run directly.
+
+::: {.callout-note}
+Linux and Windows (WSL) users have nothing to do here: Prokka and Bracken are installed with the other tools.
+:::
+
 ## R and RStudio
 
 The amplicon tutorial (DADA2) runs in [RStudio](https://posit.co/download/rstudio-desktop/), installed on your own
