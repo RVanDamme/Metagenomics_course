@@ -21,19 +21,20 @@ There are two ways to follow this tutorial in RStudio:
 
 ## Install and Load Packages
 
-First install DADA2 and other necessary packages (line by line)
+This tutorial runs in RStudio, with **R 4.5 or newer**. Check your version with `R.version.string`.
+
+First install DADA2 and the other packages. Run the lines one by one. The installation takes several minutes. If R asks "Update all/some/none?", answer `n` (none).
 
 ```{r install_pkg}
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-# BiocManager::install(c("dada2","phyloseq","DECIPHER"))
-# install.packages('ggplot2')
-# install.packages('phangorn')
-# BiocManager::install(c("GenomicRanges"))
-# BiocManager::install(c("DelayedArray"))
+BiocManager::install(c("dada2", "phyloseq", "DECIPHER"))
+install.packages(c("ggplot2", "phangorn"))
 ```
 
-Now load the packages and verify you have the correct DADA2 version
+`BiocManager` installs the version of DADA2 that belongs to your version of R: DADA2 1.38 with R 4.5, DADA2 1.40 with R 4.6. This tutorial was tested with DADA2 1.38.
+
+Now load the packages and look at your DADA2 version. Write it down: it is part of your methods
 
 ```{r load_pkg}
 library(dada2)
