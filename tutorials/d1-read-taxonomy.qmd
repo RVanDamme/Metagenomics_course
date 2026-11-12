@@ -38,8 +38,9 @@ The choice of shotgun or 16S approaches is usually dictated by the nature of the
 * [MultiQC](https://multiqc.info)
 * [Kraken 2](https://github.com/DerrickWood/kraken2)
 * [Bracken](https://github.com/jenniferlu717/Bracken)
-* [R](https://www.r-project.org/)
-* [Pavian](https://github.com/fbreitwieser/pavian)
+* [R](https://www.r-project.org/) (optional, for Pavian)
+* [Krona](https://github.com/marbl/Krona/wiki)
+* [Pavian](https://github.com/fbreitwieser/pavian) (optional)
 
 ### Prepare and organise your working directory
 
@@ -197,7 +198,7 @@ for i in results/*_tax.txt
 do
     prefix=$(basename $i _tax.txt)
     bracken -d $KRAKEN_DB -i results/${prefix}_tax.txt \
-        -o results/${prefix}.bracken -w results/${prefix}_bracken_tax.txt \
+        -o results/${prefix}.bracken -w results/${prefix}.bracken_report.txt \
         -r 100 -l S -t 10
 done
 ```
@@ -266,24 +267,48 @@ The database does not contain the pig genome. If a pig sample contained pig read
 To practise a real host removal, follow the Galaxy tutorial [Remove contamination and host reads](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/host-removal/tutorial.html) (about 1 hour).
 :::
 
-### Visualization with Pavian
+### Visualization
 
-Pavian is a web application for exploring metagenomics classification results.
+#### Krona
 
+[Krona](https://github.com/marbl/Krona/wiki) draws the taxonomy of a sample as an interactive wheel that you open in your web browser.
+We first convert each Kraken 2 report to the format of Krona, then make one page for the six samples:
+
+```bash
+mkdir -p results/krona
+for i in results/*_tax.txt
+do
+    prefix=$(basename $i _tax.txt)
+    kreport2krona.py -r $i -o results/krona/${prefix}.txt
+done
+ktImportText -o results/krona/krona.html results/krona/*.txt
+```
+
+Open `results/krona/krona.html` in your web browser. On Windows, you can open the current folder in the file explorer with `explorer.exe .` and then double-click the file.
+Choose a sample in the list at the top left. Click on a part of the wheel to zoom in.
+
+::: {.callout-tip title="Question" icon=false}
+Compare a pig sample and a human sample. Which groups are the largest in each? How large is the "Unclassified" part?
+:::
+
+#### Pavian (optional)
+
+[Pavian](https://github.com/fbreitwieser/pavian) is a web application for exploring metagenomics classification results. It compares several samples in one table and draws flow diagrams. It runs in R (RStudio).
 
 Install and run Pavian from R:
 
-
 ```R
-options(repos = c(CRAN = "http://cran.rstudio.com"))
+options(repos = c(CRAN = "https://cloud.r-project.org"))
 if (!require(remotes)) { install.packages("remotes") }
 remotes::install_github("fbreitwieser/pavian")
 pavian::runApp(port=5000)
 ```
 
-Then you will explore and compare the results produced by Kraken 2: upload the `_tax.txt` reports of the folder `~/mag2026/d1/results`.
+Then upload the `_tax.txt` reports of the folder `~/mag2026/d1/results` and explore the results produced by Kraken 2.
 
-Try to use Pavian to look at this data a bit!!
+::: {.callout-note}
+The installation of Pavian downloads several packages from GitHub and can fail when many people do it at the same time from the same network. If it fails, continue with Krona. Pavian is also available on [usegalaxy.eu](https://usegalaxy.eu) as an interactive tool.
+:::
 
 ## Functional Classification
 
