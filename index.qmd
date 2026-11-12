@@ -14,7 +14,6 @@ title: "Introduction to Metagenomics"
 ### Additional Introductions:
 
 * Link to all [Galaxy Metagenomics courses](https://training.galaxyproject.org/training-material/topics/metagenomics/)
-* [Analyses of metagenomics data - The global picture 2,5-3h by Galaxy](https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/general-tutorial/tutorial.html#shotgun-metagenomics-data)
 * Ancient DNA and metagenomics [Slides](slides/Ancient_metagenomics.pdf)
 
 ## Shotgun metagenomics (assembly free)
