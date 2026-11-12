@@ -5,7 +5,7 @@ name: Publish site
 
 on:
   push:
-    branches: [main]
+    branches: [main, Upgrade]
   workflow_dispatch:
 
 permissions:
