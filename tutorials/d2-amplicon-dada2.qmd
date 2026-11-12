@@ -348,7 +348,7 @@ plot_richness(physeq, x='day', measures=c('Observed', 'Shannon'), color='when') 
 ```
 
 ::: {.callout-note}
-Other richness measures, such as Chao1, ACE or Fisher's alpha, estimate the number of unseen variants from the variants that were seen only once (singletons). DADA2 removes singletons, because it cannot tell them from errors. So these measures have no meaning on a DADA2 table: do not use them here.
+Other richness measures, such as Chao1, ACE or Fisher's alpha, estimate the number of unseen variants from the variants that were seen only once (singletons). DADA2 removes singletons, because it cannot tell them from errors. So these measures have no meaning on a DADA2 table: do not use them here. This is also why `plot_richness` prints a warning about singletons: with DADA2 data, the warning is expected.
 :::
 
 No obvious differences. Let's look at ordination methods (beta diversity)
