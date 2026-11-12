@@ -1,0 +1,43 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - slides.qmd
+    - tutorials/*.qmd
+  resources:
+    - slides/*.pdf
+
+website:
+  title: "Introduction to Metagenomics"
+  site-url: https://rvandamme.github.io/Metagenomics_course/
+  repo-url: https://github.com/RVanDamme/Metagenomics_course
+  navbar:
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Tutorials
+        menu:
+          - text: "Day 1: read-based taxonomy"
+            href: tutorials/d1-read-taxonomy.qmd
+          - text: "Day 2: assembly and binning"
+            href: tutorials/d2-assembly-binning.qmd
+          - text: "Day 2: amplicon sequencing (DADA2)"
+            href: tutorials/d2-amplicon-dada2.qmd
+      - text: Slides
+        href: slides.qmd
+    tools:
+      - icon: github
+        href: https://github.com/RVanDamme/Metagenomics_course
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    link-external-newwindow: true
+
+# Tutorial code is shown, never run, when the site is built: no bioinformatics tool or R is needed to publish.
+filters:
+  - _filters/rchunks.lua

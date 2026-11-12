@@ -1,4 +1,6 @@
-# Metagenome assembly and binning
+---
+title: "Day 2: metagenome assembly and binning"
+---
 
 Before anything RUN THIS:
 
@@ -27,7 +29,6 @@ chmod -w tara_reads_R*
 ## Quality Control
 
 we'll use FastQC to check the quality of our data, as well as sickle for trimming the bad quality part of the reads.
-If you need a refresher on how and why to check the quality of sequence data, please check the [Quality Control and Trimming](qc) tutorial
 
 ```bash
 mkdir -p ~/results
@@ -36,11 +37,13 @@ ln -s ~/data/tara_reads_* .
 fastqc tara_reads_*.fastq.gz
 ```
 
-!!! question
-    What is the average read length? The average quality?
+::: {.callout-tip title="Question" icon=false}
+What is the average read length? The average quality?
+:::
 
-!!! question
-    Compared to single genome sequencing, what graphs differ?
+::: {.callout-tip title="Question" icon=false}
+Compared to single genome sequencing, what graphs differ?
+:::
 
 
 Now we'll trim the reads using sickle
@@ -50,8 +53,9 @@ sickle pe -f tara_reads_R1.fastq.gz -r tara_reads_R2.fastq.gz -t sanger \
     -o tara_trimmed_R1.fastq -p tara_trimmed_R2.fastq -s /dev/null
 ```
 
-!!! question
-    How many reads were trimmed?
+::: {.callout-tip title="Question" icon=false}
+How many reads were trimmed?
+:::
 
 ## Assembly
 
@@ -63,8 +67,9 @@ megahit -1 tara_trimmed_R1.fastq -2 tara_trimmed_R2.fastq -o tara_assembly
 
 the resulting assembly can be found under `tara_assembly/final.contigs.fa`.
 
-!!! question
-    How many contigs does this assembly contain?
+::: {.callout-tip title="Question" icon=false}
+How many contigs does this assembly contain?
+:::
 
 ## Binning
 
@@ -86,8 +91,9 @@ runMetaBat.sh -m 1500 final.contigs.fa tara.bam
 mv final.contigs.fa.metabat-bins1500 metabat
 ```
 
-!!! question
-    How many bins did we obtain?
+::: {.callout-tip title="Question" icon=false}
+How many bins did we obtain?
+:::
 
 ## Checking the quality of the bins
 
@@ -108,8 +114,9 @@ checkm lineage_wf -x fa metabat checkm/
 checkm qa  checkm/lineage.ms checkm > checkm.txt
 ```
 
-!!! question
-    Which bins should we keep for downstream analysis?
+::: {.callout-tip title="Question" icon=false}
+Which bins should we keep for downstream analysis?
+:::
 
 
 ## Functional annotation

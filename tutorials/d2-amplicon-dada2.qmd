@@ -1,7 +1,8 @@
 ---
-title: "Metabarcoding"
+title: "Day 2: amplicon sequencing with DADA2"
 author: "Hadrien Gourlé, modified by Renaud Van Damme"
-output: html_document
+# The course site shows the code without running it. Run the chunks yourself in RStudio.
+engine: markdown
 ---
 
 This tutorial is aimed at being a walkthrough of the DADA2 pipeline.
@@ -13,9 +14,10 @@ The advantages of the DADA2 method is described in the [paper](http://dx.doi.org
 
 ## Before Starting
 
-There are two ways to follow this tutorial: you can copy and paste all the codes blocks below in R directly, or you can download this document in the Rmarkdown format and execute the cells.
+There are two ways to follow this tutorial in RStudio:
 
-* [Link to the document in Rmarkdown](data/16S.Rmd)
+* copy and paste the code blocks below into R, one at a time; or
+* download [this page as a notebook](https://raw.githubusercontent.com/RVanDamme/Metagenomics_course/main/tutorials/d2-amplicon-dada2.qmd) (right-click, "Save link as"), open it in RStudio and run the chunks one by one.
 
 ## Install and Load Packages
 

@@ -1,0 +1,35 @@
+# Builds the Quarto site and publishes it to GitHub Pages on every push to main.
+# One-time setup in the repository: Settings -> Pages -> Source: "Deploy from a branch",
+# branch "gh-pages", folder "/ (root)".
+name: Publish site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-site
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.11.9
+
+      - name: Render and publish to the gh-pages branch
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

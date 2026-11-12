@@ -1,0 +1,21 @@
+---
+title: "Slides"
+---
+
+The lecture slides, as PDF files. Click a link to open the file, or right-click it to download.
+
+| Lecture | Day | Slides |
+|---|---|---|
+| Introduction to metagenomics and environmental studies | Day 1 | [PDF](slides/intro_to_metagenomics.pdf) |
+| Shotgun metagenomics | Day 1 and Day 2 | [PDF](slides/shotgun_metagenomics.pdf) |
+| Amplicon sequencing (metabarcoding) | Day 2 | [PDF](slides/Metabarcoding.pdf) |
+| Ancient DNA and metagenomics | Day 3 | [PDF](slides/Ancient_metagenomics.pdf) |
+| MUFFIN, a Nextflow genomic workflow | Day 3 | [PDF](slides/MUFFIN_genomic_workflow.pdf) |
+| The global presentation (summary) | Day 4 | [PDF](slides/Metagenomics_global_RVanDamme.pdf) |
+
+The introduction to Galaxy uses the
+[Galaxy Training Network slides](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/slides.html#1).
+
+::: {.callout-note}
+These are the slides of the 2020–2024 courses. Updated slides will replace them here before the next course.
+:::

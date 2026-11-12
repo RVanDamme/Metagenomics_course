@@ -1,1 +1,6 @@
-site/
+_site/
+/.quarto/
+.pixi/
+.DS_Store
+.Rhistory
+.Rproj.user/
