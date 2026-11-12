@@ -36,5 +36,9 @@ The course uses published data. If you reuse the data, cite the original studies
 | Day 2, assembly and binning | Reads simulated with [InSilicoSeq](https://insilicoseq.readthedocs.io) from Tara Oceans genomes | Simulation by Hadrien Gourlé; genomes from the [Tara Oceans MAG collection](https://figshare.com/articles/TARA-NON-REDUNDANT-MAGs/4902923/1) |
 | Day 2, amplicon | MiSeq SOP data (mouse gut, 16S V4) | Kozich et al. 2013, *Applied and Environmental Microbiology*, [doi:10.1128/AEM.01043-13](https://doi.org/10.1128/AEM.01043-13); distributed with the [mothur MiSeq SOP](https://mothur.org/wiki/miseq_sop/) |
 
-Reference databases (Kraken 2, SILVA, CheckM, GTDB) are downloaded from their providers and keep their own
+Reference databases (Kraken 2, SILVA, CheckM, CheckM2, GTDB) are downloaded from their providers and keep their own
 licences. Check the provider's terms before you redistribute a database.
+
+The reduced sourmash database of Day 2 is a changed copy of data from [GTDB](https://gtdb.ecogenomic.org)
+(release 226) and from the [sourmash](https://sourmash.readthedocs.io) project. It is shared under the licence
+of GTDB, CC BY-SA 4.0, not under the licence of this course: see the [Data page](data/README.md#sourmash-db).

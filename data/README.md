@@ -82,6 +82,17 @@ sourmash sig downsample --scaled 10000 gtdb-reps-rs226-k31.dna.zip -o gtdb-reps-
 **Limits.** A sketch this small is made for whole genomes and bins of 1 Mb or more. Do not use it for short
 contigs or for reads.
 
+**Licence.** The two files can be copied and shared, with credit.
+
+- The taxonomy comes from GTDB, which is under the
+  [Creative Commons Attribution-ShareAlike 4.0 licence](https://gtdb.ecogenomic.org/licenses) (CC BY-SA 4.0):
+  you may copy and adapt it if you give credit, link to the licence, say what you changed, and share your version
+  under the same licence.
+- The sketches were computed by the sourmash team and are marked CC0 (no restriction) inside the file.
+- So the course file is shared under **CC BY-SA 4.0**. Credit: "GTDB release 226 (Parks et al.,
+  <https://gtdb.ecogenomic.org>); sketches from the sourmash project (<https://sourmash.readthedocs.io>);
+  reduced to scaled = 10000 for the course Introduction to Metagenomics".
+
 ## Day 2: amplicon sequencing (DADA2)
 
 | File | Size | Download | md5 |
