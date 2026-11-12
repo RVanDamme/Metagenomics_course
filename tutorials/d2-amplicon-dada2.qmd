@@ -265,12 +265,13 @@ DADA2 is reference-free so we have to build the tree ourselves
 We first align our sequences
 
 ```{r align_seq}
-sequences <- getSequences(seq_table)
+# use the table without chimeras: a chimera is not a real sequence and has no place in the tree
+sequences <- getSequences(seq_table_nochim)
 names(sequences) <- sequences  # this propagates to the tip labels of the tree
 alignment <- AlignSeqs(DNAStringSet(sequences), anchor=NA)
 ```
 
-Then we build a neighbour-joining tree then fit a maximum likelihood tree using the neighbour-joining tree as a starting point
+Then we build a neighbour-joining tree then fit a maximum likelihood tree using the neighbour-joining tree as a starting point. This is the longest step of the tutorial: about 5 to 10 minutes.
 
 ```{r build_tree}
 phang_align <- phyDat(as(alignment, 'matrix'), type='DNA')
