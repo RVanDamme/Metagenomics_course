@@ -291,6 +291,10 @@ Choose a sample in the list at the top left. Click on a part of the wheel to zoo
 Compare a pig sample and a human sample. Which groups are the largest in each? How large is the "Unclassified" part?
 :::
 
+::: {.callout-tip title="Question" icon=false}
+Count the species that Bracken reports in each sample: `wc -l results/*.bracken` (one line per species, plus a title line). One group of samples seems to have more species than the other. Before you conclude that its microbiome is richer, look again at the number of classified reads in each sample. What else could explain the difference?
+:::
+
 #### Pavian (optional)
 
 [Pavian](https://github.com/fbreitwieser/pavian) is a web application for exploring metagenomics classification results. It compares several samples in one table and draws flow diagrams. It runs in R (RStudio).
