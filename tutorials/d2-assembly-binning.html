@@ -443,11 +443,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="getting-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="getting-the-data">Getting the Data</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2/data</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> <span class="at">-J</span> <span class="at">-L</span> https://osf.io/th9z6/download</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> <span class="at">-J</span> <span class="at">-L</span> https://osf.io/k6vme/download</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-f</span> <span class="at">-O</span> <span class="at">-J</span> <span class="at">-L</span> https://osf.io/th9z6/download</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-f</span> <span class="at">-O</span> <span class="at">-J</span> <span class="at">-L</span> https://osf.io/k6vme/download</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> <span class="at">-w</span> tara_reads_R<span class="pp">*</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The two files of reads are now in <code>data/</code>. The <code>chmod -w</code> command protects them: they can be read, but not changed or deleted by mistake.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>If the download fails
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The option <code>-f</code> makes <code>curl</code> stop with an error message (for example <code>curl: (22) The requested URL returned error: 500</code>) when the server has a problem. Without it, <code>curl</code> would save the error page of the server under the name of the file, and the next command would fail in a confusing way. If you see such an error, wait a few minutes and run the command again, or copy the file from the drive of your teacher. The <a href="../data/README.html">Data page</a> gives the checksum of every file.</p>
+</div>
+</div>
 </section>
 <section id="quality-control" class="level2">
 <h2 class="anchored" data-anchor-id="quality-control">Quality Control</h2>
@@ -590,7 +603,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The first time you run <code>checkm</code> you have to get its reference data (289 MB; ask your teacher for the drive copy) and tell CheckM where they are:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/mag2026/databases/checkm_data</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/databases/checkm_data</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-f</span> <span class="at">-O</span> https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check the download: the result must be 631012fa598c43fdeb88c619ad282c4d</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> checkm_data_2015_01_16.tar.gz</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> checkm_data_2015_01_16.tar.gz</span>
@@ -625,7 +638,7 @@ Note
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first time, get the CheckM2 database (1.7 GB to download, 2.9 GB on disk; ask your teacher for the drive copy):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/databases</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-o</span> checkm2_database.tar.gz <span class="st">"https://zenodo.org/records/14897628/files/checkm2_database.tar.gz?download=1"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-f</span> <span class="at">-L</span> <span class="at">-o</span> checkm2_database.tar.gz <span class="st">"https://zenodo.org/records/14897628/files/checkm2_database.tar.gz?download=1"</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check the download: the result must be 07c10655620843b517d0df0c160d911f</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> checkm2_database.tar.gz</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> checkm2_database.tar.gz</span>

@@ -461,10 +461,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="getting-the-data-and-checking-their-quality">Getting the Data and Checking their Quality</h3>
 <p>As the data were very big, we have performed a downsampling on all 6 datasets (3 pigs and 3 humans). We will first download and unpack the data.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d1/data</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> <span class="at">-J</span> <span class="at">-L</span> https://osf.io/h9x6e/download</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-f</span> <span class="at">-O</span> <span class="at">-J</span> <span class="at">-L</span> https://osf.io/h9x6e/download</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xvf subset_wms.tar.gz</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The reads are now in <code>data/sub_100000</code>: two files per sample (<code>_1.fastq</code> and <code>_2.fastq</code>), and a <code>metadata.txt</code> file.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>If the download fails
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The option <code>-f</code> makes <code>curl</code> stop with an error message (for example <code>curl: (22) The requested URL returned error: 500</code>) when the server has a problem. Without it, <code>curl</code> would save the error page of the server under the name of the file, and the next command would fail in a confusing way. If you see such an error, wait a few minutes and run the command again, or copy the file from the drive of your teacher. The <a href="../data/README.html">Data page</a> gives the checksum of every file.</p>
+</div>
+</div>
 <p>We’ll use FastQC to check the quality of our data.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> results/fastqc</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span> results/fastqc data/sub_100000/<span class="pp">*</span>.fastq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -563,7 +576,7 @@ Note
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/mag2026/databases/k2_standard_08gb</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/databases/k2_standard_08gb</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we download the Standard-8 database (version of 22 October 2026)</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08_GB_20261022.tar.gz</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-f</span> <span class="at">-O</span> https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08_GB_20261022.tar.gz</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check that the download is complete: the result must be 7447d230ea402d0b523c14d217b5c20b</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> k2_standard_08_GB_20261022.tar.gz</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xzf k2_standard_08_GB_20261022.tar.gz</span>
