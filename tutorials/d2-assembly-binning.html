@@ -540,8 +540,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>MetaBAT 2 makes some of its choices at random. Without a seed, two runs on exactly the same files give slightly different bins: a few contigs change bin, and the bins get other numbers. Your <code>bin.3</code> would not be the <code>bin.3</code> of your neighbour. The option <code>--seed</code> fixes the starting point of the random choices (any number works; we all use 1), so the same input gives the same bins every time.</p>
-<p><strong>In this course</strong> we fix the seed so that everybody has the same bins, and we can discuss them together.</p>
+<p>MetaBAT 2 makes some of its choices at random. Without a seed, two runs on exactly the same files give slightly different bins: a few contigs change bin. The option <code>--seed</code> fixes the starting point of the random choices (any number works; we all use 1), so the same input gives the same bins every time.</p>
+<p><strong>In this course</strong> we fix the seed so that everybody gets bins with the same content, and we can discuss them together.</p>
+<p>One thing still differs between laptops: the <strong>numbers</strong> of the bins. The assembler gives its contigs other names, in another order, at each run, so your <code>bin.3</code> can be the <code>bin.7</code> of your neighbour, with exactly the same contigs inside. To recognise a bin, look at its size and its number of contigs, not at its number:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqkit</span> stats results/metabat/bin.<span class="pp">*</span>.fa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>In a research project</strong> the answer has two parts.</p>
 <ul>
 <li><em>Do</em> fix the seed and write it in your methods, with the version of the tool: without it, nobody can reproduce your bins exactly, not even you.</li>
@@ -582,22 +584,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="checkm" class="level3">
 <h3 class="anchored" data-anchor-id="checkm">CheckM</h3>
 <p>Open a <strong>second terminal</strong> and activate the CheckM environment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/Metagenomics_course</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> checkm1</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/Metagenomics_course</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> checkm1</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first time you run <code>checkm</code> you have to get its reference data (289 MB; ask your teacher for the drive copy) and tell CheckM where they are:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/mag2026/databases/checkm_data</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/databases/checkm_data</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check the download: the result must be 631012fa598c43fdeb88c619ad282c4d</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> checkm_data_2015_01_16.tar.gz</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> checkm_data_2015_01_16.tar.gz</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> checkm_data_2015_01_16.tar.gz</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> data setRoot ~/mag2026/databases/checkm_data</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/mag2026/databases/checkm_data</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/databases/checkm_data</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check the download: the result must be 631012fa598c43fdeb88c619ad282c4d</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> checkm_data_2015_01_16.tar.gz</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> checkm_data_2015_01_16.tar.gz</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> checkm_data_2015_01_16.tar.gz</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> data setRoot ~/mag2026/databases/checkm_data</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now run CheckM on the folder of bins (about 5 minutes):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> lineage_wf <span class="at">-t</span> 2 <span class="at">--gplace_max_memory</span> 2G <span class="at">-x</span> fa results/metabat results/checkm</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> qa results/checkm/lineage.ms results/checkm <span class="at">--tab_table</span> <span class="at">-f</span> results/checkm.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> lineage_wf <span class="at">-t</span> 2 <span class="at">--gplace_max_memory</span> 2G <span class="at">-x</span> fa results/metabat results/checkm</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> qa results/checkm/lineage.ms results/checkm <span class="at">--tab_table</span> <span class="at">-f</span> results/checkm.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -612,27 +614,27 @@ Note
 </div>
 </div>
 <p>The result is the table <code>results/checkm.tsv</code>. Columns 12 and 13 are the completeness and the contamination:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1,12,13</span> results/checkm.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1,12,13</span> results/checkm.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The other columns give the lineage that CheckM chose for the bin, and how many marker genes were found 0, 1, 2 or more times.</p>
 </section>
 <section id="checkm2" class="level3">
 <h3 class="anchored" data-anchor-id="checkm2">CheckM2</h3>
 <p>In the same second terminal, leave the CheckM environment and activate the CheckM2 environment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> checkm2</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> checkm2</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first time, get the CheckM2 database (1.7 GB to download, 2.9 GB on disk; ask your teacher for the drive copy):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/databases</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-o</span> checkm2_database.tar.gz <span class="st">"https://zenodo.org/records/14897628/files/checkm2_database.tar.gz?download=1"</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check the download: the result must be 07c10655620843b517d0df0c160d911f</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> checkm2_database.tar.gz</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> checkm2_database.tar.gz</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> checkm2_database.tar.gz</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/databases</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-o</span> checkm2_database.tar.gz <span class="st">"https://zenodo.org/records/14897628/files/checkm2_database.tar.gz?download=1"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check the download: the result must be 07c10655620843b517d0df0c160d911f</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">md5sum</span> checkm2_database.tar.gz</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> checkm2_database.tar.gz</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> checkm2_database.tar.gz</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Run CheckM2 on the same bins (about 8 minutes):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm2</span> predict <span class="at">--lowmem</span> <span class="at">--threads</span> 2 <span class="at">-x</span> fa <span class="dt">\</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> results/metabat <span class="at">--output-directory</span> results/checkm2 <span class="dt">\</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--database_path</span> ~/mag2026/databases/CheckM2_database/uniref100.KO.1.dmnd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm2</span> predict <span class="at">--lowmem</span> <span class="at">--threads</span> 2 <span class="at">-x</span> fa <span class="dt">\</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> results/metabat <span class="at">--output-directory</span> results/checkm2 <span class="dt">\</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--database_path</span> ~/mag2026/databases/CheckM2_database/uniref100.KO.1.dmnd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -647,7 +649,7 @@ Note
 </div>
 </div>
 <p>The result is the table <code>results/checkm2/quality_report.tsv</code>. Its first three columns are the name of the bin, the completeness and the contamination:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1-3</span> results/checkm2/quality_report.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f1-3</span> results/checkm2/quality_report.tsv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="compare-the-two-tools" class="level3">
 <h3 class="anchored" data-anchor-id="compare-the-two-tools">Compare the two tools</h3>
@@ -779,12 +781,12 @@ Note
 <p>Now we should have a collection of MAGs that we can further analyze. The first step is to predict genes as right now we only have raw genomic sequences. We will use Prokka, a widely used annotation tool for prokaryotic genomes.</p>
 <p>This tool does gene prediction as well as some decent and useful annotations, and is actually quite easy to run!</p>
 <p>Prokka is in its own environment. Open a second terminal (or reuse the one of CheckM, after <code>exit</code>) and activate it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/Metagenomics_course</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> prokka</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/Metagenomics_course</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> shell <span class="at">-e</span> prokka</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>On a Mac with Apple Silicon, this environment runs through Rosetta: see <a href="../setup.html">Setup</a>.</p>
 <p>Choose one bin, for example a bin with a high completeness and a low contamination, and annotate it (about 3 minutes; replace <code>bin.1</code> and <code>bin1</code> by your choice):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prokka</span> <span class="at">--cpus</span> 2 <span class="at">--outdir</span> results/prokka_bin1 <span class="at">--prefix</span> bin1 results/metabat/bin.1.fa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prokka</span> <span class="at">--cpus</span> 2 <span class="at">--outdir</span> results/prokka_bin1 <span class="at">--prefix</span> bin1 results/metabat/bin.1.fa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Prokka produces a number of output files in the folder <code>results/prokka_bin1</code>, which mostly represent the same thing in different formats:</p>
 <table class="caption-top table">
 <colgroup>
@@ -821,8 +823,8 @@ Note
 </tbody>
 </table>
 <p>Prokka also renames all the sequences with nicer IDs.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> results/prokka_bin1/bin1.txt</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"hypothetical protein"</span> results/prokka_bin1/bin1.faa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> results/prokka_bin1/bin1.txt</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"hypothetical protein"</span> results/prokka_bin1/bin1.faa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -901,30 +903,30 @@ Note
 <li><code>gtdb-rs226.lineages.csv</code> (103 MB): the taxonomy of each genome.</li>
 </ul>
 <p>Copy them into <code>~/mag2026/databases/sourmash/</code>. The <a href="../data/README.html">Data page</a> explains how the reduced file was made and how to rebuild it.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="va">SOURMASH_DB</span><span class="op">=</span>~/mag2026/databases/sourmash</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="va">$SOURMASH_DB</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="va">SOURMASH_DB</span><span class="op">=</span>~/mag2026/databases/sourmash</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="va">$SOURMASH_DB</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="sketch-the-bins-and-search-the-database" class="level3">
 <h3 class="anchored" data-anchor-id="sketch-the-bins-and-search-the-database">Sketch the bins and search the database</h3>
 <p>sourmash is in the main environment (the first terminal). For each bin we make a sketch (<code>sourmash sketch</code>), then search the genomes of the database that best explain it (<code>sourmash gather</code>). This takes about 1 minute per bin.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> results/sourmash</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> results/metabat/bin.<span class="pp">*</span>.fa</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">name</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">$i</span> .fa<span class="va">)</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$name</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sourmash</span> sketch dna <span class="at">-p</span> k=31,scaled=10000 <span class="at">--name</span> <span class="va">$name</span> <span class="va">$i</span> <span class="at">-o</span> results/sourmash/<span class="va">${name}</span>.sig</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sourmash</span> gather results/sourmash/<span class="va">${name}</span>.sig <span class="va">$SOURMASH_DB</span>/gtdb-reps-rs226-k31.s10k.zip <span class="dt">\</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">-o</span> results/sourmash/<span class="va">${name}</span>.gather.csv</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mag2026/d2</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> results/sourmash</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> results/metabat/bin.<span class="pp">*</span>.fa</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">name</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">$i</span> .fa<span class="va">)</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$name</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sourmash</span> sketch dna <span class="at">-p</span> k=31,scaled=10000 <span class="at">--name</span> <span class="va">$name</span> <span class="va">$i</span> <span class="at">-o</span> results/sourmash/<span class="va">${name}</span>.sig</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sourmash</span> gather results/sourmash/<span class="va">${name}</span>.sig <span class="va">$SOURMASH_DB</span>/gtdb-reps-rs226-k31.s10k.zip <span class="dt">\</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">-o</span> results/sourmash/<span class="va">${name}</span>.gather.csv</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For each bin, <code>gather</code> prints the genomes it found and which part of the bin they explain. If nothing in the database is similar enough, it prints “No matches” and writes no file.</p>
 </section>
 <section id="from-genomes-to-a-taxonomy" class="level3">
 <h3 class="anchored" data-anchor-id="from-genomes-to-a-taxonomy">From genomes to a taxonomy</h3>
 <p><code>sourmash tax genome</code> reads the matches and the taxonomy file, and gives one classification per bin:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sourmash</span> tax genome <span class="at">-g</span> results/sourmash/<span class="pp">*</span>.gather.csv <span class="at">-t</span> <span class="va">$SOURMASH_DB</span>/gtdb-rs226.lineages.csv <span class="dt">\</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> results/sourmash/bins <span class="at">--output-format</span> csv_summary human</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> results/sourmash/bins.human.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sourmash</span> tax genome <span class="at">-g</span> results/sourmash/<span class="pp">*</span>.gather.csv <span class="at">-t</span> <span class="va">$SOURMASH_DB</span>/gtdb-rs226.lineages.csv <span class="dt">\</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-o</span> results/sourmash/bins <span class="at">--output-format</span> csv_summary human</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> results/sourmash/bins.human.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The lineage is written with the GTDB prefixes: <code>d__</code> domain, <code>p__</code> phylum, <code>c__</code> class, <code>o__</code> order, <code>f__</code> family, <code>g__</code> genus, <code>s__</code> species.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
