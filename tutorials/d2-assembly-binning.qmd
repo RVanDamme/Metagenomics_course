@@ -114,10 +114,16 @@ mv final.contigs.fa.depth.txt results/
 ```
 
 ::: {.callout-note title="Why `--seed 1`?"}
-MetaBAT 2 makes some of its choices at random. Without a seed, two runs on exactly the same files give slightly different bins: a few contigs change bin, and the bins get other numbers. Your `bin.3` would not be the `bin.3` of your neighbour.
+MetaBAT 2 makes some of its choices at random. Without a seed, two runs on exactly the same files give slightly different bins: a few contigs change bin.
 The option `--seed` fixes the starting point of the random choices (any number works; we all use 1), so the same input gives the same bins every time.
 
-**In this course** we fix the seed so that everybody has the same bins, and we can discuss them together.
+**In this course** we fix the seed so that everybody gets bins with the same content, and we can discuss them together.
+
+One thing still differs between laptops: the **numbers** of the bins. The assembler gives its contigs other names, in another order, at each run, so your `bin.3` can be the `bin.7` of your neighbour, with exactly the same contigs inside. To recognise a bin, look at its size and its number of contigs, not at its number:
+
+```bash
+seqkit stats results/metabat/bin.*.fa
+```
 
 **In a research project** the answer has two parts.
 
