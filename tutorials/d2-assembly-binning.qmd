@@ -38,13 +38,17 @@ the folder with `cd ~/mag2026/d2`.
 
 ```bash
 cd ~/mag2026/d2/data
-curl -O -J -L https://osf.io/th9z6/download
-curl -O -J -L https://osf.io/k6vme/download
+curl -f -O -J -L https://osf.io/th9z6/download
+curl -f -O -J -L https://osf.io/k6vme/download
 chmod -w tara_reads_R*
 cd ~/mag2026/d2
 ```
 
 The two files of reads are now in `data/`. The `chmod -w` command protects them: they can be read, but not changed or deleted by mistake.
+
+::: {.callout-note title="If the download fails"}
+The option `-f` makes `curl` stop with an error message (for example `curl: (22) The requested URL returned error: 500`) when the server has a problem. Without it, `curl` would save the error page of the server under the name of the file, and the next command would fail in a confusing way. If you see such an error, wait a few minutes and run the command again, or copy the file from the drive of your teacher. The [Data page](../data/README.md) gives the checksum of every file.
+:::
 
 ## Quality Control
 
@@ -172,7 +176,7 @@ The first time you run `checkm` you have to get its reference data (289 MB; ask 
 ```bash
 mkdir -p ~/mag2026/databases/checkm_data
 cd ~/mag2026/databases/checkm_data
-curl -O https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz
+curl -f -O https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz
 # check the download: the result must be 631012fa598c43fdeb88c619ad282c4d
 md5sum checkm_data_2015_01_16.tar.gz
 tar -xzf checkm_data_2015_01_16.tar.gz
@@ -214,7 +218,7 @@ The first time, get the CheckM2 database (1.7 GB to download, 2.9 GB on disk; as
 
 ```bash
 cd ~/mag2026/databases
-curl -L -o checkm2_database.tar.gz "https://zenodo.org/records/14897628/files/checkm2_database.tar.gz?download=1"
+curl -f -L -o checkm2_database.tar.gz "https://zenodo.org/records/14897628/files/checkm2_database.tar.gz?download=1"
 # check the download: the result must be 07c10655620843b517d0df0c160d911f
 md5sum checkm2_database.tar.gz
 tar -xzf checkm2_database.tar.gz

@@ -38,7 +38,7 @@ while downloading:
 ```bash
 mkdir -p ~/mag2026/databases/k2_standard_08gb
 cd ~/mag2026/databases/k2_standard_08gb
-curl -L https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08_GB_20261022.tar.gz | tar xzf -
+curl -f -L https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08_GB_20261022.tar.gz | tar xzf -
 md5sum hash.k2d      # must be 68e052782ee8f31df0699747402e5c82
 ```
 :::
@@ -75,7 +75,7 @@ and `sourmash tax genome` as in the [assembly and binning tutorial](../tutorials
 **How it was made.** Anyone can rebuild it from the official file (8 minutes, 4.5 GB of memory):
 
 ```bash
-curl -O https://farm.cse.ucdavis.edu/~ctbrown/sourmash-db.new/gtdb-rs226/gtdb-reps-rs226-k31.dna.zip
+curl -f -O https://farm.cse.ucdavis.edu/~ctbrown/sourmash-db.new/gtdb-rs226/gtdb-reps-rs226-k31.dna.zip
 sourmash sig downsample --scaled 10000 gtdb-reps-rs226-k31.dna.zip -o gtdb-reps-rs226-k31.s10k.zip
 ```
 

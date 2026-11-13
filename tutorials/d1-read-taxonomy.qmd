@@ -64,12 +64,16 @@ We will first download and unpack the data.
 
 ```bash
 cd ~/mag2026/d1/data
-curl -O -J -L https://osf.io/h9x6e/download
+curl -f -O -J -L https://osf.io/h9x6e/download
 tar xvf subset_wms.tar.gz
 cd ~/mag2026/d1
 ```
 
 The reads are now in `data/sub_100000`: two files per sample (`_1.fastq` and `_2.fastq`), and a `metadata.txt` file.
+
+::: {.callout-note title="If the download fails"}
+The option `-f` makes `curl` stop with an error message (for example `curl: (22) The requested URL returned error: 500`) when the server has a problem. Without it, `curl` would save the error page of the server under the name of the file, and the next command would fail in a confusing way. If you see such an error, wait a few minutes and run the command again, or copy the file from the drive of your teacher. The [Data page](../data/README.md) gives the checksum of every file.
+:::
 
 We'll use FastQC to check the quality of our data.
 
@@ -148,7 +152,7 @@ The download is 5.9 GB. If your teacher gives you a copy on a drive, use that in
 mkdir -p ~/mag2026/databases/k2_standard_08gb
 cd ~/mag2026/databases/k2_standard_08gb
 # Then we download the Standard-8 database (version of 22 October 2026)
-curl -O https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08_GB_20261022.tar.gz
+curl -f -O https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08_GB_20261022.tar.gz
 # check that the download is complete: the result must be 7447d230ea402d0b523c14d217b5c20b
 md5sum k2_standard_08_GB_20261022.tar.gz
 tar xzf k2_standard_08_GB_20261022.tar.gz
