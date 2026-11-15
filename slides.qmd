@@ -2,22 +2,18 @@
 title: "Slides"
 ---
 
-The lecture slides will be offered here as PDF files.
+The lecture slides, as PDF files. Text and slides: CC BY 4.0.
 
 | Lecture | When | Slides |
 |---|---|---|
-| Introduction to metagenomics | Day 1, morning | coming soon |
-| Shotgun metagenomics I: assembly-free | Day 1, morning | coming soon |
-| Shotgun metagenomics II: assembly and binning | Day 2, morning | coming soon |
-| Amplicon sequencing | Day 2, afternoon | coming soon |
-| Metatranscriptomics | Day 3, morning | coming soon |
-| Ancient DNA and metagenomics | Day 3, morning | coming soon |
-| MUFFIN and hybrid workflows | Day 3, morning | coming soon |
-| The global presentation (summary) | Day 4, morning | coming soon |
+| Introduction to metagenomics | Day 1, morning | [PDF](slides/01_Introduction_to_metagenomics.pdf) |
+| Shotgun metagenomics I: assembly-free | Day 1, morning | [PDF](slides/02_Shotgun_I_assembly_free.pdf) |
+| Shotgun metagenomics II: assembly and binning | Day 2, morning | [PDF](slides/03_Shotgun_II_assembly_and_binning.pdf) |
+| Amplicon sequencing | Day 2, afternoon | [PDF](slides/04_Amplicon_sequencing.pdf) |
+| Metatranscriptomics | Day 3, morning | [PDF](slides/05_Metatranscriptomics.pdf) |
+| Ancient DNA and metagenomics | Day 3, morning | [PDF](slides/06_Ancient_metagenomics.pdf) |
+| MUFFIN and hybrid workflows | Day 3, morning | [PDF](slides/07_MUFFIN_and_hybrid_workflows.pdf) |
+| The global presentation (summary) | Day 4, morning | [PDF](slides/08_Global_presentation_summary.pdf) |
 
 The introduction to Galaxy uses the
 [Galaxy Training Network slides](https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-short/slides.html#1).
-
-::: {.callout-note}
-The slides are being rebuilt for the next course. Each file appears here as soon as it is ready.
-:::

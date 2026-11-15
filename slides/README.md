@@ -3,8 +3,8 @@
 This folder holds the lecture slides as PDF files, exported from the teacher's PowerPoint files.
 The PowerPoint sources are not in this repository.
 
-To publish a lecture: export it to PDF, save it here under the name given in the table of `slides.qmd`,
-replace "coming soon" by a link in that table, and push.
+To update a lecture: export it again to PDF from PowerPoint (without speaker notes), save it here under the same
+file name, and push. The link in `slides.qmd` does not change.
 
 | File name | Lecture |
 |---|---|
