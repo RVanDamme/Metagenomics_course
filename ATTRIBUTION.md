@@ -21,6 +21,10 @@ This course is taught and maintained by Renaud Van Damme.
   The annotation and taxonomy parts of the assembly tutorial were written by Renaud Van Damme and Hadrien Gourlé.
 - **Slides.** The introduction and shotgun lectures were developed with **Moritz Buck**.
   The ancient DNA lecture is based on the work of **Zoé Pochon**.
+- **Illustrations.** The pictures in the slides were made for this course with ChatGPT (OpenAI) and are shared
+  under CC BY 4.0, like the slides.
+- **MUFFIN logo** (slides of the MUFFIN lecture): © MUFFIN authors, <https://github.com/RVanDamme/MUFFIN>
+  (GPL-3.0). It is not covered by the CC BY 4.0 licence of the slides.
 - **Galaxy tutorials.** The Galaxy route uses tutorials of the
   [Galaxy Training Network](https://training.galaxyproject.org) (CC BY 4.0). Each tutorial is linked with its
   title; its authors are listed on its page.
