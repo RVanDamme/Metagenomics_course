@@ -319,7 +319,7 @@
     "href": "slides.html",
     "title": "Slides",
     "section": "",
-    "text": "The lecture slides will be offered here as PDF files.\n\n\n\n\n\n\n\n\nLecture\nWhen\nSlides\n\n\n\n\nIntroduction to metagenomics\nDay 1, morning\ncoming soon\n\n\nShotgun metagenomics I: assembly-free\nDay 1, morning\ncoming soon\n\n\nShotgun metagenomics II: assembly and binning\nDay 2, morning\ncoming soon\n\n\nAmplicon sequencing\nDay 2, afternoon\ncoming soon\n\n\nMetatranscriptomics\nDay 3, morning\ncoming soon\n\n\nAncient DNA and metagenomics\nDay 3, morning\ncoming soon\n\n\nMUFFIN and hybrid workflows\nDay 3, morning\ncoming soon\n\n\nThe global presentation (summary)\nDay 4, morning\ncoming soon\n\n\n\nThe introduction to Galaxy uses the Galaxy Training Network slides.\n\n\n\n\n\n\nNote\n\n\n\nThe slides are being rebuilt for the next course. Each file appears here as soon as it is ready."
+    "text": "The lecture slides, as PDF files. Text and slides: CC BY 4.0.\n\n\n\nLecture\nWhen\nSlides\n\n\n\n\nIntroduction to metagenomics\nDay 1, morning\nPDF\n\n\nShotgun metagenomics I: assembly-free\nDay 1, morning\nPDF\n\n\nShotgun metagenomics II: assembly and binning\nDay 2, morning\nPDF\n\n\nAmplicon sequencing\nDay 2, afternoon\nPDF\n\n\nMetatranscriptomics\nDay 3, morning\nPDF\n\n\nAncient DNA and metagenomics\nDay 3, morning\nPDF\n\n\nMUFFIN and hybrid workflows\nDay 3, morning\nPDF\n\n\nThe global presentation (summary)\nDay 4, morning\nPDF\n\n\n\nThe introduction to Galaxy uses the Galaxy Training Network slides."
   },
   {
     "objectID": "tutorials/d2-amplicon-dada2.html",
